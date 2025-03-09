@@ -1,2 +1,2 @@
-# calculus-worksheets
-This is a storage file of the UH mathematics department calculus worksheets.
+# University of Hawai'i at Manoa Mathematics Department Calculus Worksheets
+## This page is still in development! Please direct questions on usage and contributions to Alan Tong at tongalan@hawaii.edu.
