@@ -1,0 +1,56 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}{1}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}{0}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Quiz 6: Derivative as a function}
+\begin{enumerate}
+\item Consider the function
+\[g(x) = \sqrt{6-x}.\]
+\textbf{Use the definition of the derivative} to find $g'(x)$. What are the domains of $f$ and $f'$?
+
+\end{enumerate}
+
+\end{document}

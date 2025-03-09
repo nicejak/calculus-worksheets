@@ -1,0 +1,285 @@
+\documentclass[11pt]{exam}
+\RequirePackage{amssymb, amsfonts, amsmath, latexsym, verbatim, xspace, setspace}
+\RequirePackage{tikz, pgflibraryplotmarks}
+\usepackage[margin=1in]{geometry}
+
+
+\newcommand{\class}{MATH 242 - SPRING 2025}
+\newcommand{\examnum}{Midterm 1}
+\newcommand{\examdate}{}
+\newcommand{\timelimit}{75 Minutes}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{arrows}
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\singlespacing
+\parindent 0ex
+
+\begin{document}
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Page \thepage\ of \numpages}{\examdate}
+\runningheadrule
+\begin{flushright}
+\begin{tabular}{p{2.8in} r l}
+\textbf{\class} & \textbf{Name (Last, First):} & \makebox[2in]{\hrulefill}\\
+\textbf{\examnum} &&\\
+\textbf{Time Limit: \timelimit} & \textbf{Section:} & \makebox[2in]{\hrulefill}\\
+\end{tabular}\\
+\end{flushright}
+\rule[1ex]{\textwidth}{.1pt}
+
+% These commands set up the running header on the top of the exam pages
+\pagestyle{head}
+\firstpageheader{}{}{}
+\runningheader{\class}{\examnum\ - Page \thepage\ of \numpages}{\examdate}
+\runningheadrule
+
+\begin{flushleft}
+\begin{center}
+
+\end{center}
+\end{flushleft}
+
+\hfill
+\begin{minipage}[t]{4.3in}
+\vspace{0pt}
+%\cellwidth{3em}
+\gradetablestretch{1.4}
+\vqword{Problem}
+\addpoints % required here by exam.cls, even though questions haven't started yet.	
+\gradetable[v]%[pages]  % Use [pages] to have grading table by page instead of question
+
+
+
+\end{minipage}
+
+\begin{flushleft}
+\vspace{0.25in}
+\textbf{Instructions:}
+\begin{itemize}
+    \item Write your full name (Last, First) and Section number above.
+    \item Answer all the questions below and show your work.
+    \item Organize your work neatly and write clearly and legibly.
+    \item Cross-out extraneous scratch work and put a box around your final answer.
+    \item You do not need to fully simplify your answers unless requested.
+    \item No electronic devices (including calculators) are to be used during the exam.
+    \item The exam is closed book and closed notes.
+    \item There is a formula sheet at the back of the exam.
+    \item Turn in your exam at the end of the allotted time.
+\end{itemize}
+\textbf{Good Luck!}
+
+\vspace{0.25in}
+\textbf{Sign below to acknowledge that you have read and agree to the above instructions.}
+
+\vspace{0.25in}
+Signature: \makebox[5.5in]{\hrulefill}\\
+\end{flushleft}
+
+\newpage
+
+\begin{questions}
+\addpoints
+\question %1
+The graph below shows a piecewise {\bf linear} function $y=f(x)$ with domain $[0,20]$. Use the indicated values to answer the following questions:
+
+\begin{center}
+    \begin{tikzpicture}[scale=1.25]
+% Definitions
+\tikzmath{
+\r1 = 2;
+\r2 = 3;
+\r3 = 4;
+\q1 = 5;
+\q2 = 10;
+\q3 = 20;
+\x1 = \q1; 
+\y1 = \r1*\q1;
+\x2 = \q2; 
+\y2 =\r2 * \q2;
+\x3 = \q3; 
+\y3 = \r3 * \q3;
+ } 
+% Axis
+\begin{axis}[
+axis x line=middle,
+axis y line=middle,
+ylabel=y-axis,
+xlabel=x-axis,
+xtick={0,\x1,\x2,\x1+\x2,\x3},
+xticklabels={$0$,$5$,$10$,$15$,$20$,{ }},
+xlabel near ticks,
+ytick={0, \y1, \y2-\q1, \y3-\q1-\q2-\x3,\y3-\q1-\q2},
+yticklabels={0,$10$, $25$,$45$,$65$},
+ylabel near ticks,
+xmax=\x3+5,
+ymax=\y3+5,
+xmin=0,
+ymin=0
+]
+% Plots
+\addplot[domain=0:\q1] {\r1*x};
+\addplot[domain=\q1:\q2] {\r2*x-\q1};
+\addplot[domain=\q2:\q3] {\r3*x-\q2-\q1};
+\draw[dotted] (axis cs:\x1,\y1) -- (axis cs:\x1, 0);
+\draw[dotted] (axis cs:\x2,\y2-\q1) -- (axis cs:\x2, 0);
+\draw[dotted] (axis cs:\x1+\x2,\y3-\q1-\q2-\x3) -- (axis cs:\x1+\x2, 0);
+\draw[dotted] (axis cs:\x3,\y3-\q2-\q1) -- (axis cs:\x3, 0);
+
+\draw[dotted] (axis cs:\x1,\y1) -- (axis cs:0, \y1);
+\draw[dotted] (axis cs:\x2,\y2-\q1) -- (axis cs:0, \y2-\q1);
+\draw[dotted] (axis cs:\x1+\x2,\y3-\q1-\q2-\x3) -- (axis cs:0, \y3-\q1-\q2-\x3);
+\draw[dotted] (axis cs:\x3,\y3-\q2-\q1) -- (axis cs:0, \y3-\q2-\q1);
+\addplot[only marks,mark=*] coordinates{(0,0)(5,10)(10,25)(20,65)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{parts}
+\part[2] Briefly explain how you know that the inverse function $f^{-1}(x)$ exists. 
+\vfill
+\part[2] What is the domain of the inverse $f^{-1}(x)$?
+\vfill
+\part[2] What is $f^{-1}(45)$?
+\vfill
+\part[4] What is $(f^{-1})'(45)$?
+\vfill
+\end{parts}
+
+\newpage
+
+
+
+\question %2
+Find the derivative of the given function.
+\begin{parts}
+\part[5] $$y=(\tan(3x))^{x^2}$$
+\vfill
+\part[5] $$h(x)=\ln\Big(\frac{x^9\sin^3(x)}{3^x\cos^5(x)}\Big)$$
+\vfill
+\end{parts}
+\newpage
+
+\question[8] %3
+Compute the limit:
+$$\lim_{x\to 1}\frac{e^{2x-2}-x^2}{\cos(x-1)-1}$$
+\newpage
+
+\question[8] %4
+Compute the limit:
+$$\lim_{x\to 0^+}(\sin(x))^{\tan(x)}$$
+\newpage
+
+\question[8] %5
+Evaluate the integral:
+$$\int\sqrt{x}\tan^{-1}(\sqrt{x^3})dx$$
+\newpage
+\question[8] %6
+Evaluate the integral:
+$$\int\sec^6(2x)\tan^{3}(2x)dx$$
+\newpage
+
+\question[12] %8
+Compute the definite integral:
+$$\int_0^1x^3\sqrt{1-x^2}dx$$
+\newpage
+\question[8] %7
+Evaluate the integral:
+$$\int\frac{x-6}{x^2+6x+5}dx$$
+\newpage
+
+
+
+\begin{comment}
+\question[8] 
+
+A pirate captain finds two treasure chests, one filled with $500$ pounds of gold, and one filled with $100$ pounds of silver. The captain realizes each chest has its own magical powers. The chest of gold is cursed, so if left alone, the amount of gold in the chest decays exponentially by $10\%$ per day. On the other hand, the amount of silver when left alone increases exponentially by $5\%$ per day. How many days after finding them before the chests weigh the same?
+\end{comment}
+\question[8] A population of microorganisms is growing exponentially. Initially at 12:00pm the population is $20$. At 4:00pm the population is $600$. If this growth continues, how many hours after 12:00pm will the population reach $800$?
+
+
+
+
+\end{questions}
+
+\newpage
+%%
+\begin{comment}
+
+
+\begin{itemize}
+    \item Derivatives of Inverse Trigonometric Functions
+    $$*\frac{d}{dx}\sin^{-1}(x)=\frac{1}{\sqrt{1-x^2}}\qquad\qquad*\frac{d}{dx}\cos^{-1}(x)=-\frac{1}{\sqrt{1-x^2}}$$
+    $$*\frac{d}{dx}\tan^{-1}(x)=\frac{1}{1+x^2}\qquad\qquad*\frac{d}{dx}\cos^{-1}(x)=-\frac{1}{1+x^2}$$
+     $$*\frac{d}{dx}\sec^{-1}(x)=\frac{1}{x\sqrt{x^2-1}}\qquad\qquad*\frac{d}{dx}\csc^{-1}(x)=-\frac{1}{x\sqrt{x^2-1}}$$
+     \vfill
+    \item Trigonometric Identities
+$$*\sin^2(x)+\cos^2(x)=1\qquad\qquad*\tan^2(x)+1=\sec^2(x)\qquad\qquad*1+\cot^2(x)=\csc^2(x)$$
+
+$$*\sin(A+B)=\sin(A)\cos(B)+\cos(A)\sin(B)\quad*\cos(A+ B)=\cos(A)\cos(B)-\sin(A)\sin(B)$$
+$$*\tan(A+B)=\frac{\tan(A)+\tan(B)}{1-\tan(A)\tan(B)}$$
+
+$$*\sin^2(x)=\frac{1}{2}\Big(1-\cos(2x)\Big)\quad\quad*\sin(x)\cos(x)=\frac{1}{2}\sin(2x)\quad\quad*\cos^2(x)=\frac{1}{2}\Big(1+\cos(2x)\Big)$$
+
+$$*\sin(A)\sin(B)=\frac{1}{2}\Big(\cos(A-B)-\cos(A+B)\Big)$$
+$$*\cos(A)\cos(B)=\frac{1}{2}\Big(\cos(A-B)+\cos(A+B)\Big)$$
+$$*\sin(A)\cos(B)=\frac{1}{2}\Big(\sin(A-B)+\sin(A+B)\Big)$$
+
+    \vfill
+    \item Integrals of Trigonometric Functions
+    $$*\int\tan(x)dx=\ln(|\sec(x)|)+C\qquad\qquad*\int\sec(x)dx=\ln(|\sec(x)+\tan(x)|)+C$$
+    $$*\int\cot(x)dx=\ln(|\sin(x)|)+C\qquad\qquad*\int\csc(x)dx=-\ln(|\csc(x)+\cot(x)|)+C$$
+    \vfill
+    \newpage
+    \end{itemize}
+\end{comment}
+
+\pagestyle{plain}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.2cm plus 0.05cm minus 0.01cm}
+
+\newcommand{\R}{\mathbb{R}}
+
+\begin{center}
+  {\large\textbf{Formula Sheet}}
+\end{center}
+
+\paragraph{Derivatives of inverse trigonometric functions.}\mbox{}\\
+\vspace{-1em}
+\begin{align*}
+  \frac{d}{dx}(\sin^{-1}{x}) &= \frac{1}{\sqrt{1-x^2}} &\quad\quad
+  \frac{d}{dx}(\cos^{-1}{x}) &= -\frac{1}{\sqrt{1-x^2}}\\
+  \frac{d}{dx}(\tan^{-1}{x}) &= \frac{1}{1+x^2} &\quad\quad
+  \frac{d}{dx}(\cot^{-1}{x}) &= -\frac{1}{1+x^2}\\
+  \frac{d}{dx}(\sec^{-1}{x}) &= \frac{1}{x\sqrt{x^2-1}} &\quad\quad
+  \frac{d}{dx}(\csc^{-1}{x}) &= -\frac{1}{x\sqrt{x^2-1}}
+\end{align*}
+
+\paragraph{Trigonometric identities.}\mbox{}\\
+\vspace{-2em}
+\begin{align*}
+  &\hspace{10em}\sin^2{x}+\cos^2{x} = 1 &&\\
+  1+\tan^2{x} &= \sec^2{x} &\quad 1+\cot^2{x} &= \csc^2{x}\\
+  \sin{(2x)} &= 2\sin{x}\cos{x} &\quad  \cos{(2x)} &= \cos^2{x}-\sin^2{x} \\
+  \sin^2{x} &= \frac{1}{2}\big(1-\cos(2x)\big) &\quad  \cos^2{x} &= \frac{1}{2}\big(1+\cos(2x)\big)\\
+  \sin{x}\sin{y} &= \frac{1}{2}\big(\cos{(x-y)} - \cos{(x+y)}\big) &\quad
+  \cos{x}\cos{y} &= \frac{1}{2}\big(\cos{(x-y)} + \cos{(x+y)}\big)\\
+  \sin{x}\cos{y} &= \frac{1}{2}\big(\sin{(x-y)} + \sin{(x+y)}\big) &\quad
+  \sin{(x+y)} &= \sin{x}\cos{y}+\cos{x}\sin{y}\\
+  \cos{(x+y)} &= \cos{x}\cos{y}-\sin{x}\sin{y} &\quad
+  \tan{(x+y)} &= \frac{\tan{x}+\tan{y}}{1-\tan{x}\tan{y}}\\
+\end{align*}
+
+\paragraph{Integrals of some trigonometric functions.}\mbox{}\\
+\vspace{-1em}
+\begin{align*}
+  \int{\tan{x}\,dx} &= \ln{|\sec{x}|}+C & \quad \int{\cot{x}\,dx} &= \ln{|\sin{x}|}+C\\
+  \int{\sec{x}\,dx} &= \ln{|\sec{x}+\tan{x}|}+C & \quad \int{\csc{x}\,dx} &= \ln{|\csc{x}-\cot{x}|}+C\\
+\end{align*}
+
+
+
+\end{document}

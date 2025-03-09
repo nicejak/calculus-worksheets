@@ -1,0 +1,62 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+\chead{\MyName} % Top center header
+\rhead{\MyAssignment} % Top right header
+%\lfoot{\MyCampus} % Bottom left footer
+\cfoot{} % Bottom center footer
+%\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+
+
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 241}
+\newcommand{\MyAssignment}{Quiz 4}
+\newcommand{\MyName}{Name:\hspace{2in}}
+%\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+% ----------
+% BEGIN DOCUMENT
+% ----------
+
+\begin{document} 
+\begin{enumerate}
+    \item Write the following rules. You can use $\frac{d}{dx}$ or prime notation.
+    \begin{enumerate}
+        \item $\dfrac{d}{dx}\left(f(x)g(x)\right)$
+        \vfill
+        \item $\dfrac{d}{dx}\left(\dfrac{f(x)}{g(x)}\right)$
+        \vfill
+        \item $\dfrac{d}{dx}\left(f(g(x))\right)$
+        \vfill
+    \end{enumerate}
+    \item Find the derivative of $f(x) = x^3\sin(x) + \dfrac{x^2}{\cos(x)}$.
+    \vspace{4in}
+\end{enumerate}
+\end{document}

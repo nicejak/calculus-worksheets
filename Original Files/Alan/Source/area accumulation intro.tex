@@ -1,0 +1,221 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage{calc}
+
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, multicol, enumerate, hyperref}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb,latexsym,epsfig,amscd,arydshln}
+			
+\parskip = 0.2in
+
+\def\ds{\displaystyle}
+
+\setlength{\parindent}{0pt}
+
+\newcounter{saveenum}
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\opsol}{1}
+    \newcommand{\usol}[1]{\underline{\textcolor{red}{#1} \hspace{.2 in}}}
+    \newcommand{\sol}[1]{\textcolor{red}{#1}}
+\else
+    \newcommand{\opsol}{0}
+    \newcommand{\usol}[1]{\underline{\textcolor{white}{#1} \hspace{.2 in}}}
+    \newcommand{\sol}[1]{\textcolor{white}{#1}}
+\fi
+
+
+
+\begin{document}
+\pagenumbering{gobble}
+
+
+{\large \textbf{Area accumulation functions -- an introduction}} \\
+Given a function $f(x)$, we create a new function $F(x)$ by evaluating how much area is accumulated under $f(x)$.
+
+\begin{enumerate}
+\item Example:
+
+\vspace{-.2 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=7.2,
+	ymin=-1.2, ymax=2.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=3 in, width=6 in, grid=major, ylabel={$f$},
+ 	restrict y to domain=-1.2:3,
+ 	axis equal
+	]
+	\addplot[<-] [very thick, samples=99, domain=-2:1] {1};
+	\addplot[->] [very thick, samples=99, domain=6:7] {-1};
+	\addplot [black, very thick] plot coordinates {(1,1)(2,2)};
+	\addplot [black, very thick] plot coordinates {(2,2)(3,2)};
+	\addplot [black, very thick] plot coordinates {(3,2)(6,-1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+\vspace{-.1 in}
+\item Define $\ds F(x)=\int_0^x f(t) \,dt$. Evaluate the following:
+
+\begin{multicols}{2}
+$F(0)= \sol{0}$  \\
+$F(1)= \sol{1} $ \\
+
+$F(2)= \sol{2.5} $  \\
+$F(-1)= \sol{-1}$  \\
+\end{multicols}
+
+\vspace{-.2 in}
+\item Shade in and find the area represented by $F(3)-F(1)$.
+
+\sol{It is the area under the curve between $x=1$ and $x=3$, an area of 3.5.}
+\vfill
+
+\item Find a formula for $F(x)$ between $x=0$ and $x=1$
+
+\sol{$x$}
+\vfill
+
+\item Give two values at which $F(x)=0$. (Hint: assume the graph continues to the right.)
+
+\sol{$x=0$ and $x=12$}
+\vfill
+
+\item Which is larger: $F(3)$ or $F(4)$? Explain.
+
+\sol{$F(4)$ is larger because $F(x)$ accumulates area and all the area between $x=3$ and $x=4$ counts as positive since $f(x)$ is positive there.}
+\vfill
+
+\item Which is larger: $F(5)$ or $F(6)$? Explain.
+
+\sol{$F(5)$ is larger because the area accumulated between $x=5$ and $x=6$ counts negatively, since $f(x)$ is negative there.}
+\vfill
+
+\item Give open intervals on which $F(x)$ is increasing. Explain.
+
+\sol{$F(x)$ is increasing from $x=0$ to $x=5$. On this interval the area is all positive, so as it accumulates, the value of $F(x)$ must increase.  To the left of $x=0$, $F(x)$ is also increasing because the value of the integrals becomes less negative as the value of $x$ moves to the right.}
+\vfill
+
+\item $F(x)$ has a local extremum at $x=5$. Is it a maximum or a minimum? Explain.
+
+\sol{It is a local maximum because $F(x)$ is increasing up to $x=5$ and decreasing after.}
+\vfill
+
+\item $F(x)$ is increasing at both $x=1$ and $x=2$. At which value is $F(x)$ increasing faster? Explain.
+
+\sol{$F(x)$ is increasing faster at $F(2)$ because the value of $f(x)$ is larger, so as $x$ grows, the area is accumulating at a faster rate.}
+\vfill
+
+\end{enumerate}
+
+\newpage
+
+\item $g$ is a piecewise function composed of line segments and a semi-circle.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.5, xmax=12.5,
+	ymin=-4.2, ymax=4.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=3 in, width=4 in, grid=major, ylabel={$g$},
+ 	restrict y to domain=-4.2:4.2,
+ 	axis equal
+	]
+	\addplot[<-] [very thick, samples=99, domain=-2:0] {-x};
+	\addplot [smooth, very thick, samples=999, domain=0:4] {-(4-(x-2)^2)^.5};
+	\addplot [black, smooth, very thick] plot coordinates {(4,0) (8,4)};
+	\addplot[->] [black, very thick, domain=8:12] {-2*x+20};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+\item $\ds G(x)=\int_4^x g(t) \,dt$
+
+\begin{multicols}{2}
+$G(4)= \sol{0}$ \\
+$G(10)=\sol{12}$ \\
+
+$G(12)=\sol{8}$ \\
+$G(0)=\sol{2\pi}$ \\
+\end{multicols}
+
+\vspace{-.2 in}
+\item On what open intervals is $G(x)$ increasing? decreasing?
+
+\sol{$G(x)$ is decreasing on $(0,4) \cup (10,\infty)$. $G(x)$ is increasing on $(-\infty, 0) \cup (4,10)$.}
+\vfill
+
+\item Find all local extreme values of $G(x)$ by determining where $G(x)$ switches from increasing to decreasing and from decreasing to increasing.
+
+\sol{$G(x)$ has local maximum values at $x=0$ and $x = 10$ (the area accumulation function switches from increasing to decreasing there), and the local max values are $G(0)=2 \pi$ and $G(10)=12$.
+The area accumulation function switches from decreasing to increasing at $x=4$, so $G$ has a local minimum there.
+The local minimum is $G(4)=0$.
+}
+\vfill
+
+\item What are the critical numbers of $G(x)$?
+
+\sol{$G(x)$ has critical numbers at $x=0, 4, 10$.}
+\vfill
+
+\item On the interval from $[0,12]$ where is $G(x)$ increasing fastest?
+
+\sol{At $x=8$.}
+\vfill
+
+\end{enumerate}
+\newpage
+
+\item The peak of Boulder's epic rainstorm of 2013 occured between 4pm, Sept 12, and 4am, Sept 13. During those 12 hours the rate of rainfall can be modelled by $\ds r(t)=\frac{240e^{2t/3}}{\left( 60+e^{2t/3} \right)^2}$ in inches per hour, where $t=0$ represents 4pm on Sept 12.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-.2, xmax=12.2,
+	ymin=-.2, ymax=1.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=3 in, width=4 in, grid=major, ytick={0,.25,...,1}, xtick={0,1,...,12},
+	]
+	\addplot [smooth, very thick, samples=99, domain=0:12] {(240*e^(2*x/3))*(60+e^(2*x/3))^(-2)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Let $\ds R(x)=\int_0^x \frac{240e^{2t/3}}{\left( 60+e^{2t/3} \right)^2} \,dt$.
+
+\begin{enumerate}
+\item Use the graph to estimate $R(4)$. What does it represent? (include units)
+
+\sol{At $R(4) \approx 1$. This represents the total number of inches of rain that have fallen between 4pm, Sept 12, and 4 hours later, at 8pm, Sept 12.}
+\vfill
+
+\item Use technology to calculate $R(12)$. What does it represent? (include units)
+
+\sol{At $R(12) \approx 5.78326$. This represents the total number of inches of rain that have fallen between between 4pm, Sept 12, and 12 hours later, at 4am, Sept 13.}
+\vfill
+
+\item What does $R(x)$ represent?
+
+\sol{The amount of rain that has fallen between 4pm, Sept 12 and $x$ hours later.}
+\vfill
+
+\item Where is $R(x)$ changing the fastest?
+
+\sol{At $x=6$.}
+\vfill
+
+\end{enumerate}
+\end{enumerate}
+\end{document}

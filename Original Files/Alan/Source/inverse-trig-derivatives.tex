@@ -1,0 +1,61 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+
+\usepackage{amsmath}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[C]{}
+
+\usepackage{color}
+\usepackage{tikz}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[t][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[t][#1]{\linewidth}{\vfill}\end{minipage}}
+\fi
+
+\begin{document}
+
+\lhead{\bf Derivative Practice: Inverse Trigonometric Functions}
+\rhead{\bf}
+
+\begin{enumerate}
+\item[1.] If $k(t)=2^{\arcsin\left(\sqrt{t}\right)}$, then what is $k'(t)$?
+
+\sol{3.25cm}{\begin{align*}
+k'(t)&=(\ln2)2^{\arcsin\left(\sqrt{t}\right)}\cdot\frac{1}{\sqrt{1-(\sqrt{t})^2}}\cdot\frac{1}{2}t^{-\frac{1}{2}}\\
+&=\frac{\ln2}{2}\cdot2^{\arcsin\left(\sqrt{t}\right)}\cdot\frac{1}{\sqrt{t}\sqrt{1-t}}
+\end{align*}}
+
+\item[2.] If $g(p)=\dfrac{p^2}{3}\arctan(5p-1)+k$, then what is $g'(p)$?
+
+\sol{2.25cm}{$$g'(p)=\frac{p^2}{3}\frac{1}{1+(5p-1)^2}\cdot5+\frac{2p}{3}\arctan(5p-1)$$}
+
+\item[3.] If $f(x)=\dfrac{x}{\arcsin\left(e^x\right)}$, then what is $f'(x)$?
+
+\sol{2.25cm}{$$f'(x)=\frac{\arcsin\left(e^x\right)-x\cdot\frac{e^x}{\sqrt{1-e^{2x}}}}{[\arcsin\left(e^x\right)]^2}$$}
+
+\item[4.] If $h(x)=\tan(\arctan(x))$, then what is $h'(x)$?
+
+\sol{8cm}{$$h'(x)=\frac{\sec^2(\arctan(x))}{1+x^2}$${\bf Better solution:} We have $h(x)=\tan(\arctan(x))=x$ by inverse functions. So, $h'(x)=1$.\\%
+\\%
+Note that by using the triangle technique, the first solution can be simplified:\\\begin{tabular}{ll}\begin{tikzpicture}
+\draw (0,0)--node[above, rotate=27.47] {$\sqrt{1+x^2}$} (2,1);
+\draw (2,1)--node[right] {$x$} (2,0);
+\draw (2,0)--node[below] {$1$} (0,0);
+\draw (0.75,0) arc (0:27.47:0.75) {};
+\node at (1,0.25) {$\theta$};
+\end{tikzpicture}&\def\arraystretch{2.2}$\begin{array}{l}\theta=\arctan(x)\\\sec(\theta)=\dfrac{\text{hyp}}{\text{adj}}=\dfrac{\sqrt{1+x^2}}{1}\\\sec^2(\arctan(x))=(\sec(\theta))^2=1+x^2\\\dfrac{\sec^2(\arctan(x))}{1+x^2}=\dfrac{1+x^2}{1+x^2}=1\end{array}$\end{tabular}\\\\\\Happily, the two methods of finding the derivative yield the same answer.}
+\end{enumerate}
+
+
+\end{document}

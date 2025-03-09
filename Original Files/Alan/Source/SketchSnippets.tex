@@ -1,0 +1,83 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=0.25 in]{geometry}
+\usepackage{calc}
+
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, multicol, hyperref}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb,amsthm,latexsym,epsfig,amscd,arydshln}
+			
+\parskip = 0.2in
+
+\def\ds{\displaystyle}
+
+\setlength{\parindent}{0pt}
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\opsol}{1}
+    \newcommand{\sol}[1]{\underline{\textcolor{red}{#1}}}
+\else
+    \newcommand{\opsol}{0}
+    \newcommand{\sol}[1]{\underline{\textcolor{white}{#1}}}
+\fi
+
+\newcommand{\card}[4]{
+\begin{minipage}[c][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=1,
+	ymin=-3, ymax=3,
+	major tick length={0},
+	xtick={-1,1},ytick={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=none,
+ 	restrict y to domain=-3:3
+	]
+    \addplot [opacity=\opsol, red, smooth, very thick, samples=99, domain=-1:1] {#1};
+\end{axis}
+\end{tikzpicture}
+
+#2 \\ #3 \\ #4 \\ \textcolor{white}{$f(t) filler$} \\ \textcolor{white}{$f(t) filler$}
+\end{center}
+\end{minipage}}
+
+\newcommand{\carda}[6]{
+\begin{minipage}[c][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=1,
+	ymin=-3, ymax=3,
+	major tick length={0},
+	xtick={-1,1},ytick={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=none,
+ 	restrict y to domain=-3:3
+	]
+    \addplot [opacity=\opsol, red, smooth, very thick, samples=99, domain=-1:1] {#1};
+\end{axis}
+\end{tikzpicture}
+
+#2 \\ #3 \\ #4 \\ #5 \\ #6
+\end{center}
+\end{minipage}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\begin{center}
+  {\large \textbf{Using properties of $f$, $f'$, and $f''$ to sketch $f$ on the interval $[-1,1]$.}}
+\end{center}
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\card{e^x}{$f(t)$ is positive}{$f(t)$ is increasing}{$f(t)$ is concave up}  &  \card{-e^(-x)+3}{$f(t)$ is positive}{$f(t)$ is increasing}{$f(t)$ is concave down} & \card{e^(-x)-3}{$f(t)$ is negative}{$f(t)$ is decreasing}{$f(t)$ is concave up} & \card{-e^(x)+3}{$f(t)$ is positive}{$f(t)$ is decreasing}{$f(t)$ is concave down} \\ \hline
+\carda{e^(-x)}{$f(t)>0$}{$f'(t)<0$}{(so $f(t)$ is \sol{decreasing})}{$f''(t)>0$}{(so $f(t)$ is \sol{concave up})}   &  \carda{-e^(-x)}{$f(t)<0$}{$f'(t)>0$}{(so $f(t)$ is \sol{increasing})}{$f''(t)<0$}{(so $f(t)$ is \sol{concave down})} & \carda{e^x-3}{$f(t)<0$}{$f'(t)>0$}{(so $f(t)$ is \sol{increasing})}{$f'(t)$ is increasing}{(so $f''(t) \sol{>0}$ and $f(t)$ is \sol{concave up})} & \carda{-e^x}{$f(t)<0$}{$f(t)$ is decreasing}{(so $f'(t) \sol{<0}$)}{$f'(t)$ is decreasing}{(so $f''(t) \sol{<0}$ and $f(t)$ is \sol{concave down})} \\ \hline
+\carda{-e^(-x)}{$f(t)$ is negative}{$f(t)$ is increasing}{(so $f'(t) \sol{>0}$)}{$f'(t)$ is decreasing}{(so $f''(t) \sol{<0}$ and $f(t)$ is \sol{concave down})}  &  \carda{e^(-x)}{$f(t)$ is positive}{$f(t)$ is decreasing}{(so $f'(t) \sol{<0}$)}{$f'(t)$ is increasing}{(so $f(t)$ is \sol{concave up})} & \card{-e^(x)+3}{$f(t)>0$}{$f'(t)<0$}{$f''(t)<0$} & \card{e^(x)-3}{$f(t)<0$}{$f'(t)>0$}{$f''(t)>0$} \\ \hline
+\card{-e^x}{$f(t)<0$}{$f(t)$ is decreasing}{$f'(t)$ is decreasing}  &  \card{e^x}{$f'(t)>0$}{$f(t)$ is positive}{$f'(t)$ is increasing} & \card{-e^(-x)+3}{$f'(t)>0$}{$f(t)>0$}{$f''(t)<0$} & \card{e^(-x)-3}{$f(t)$ is decreasing}{$f'(t)$ is increasing}{$f(t)$ is negative}
+\end{tabular}
+\end{center}
+\end{document}

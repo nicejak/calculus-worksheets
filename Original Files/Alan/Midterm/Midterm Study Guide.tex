@@ -1,0 +1,147 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usetikzlibrary{patterns}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+
+
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; To hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\ww}{WeBWorK }
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vs}[1]{\vspace{#1 pt}}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Midterm Study Guide}
+\begin{enumerate}
+    \item Compute the following limit
+    \[\lim_{\theta \to \infty} \sin\left(\frac{\pi}{\theta}\right)\theta\]
+    \sol{}{\begin{align*}
+        \lim_{\theta \to \infty} \sin\left(\frac{\pi}{\theta}\right)\theta & = \lim_{\theta \to \infty} \frac{\sin\left(\frac{\pi}{\theta}\right)}{\frac{1}{\theta}} \\
+        & =  \lim_{\theta \to \infty} \frac{\sin\left(\frac{\pi}{\theta}\right)}{\frac{\pi}{\theta}} \cdot \pi \\
+        & = \pi
+    \end{align*}}
+    
+    \newpage
+    \item Suppose you are given the curve 
+    \[xy = \sqrt{x^2+y^2}\]
+    as well as the points $(1,1)$, $(\sqrt{2},\sqrt{2})$. What are the tangent lines at these two points?
+    \sol{}{Apply the derivative to both sides to obtain
+    \begin{align*}
+        x\frac{dy}{dx} + y & = \frac{1}{2\sqrt{x^2 + y^2}} \cdot (2x + 2y \frac{dy}{dx}) \\
+    \end{align*}
+    Fun fact: since we are working on the curve $xy = \sqrt{x^2+y^2}$, we can replace the term on the right with something a bit nicer.
+    \begin{align*}
+         x\frac{dy}{dx} + y & = \frac{2x + 2y \frac{dy}{dx}}{2xy} \\
+         & = \frac{1}{y} + \frac{\frac{dy}{dx}}{x}\\
+         x \frac{dy}{dx} - \frac{\frac{dy}{dx}}{x} & = \frac{1}{y} - y\\
+         \frac{dy}{dx}\left(x - \frac{1}{x}\right) & = \frac{1}{y} - y\\
+         \frac{dy}{dx} & = \frac{1/y - y}{x - 1/x}
+    \end{align*}
+    The first point is invalid, since plugging into the equation gives $1 = \sqrt{2}$. The second point is valid and has a slope of
+    \[m = \frac{1/\sqrt{2} - \sqrt{2}}{\sqrt{2}-1/\sqrt{2}} = -1.\]
+    Therefore the tangent line for the second point is 
+    \[y = -1(x-\sqrt{2}) + \sqrt{2}.\]
+    }
+    
+    \newpage
+    \item Using the definition of continuous, prove that $f(x) = \frac{1}{x^2}$ is not continuous at 0. Furthermore, find a formula for $f'$.
+    
+    \sol{1in}{The definition of continuous at $a$ is that $\lim_{x\to a} f(x) = f(a)$. In this case, neither $\lim_{x\to 0} f(x)$ nor $f(0)$ exist, so equality is false since neither even exist. The derivative is simply
+    \[f'(x) = -\frac{2}{x^3}.\]}
+    \newpage
+    \item
+    Show that the tangent to the ellipse 
+    \[\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1\]
+    at the point $(x_0,y_0)$ is 
+    \[\frac{x_0 x}{a^2} + \frac{y_0 y}{b^2} =1.\]
+
+    \sol{}{The slope at a point is the derivative. We must calculate it to be
+    \begin{align*}
+        \frac{2x}{a^2} + \frac{2y\frac{dy}{dx}}{b^2} & = 0\\
+        \frac{dy}{dx} & = \frac{-2x}{a^2} \cdot \frac{b^2}{2y}\\
+        & = -\frac{b^2x}{a^2y}
+    \end{align*}
+    So the slope at a point $(x_0,y_0)$ is $m = -\frac{b^2 x_0}{a^2 y_0}$. Plugging in to the point slope equation:
+    \[y - y_0 = -\frac{b^2 x_0}{a^2 y_0}(x-x_0)\]
+    Simplifying we obtain the result
+    \begin{align*}
+        y - y_0 & = -\frac{b^2 x_0}{a^2 y_0}(x-x_0)\\
+        y - y_0 & = -\frac{b^2 x_0 x}{a^2 y_0} + \frac{b^2 x_0^2}{a^2 y_0}\\
+        y_0 y - y_0^2 & = -\frac{b^2 x_0 x}{a^2} + \frac{b^2 x_0^2}{a^2}\\
+        \frac{y_0 y}{b^2} - \frac{y_0^2}{b^2} & = -\frac{ x_0 x}{a^2} + \frac{x_0^2}{a^2}\\
+        \frac{y_0 y}{b^2} +\frac{x_0 x}{a^2} & = \frac{x_0^2}{a^2} + \frac{y_0^2}{b^2}\\
+        & = 1
+    \end{align*}
+    Where the final equality is given in the question.
+    }
+    
+    \newpage
+    \item Water is leaking out of an inverted conical tank at a rate of 10,000 $\text{cm}^3/\text{min}$ at the same time that water is being pumped into the tank at a constant rate. The tank has height 6 m and the diameter at the top is 4 m. If the water level is rising at a rate of 20 cm/min when the height of the water is 2 m, find the rate at which water is being pumped into the tank.
+    \sol{}{
+    $\frac{dV}{dt} = \text{flow in - flow out} = \text{flow in} - 10000$. Thus we use the equation
+    \[ V = \frac{1}{3} \pi r^2 h\]
+    along with the similar triangle ratio
+    \[\frac{r}{h} = \frac{2}{6}\]
+    Be careful here as the problem gives diameter, not radius. We can write $r$ in terms of $h$ with this ratio to obtain $ r = h/3$, then get
+    \[V = \frac{1}{27} \pi h^3\]
+    Differentiate wrt time to obtain
+    \[\frac{dV}{dt} = \frac{1}{9} \pi h^2 \frac{dh}{dt}\]
+    and so 
+    \[\frac{dV}{dt} = \frac{1}{9} \pi 2^2 \cdot 20\]
+    This along with the first line I wrote says that the flow in is 
+    \[\frac{1}{9} \pi 2^2 \cdot 20 + 10000\]
+    }
+    
+    \newpage
+    \item Suppose that we don't have a formula for $g(x)$ but we know that $g(2)=-4$ and $g'(x) = -\frac{4}{x^2}$ for all $x$. Use linear approximation to estimate $g(2.05)$.
+    
+    \sol{}{
+    The linearization at $2$ is $L(x) = -(x-2) -4$ so $g(2.05) \approx L(2.05) = -0.05 - 4 = -4.05$.
+    }
+\end{enumerate}
+\end{document}

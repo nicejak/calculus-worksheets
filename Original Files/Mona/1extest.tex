@@ -1,0 +1,104 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+%\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+%\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{tasks}
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+\chead{\MyTopicTitle} % Top center header
+\rhead{\MyAssignment} % Top right header
+\lfoot{\MyCampus} % Bottom left footer
+%\cfoot{June 14, 2022} % Bottom center footer
+\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\setlength{\headheight}{14.49998pt}
+
+\let\ds\displaystyle
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\pink}{\textcolor{CarnationPink}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\violet}{\textcolor{violet}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\grn}{\textcolor{green}}
+\newcommand{\uh}{\textcolor{ForestGreen}}
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 242}
+\newcommand{\MyAssignment}{Review}
+\newcommand{\MySemester}{Fall 2024}
+\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+
+\pgfplotsset{compat=1.18} 
+\begin{document}
+\noindent Name: \hspace{4in}Section:
+\vspace{0.5cm}
+
+
+
+\begin{enumerate}
+\item Suppose that $g$ is the inverse of a function $f$. If $f(4)=3$ and $f'(4)=2$, find $g'(3).$ \vfill
+
+
+
+\item Differentiate the function. \[y= \ln\left(x^3 \sin^2{x}
+\right)\] 
+\vfill
+\item Prove that \[\frac{d}{dx}\left(\csc^{-1}x\right)=-\frac{1}{x\sqrt{x^2-1}}. \]
+\vfill
+\newpage
+
+
+\item Evaluate $\sin^{-1}\left( \sin \left(\frac{3\pi}{4}\right)\right)$.
+\vfill
+
+ 
+
+\item
+Evaluate the integral. \[\int_0^{1/7} \frac{1}{1+49x^2}dx\]
+
+\vfill
+\item Find the volume of the solid obtained by rotating the region bounded by the given curves about the specified line.$y=\ln x, y=1, y=5, x=0$; about the $y$-axis
+\vfill
+\newpage
+\item Find the derivative of the function.
+\[y=3 \sin^{-1}\left(x^2\right)\]
+\vfill
+
+\item Find the limit.
+\[\lim_{t \to \infty} \left(\frac{8t^2+7}{9t^2-7}\right)e^{-0.3t}\]
+\vfill
+\item Find \[\frac{d^4}{dx^4}\left( x^3 \ln x\right)\]
+\vfill
+\newpage
+\item Evaluate the integral.
+\[\int 5^{\sin \theta}\cos \theta d\theta\]
+\vfill
+\item Differentiate the function.\[y=x\left( 5^{2x} \right)\]
+\vfill
+\item A lighthouse is located on a small island, 3km away from the nearest point $P$ on a straight shoreline, and its light makes four revolutions per minute. How fast is the beam of the light moving along the shoreline when it is 1 km from $P$? 
+\vfill
+\end{enumerate}
+
+\end{document}

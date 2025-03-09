@@ -1,0 +1,228 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=.8in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tabularx}
+
+\hypersetup{colorlinks, linkcolor=red}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\def\imagetop#1{\vtop{\null\hbox{#1}}} % this is to make figures line up properly with text
+
+\newif\ifsolutions
+%\solutionstrue
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{red}{\textbf{Solution:}}\quad \textcolor{red}{#2}}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2sol}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\chead{}
+\rhead{\bf Project: Graphing using signs} 
+
+\begin{enumerate}
+\item  In the graph of $f(x)$ below, number lines are used to mark where $f(x)$ is zero/positive/negative/undefined, where $f'(x)$ is zero/positive/negative/undefined,
+and where $f''(x)$ is zero/positive/negative/undefined.  Closed circles on the number lines indicate a zero-value, and open-circles indicate an undefined value.
+\begin{center}\hskip-.4in
+\includegraphics[scale=.35]{fig1.png}
+\end{center}
+\begin{enumerate}
+\item  What do the closed circles on the number line for $f(x)$ correspond to on the graph of $f(x)$?
+
+\sol{.4 in}{This is where $f(x)$ has x-intercepts (zeroes).}
+
+\item  How  does each $+$ or $-$ sign on the number line for $f(x)$ relate to the graph?
+
+\sol{.4 in}{The $+$ and $-$ signs indicate where $f(x)$ is positive or negative.}
+
+\item  What does the closed circle at $x=-1$ on the number line for $f'(x)$ correspond to on the graph of $f(x)$?
+
+\sol{.4 in}{This is where $f(x)$ has a horizontal tangent line.}
+
+\item  What does the open circle at $x=2$ on the number line for $f'(x)$ correspond to on the graph of $f(x)$?
+
+\sol{.4 in}{This is where $f(x)$ has a vertical tangent line, so its slope, and $f'(x)$, is undefined here.}
+
+\item   How does each $+$ or $-$ sign on the number line for $f'(x)$ relate to the graph?
+
+\sol{.4 in}{They indicate where $f'(x)$ is positive or negative. $f'(x)$ is negative where $f(x)$ is decreasing and positive where $f(x)$ is increasing.}
+
+\item What does the open circle at $x=2$ on the number line for $f''(x)$ correspond to on the graph of $f(x)$?
+
+\sol{.4 in}{Since $f'(x)$ is undefined here, so is $f''(x)$.}
+
+\item How does each $+$ or $-$ sign on the number line for $f''(x)$ relate to the graph?
+
+\sol{.4 in}{They indicate where $f''(x)$ is positive or negative. $f''(x)$ is negative where $f(x)$ is concave down and positive where $f(x)$ is concave up.}
+
+\end{enumerate}
+
+
+\newpage
+\item  For the graph of $f(x)$ shown below, fill in the number lines for $f(x)$, $f'(x)$ and $f''(x)$, marking closed circles where there is a zero, marking open circles for undefined points, and marking $+$ and $-$ signs on each interval to show positive/negativeness.
+\begin{center}\hskip-.4in
+\fsol{.35}{fig2a}
+\end{center}
+
+\item  Draw a graph of $f(x)$ that fits the information shown in the number lines.
+\begin{center}\hskip-.4in
+\fsol{.35}{fig2b}
+\end{center}
+\vspace{1in}
+
+\newpage
+
+\item  The middle graph drawn below shows $f'(x)$.  Using the principles you learned in the previous problem, draw a possible graph of $f(x)$ above it, and a graph of $f''(x)$ below it. (If you are stuck try drawing the graph of $f''(x)$ first.)
+
+\vspace{.4 in}
+
+\begin{tabular}{ll}
+$f(x):$
+&
+\imagetop{\fsol{1}{fig5a}}\\
+
+\vspace{.4 in}\\
+
+$f'(x):$&
+\imagetop{\includegraphics[scale=1]{fig5b}}\\
+
+\vspace{.4 in}\\
+
+$f''(x):$&
+\imagetop{\fsol{1}{fig5c}}\\
+
+\end{tabular}
+
+\newpage
+
+\item  This problem investigates the derivative of the absolute value function.  Recall that we define the absolute value as:
+\begin{displaymath}
+   |x| = \left\{
+     \begin{array}{ll}
+       x & \mbox{ if } x\geq 0,\\
+	-x & \mbox{ if } x<0.
+     \end{array}
+   \right.
+\end{displaymath}
+	\begin{enumerate}
+	\item In the space provided, draw a graph of the function $f(x)=|x|$.
+\begin{center}
+\fsol{.6}{fig4a}
+\end{center} 
+
+\item Using your graph from part (a), and your understanding of the derivative as the rate of change/slope of the tangent line, find the derivative function $f'(x)$ of the above function $f(x)=|x|$, for $x$ not equal to $0$  (fill in the blanks):
+\begin{displaymath}
+  f'(x) = \left\{
+     \begin{array}{ll}
+      \underline{\hskip1in} & \mbox{ if } x> 0, \sol{0 in}{1 if $x>0$}\\\\
+	 \underline{\hskip1in}& \mbox{ if } x<0. \sol{0 in}{-1 if $x<0$}
+     \end{array}
+   \right.
+\end{displaymath}.
+
+\item But what about $f'(0)$?  
+	It is not so clear from the picture even how to draw a tangent line to the function at the origin.
+	So let's try to compute $f'(0)$ by first looking at the corresponding lefthand and righthand limits of the difference quotient. 
+\begin{enumerate}
+\item Compute $\lim_{h\rightarrow 0^+}\frac{f(0+h)-f(0)}{h}$.  Hint:  use the piecewise definition of $f(x)$ given above.
+
+\sol{1 in}{
+$$\lim_{h\rightarrow 0^+}\frac{f(0+h)-f(0)}{h}=\lim_{h\rightarrow 0^+}\frac{|h|-|0|}{h}=\lim_{h\rightarrow 0^+}\frac{h-0}{h}=\lim_{h\rightarrow 0^+}1=1$$(since $h\to 0^+$ means $h$ is positive, so $|h|=h$).
+}
+
+\item  Compute $\lim_{h\rightarrow 0^-}\frac{f(0+h)-f(0)}{h}$. 
+
+\sol{1in}{
+$$\lim_{h\rightarrow 0^-}\frac{f(0+h)-f(0)}{h}=\lim_{h\rightarrow 0^-}\frac{|h|-|0|}{h}=\lim_{h\rightarrow 0^-}\frac{-h-0}{h}=\lim_{h\rightarrow 0^-}-1=-1$$(since $h\to 0^-$ means $h$ is negative, so $|h|=-h$).
+}
+
+\item What do your answers to parts (i) and (ii) tell you about $f'(0)$?  Please explain.
+
+\sol{1 in}{
+Since the righthand limit $\lim_{h\rightarrow 0^+}\frac{f(0+h)-f(0)}{h}$ does NOT equal the lefthand limit $\lim_{h\rightarrow 0^-}\frac{f(0+h)-f(0)}{h}$, the (two-sided) limit $\lim_{h\rightarrow 0}\frac{f(0+h)-f(0)}{h}$ does not exist.  But this  (two-sided) limit is $f'(0)$, so $f'(0)$ does not exist.
+}
+\end{enumerate}
+\end{enumerate}
+
+\newpage
+\item  Using what you've learned above, sketch the graph of a {\it continuous} function  $g(x)$  such that $g(x)$ is not differentiable at $x=-1$, $x=2$, nor $x=3$. 
+\begin{center}
+\fsol{.6}{fig4d}
+\end{center}
+\item Create a piecewise function where one piece is a quadratic function and the other piece is a linear function which is continuous everywhere but not differentiable at $x=0$.
+\begin{displaymath}
+  f(x) = \left\{
+     \begin{array}{ll}
+      \underline{\hskip1in} & \mbox{ if } x\ge 0, \\ \\
+	 \underline{\hskip1in}& \mbox{ if } x<0.
+     \end{array}
+   \right.
+\end{displaymath}.
+
+\sol{.8 in}{
+\begin{displaymath}
+  f(x) = \left\{
+     \begin{array}{ll}
+      x^2 & \mbox{ if } x\ge0 \\ \\
+      x & \mbox{ if } x<0.
+     \end{array}
+   \right.
+\end{displaymath}.
+}
+
+\item Create a piecewise function where one piece is a quadratic function and the other piece is a linear function which is continuous and differentiable everywhere.
+\begin{displaymath}
+  f(x) = \left\{
+     \begin{array}{ll}
+      \underline{\hskip1in} & \mbox{ if } x> 0, \\ \\
+	 \underline{\hskip1in}& \mbox{ if } x \leq 0.
+     \end{array}
+   \right.
+\end{displaymath}.
+
+\sol{1.5 in}{
+\begin{displaymath}
+  f(x) = \left\{
+     \begin{array}{ll}
+      (x+1)^2-1 & \mbox{ if } x\ge0 \\ \\
+      2x & \mbox{ if } x<0.
+     \end{array}
+   \right.
+\end{displaymath}.
+\\
+Note, because $\dfrac{d}{dx} \bigg|_{x=0} (x+1)^2-1=2(0+1)=2$ and $\dfrac{d}{dx} \bigg|_{x=0} 2x=2$, so 
+the right and left difference quotient limits agree at $x=0$ and therefore the function is differentiable at $x=0$.
+}
+
+\end{enumerate}
+
+
+
+\end{document}

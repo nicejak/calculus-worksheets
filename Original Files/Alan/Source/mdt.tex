@@ -1,0 +1,259 @@
+%  NOTE:  Mathematica code to generate the graphs in the project is appended to the bottom of this file
+
+\documentclass[12pt]{article}
+\usepackage{amsmath,fullpage,graphicx,fancyhdr,color}
+\def\scrr{\underbar{\hskip1.3in}}
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{7pt}
+%\setlength{\parindent}{0pt}
+\def\ds{\displaystyle}
+\newcommand{\ddx}{\frac{d}{dx}}
+\pagestyle{fancy}
+\def\Red{\color{red}}
+\def\Black{\color{black}}
+\openup1\jot
+\def\rd#1{\Red #1\Black}
+%\def\ans#1{\underbar{\qquad \Red #1\Black \qquad}}
+
+
+%To show solutions, use \solutionstrue
+%To hide solutions, use \solutionsfalse
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\gsol}[2]{#2}
+    \newcommand{\ssol}[1]{\textcolor{red}{#1}}
+    \newcommand{\sol}[1]{\textcolor{red}{#1}}
+    \newcommand{\ans}[1]{\underbar{\qquad \textcolor{red}{#1} \qquad}}
+\else
+    \newcommand{\gsol}[2]{#1}
+    \newcommand{\ssol}[1]{\textcolor{black}{#1}}
+    \newcommand{\sol}[1]{\textcolor{white}{#1}}
+    \newcommand{\ans}[1]{\underbar{\qquad \textcolor{white}{#1} \qquad}}
+\fi
+
+\begin{document}
+\lhead{Calculus I}\chead{ }   \rhead{\bf Project:  Monomers, Dimers, Trimers, and Rates of Change}
+
+\noindent A beaker contains three types of molecules, called monomers, dimers, and trimers.  We use $M$, $D$, and $T$ to stand for the quantities of each of the three respective types. Suppose these quantities are changing over time, according to the following ``rate equations:''
+$$\aligned M'&=-4M^2-0.8 M D,\\
+D'&=\phantom{-}2M^2-0.8 M D,\\T'&= \phantom{-2M^2-\ }0.8 M D.\endaligned$$
+\noindent   Let's suppose that, {\it  initially, there are equal} (nonzero) {\it quantities of monomers and dimers.}
+\begin{enumerate}\item Is $D$ initially increasing or decreasing?  Please explain.
+
+\sol{Initially, we have $D=M$, by the above note.  So initially, by the above equation for $D'$, we have$$\aligned D'&=2M^2-0.8 M D\\&=2M^2-0.8M\cdot M\\&=2M^2-0.8M^2\\&=(2-0.8)M^2=1.2M^2>0.\endaligned$$  Since $D'$ is initially positive, we see that $D$ is initially increasing.}
+
+\vfill
+\item What is the ``threshold value'' of $M/D$, meaning the value of the ratio $M/D$ at which $D$ changes from increasing to decreasing  (if $D$ is initially increasing), or from decreasing to increasing (if $D$ is initially decreasing)?  Please explain.
+
+\sol{To say that $D$ changes from increase to decrease, or vice versa, is to say that $D'=0$.  Let's examine where this happens, by setting the above formula for $D'$ equal to zero:
+$$ 2M^2-0.8 M D=0.$$Factor out an $M$:
+$$ M(2M-0.8  D)=0.$$ 
+Divide through by $M$ (assuming $M\ne0$):
+$$ 2M-0.8  D=0.$$Solve for $M/D$:
+$$M/D=0.8/2=0.4.$$So the threshold value of $M/D$ is $0.4$.}
+
+\item
+ Which of the four graphs on the  following page could possibly be a graph of the quantities $M$, $D$, and $T$ modeled by the above rate equations?  Please explain your reasoning carefully, and on the correct graph, label which curve is $M$, which is $D$, and which is $T$. Hint:  start by thinking about increase and decrease.
+
+\vfill\eject
+\null\smallskip
+\begin{center} 
+ 
+ \includegraphics[scale=.6]{Nmdt3.pdf}
+ \includegraphics[scale=.6]{\gsol{mdt0.pdf}{mdt0s.pdf}}
+
+\smallskip
+  (i)\hskip2.8in   \ssol{ (ii) }
+ 
+\medskip 
+ \includegraphics[scale=.6]{Nmdt1.pdf}
+ \includegraphics[scale=.6]{Nmdt2.pdf}
+
+\smallskip
+  (iii)\hskip2.8in (iv)
+\end{center}
+
+
+
+\sol{ Since  $T'=0.8 M D$ is always positive (as long as neither $M$ nor $D$ equals zero), at least one of our three curves must be steadily  increasing.  This eliminates graph (i).  We can also eliminate graph (iv) because, by exercise 2 above, $D'$ must also increase initially, and graph (iv) does not include two curves that are initially increasing.
+\vspace{.1 in}
+To distinguish between graphs (ii) and (iii) we note that, by exercise 2 above, $D$ peaks when $M/D$ equals 0.4.  This clearly eliminates graph (iii) -- in that graph, at the point (around $t=2.5$) where $D$ peaks, we see that $M$ is less than $0.1$ and $D$ is larger than $0.5$, so that $M/D$ is less than $0.1/0.5=1/5=0.2$.   
+\vspace{.1 in}
+The remaining graph (ii) must therefore be the correct graph.  The labeling of each of the quantities $M$, $D$, and $T$ in that graph follows by considering the signs of $M'$, $D'$, and $T'$.}
+
+\vfill\eject
+\item Fill in the blanks (try to answer based primarily on quantitative reasoning and mathematics; you shouldn't need any advanced knowledge of chemical reactions):
+
+A monomer may react with another monomer to form a dimer.  These monomer-to-monomer reactions cause a decrease in the total quantity of \ans{monomers}.  Moreover,  the rate at which this occurs is proportional to $M^2$ (since each of the $M$ milligrams of monomers present has roughly  {$M$} milligrams of other \ans{monomers} with which to react).  The monomer-to-monomer reactions therefore correspond to the  term \ans{$-4M^2$} in the above equation for $M'$.
+
+Further, whenever two monomers are lost to a monomer-to-monomer reaction, one \ans{dimer} is gained.  That is: the rate at which dimers are gained from such reactions equals half the rate at which\ans{monomers} are lost to these reactions.  Since half of $4M^2$ equals \ans{$2M^2$}, the  monomer-to-monomer reactions account for the term \ans{$2M^2$} in the above equation for $D'$. 
+
+A monomer may also react with a dimer to form a \ans{trimer}.  The rate at which this occurs is proportional to the product of the quantity of monomers and the quantity of dimers (since each of the \ans{$M$} milligrams of monomers present has  \ans{$D$} milligrams of dimers with which to react).   The decrease in $M$ resulting from these monomer-to-dimer reactions therefore corresponds to the term \ans{$-0.8MD$} in the above equation for $M'$. Analogously, the decrease in $D$ resulting from these monomer-to-dimer reactions corresponds to the term \ans{$-0.8MD$} in the above equation for $D'$. 
+
+Finally, when  a monomer and a dimer are lost to a monomer-to-dimer reaction, one \ans{trimer} is gained.  This accounts for the term \ans{$0.8M D$} in the above equation for $T'$.  
+ 
+
+\item  Use the rate equations on the first page, above, to compute $M'+2D'+3T'$.  What does this tell you about $M+2D+3T$?  How would you interpret this result in terms of the chemical reactions taking place?
+
+ \medskip \sol{We readily compute that $$\aligned M'+2D'+3T'&=-4M^2-0.8 M D+2( 2M^2-0.8 M D)+3(0.8 M D)\\&=(-4+2\cdot2)M^2+(-0.8+2(-0.8)+3(0.8))MD\\&=0.\endaligned$$
+\vspace{.1 in}
+The fact that $M'+2D'+3T'=0$ tells us that $M+2D+3T$ is constant.  
+\vspace{.1 in}
+Interpretation:  if a monomer is considered a basic unit, a dimer counts as two such units, and  a trimer counts as three, then the number of basic units is preserved throughout the reaction.   (Or to put it another way:  no ``mers'' are created or destroyed!)}
+
+\vfill\eject\null\vskip2in\item    Show that, in the situation at hand  (that is, for the rate equations given at the top of this project), the ratio $M/D$ is {\it always} decreasing.  Hint:  use the quotient rule to express $(M/D)'$ in terms of $M,D,M'$, and $D'$; then use the given rate equations to rewrite your result in terms of $M$ and $D$ only.
+
+\sol{ We have $$\aligned \biggl(\frac{M}{D}\biggr)'&=\frac{D M'-M D'}{D^2}\\&=\frac{D (-4M^2-0.8 M D)-M (2M^2-0.8 M D)}{D^2}\\&=\frac{  -4M^2D-0.8 M D^2- 2M^3+0.8 M^2 D}{D^2}\\&=\frac{  (-4+0.8)M^2D-0.8 M D^2- 2M^3 }{D^2}
+\\&=\frac{  -3.2M^2D-0.8 M D^2- 2M^3 }{D^2},\endaligned$$ which is negative because each summand in the numerator is negative, while the denominator is positive.  Since $(M/D)'$ is negative, $M/D$ is decreasing, and we're done.}
+
+\end{enumerate}
+\end{document}
+
+(* This Mathematica code generates the graphs necessary for the \
+"Monomers, Dimers, Trimers, and Rates of Change" project *)           \
+             
+
+(* You'll need to enter an appropriate directory name for export of \
+the pdf files *)                        
+
+SetDirectory["/current/pics"]
+
+(* Generates the correct graph (graph (ii) of the project)  *)
+
+M[0] = .2;
+Di[0] = .2;
+T[0] = .15;
+tstart = 0;
+tfin = 10;
+stepsize = 0.005;
+length = (tfin - tstart)/stepsize + 1;
+c1 = 2;
+c2 = .8;
+Do[M[i + 1] = M[i] + stepsize (-2 c1 M[i]^2 - c2 M[i]*Di[i]); 
+ Di[i + 1] =  Di[i] + stepsize (c1 M[i]^2 - c2  M[i]*Di[i]);
+ T[i + 1] =  T[i] + stepsize (c2* M[i]*Di[i]), {i, 0, length}]
+ListPlot[{Table[{i*stepsize, M[i]}, {i, 0, length}], 
+  Table[{i*stepsize, Di[i]}, {i, 0, length}], 
+  Table[{i*stepsize, T[i]}, {i, 0, length}]}, 
+ LabelStyle -> Directive[FontSize -> 12, FontFamily -> "Times"], 
+ Joined -> True, 
+ PlotStyle -> {{Thickness[.015], RGBColor[0, 0, 0]}, {Thickness[.015],
+     RGBColor[0, 0, 0]}, {Thickness[.015], RGBColor[0, 0, 0]}}, 
+ AspectRatio -> 1, AxesOrigin -> {0, 0}, 
+ AxesLabel -> {"t (seconds)", "M, D, T (milligrams)"}]
+
+Export["mdt0.pdf", %]
+
+(* Generates the second of the incorrect graphs (graph (iii) of the \
+project)  *)
+
+M[0] = .2;
+Di[0] = .2;
+T[0] = .15;
+tstart = 0;
+tfin = 10;
+stepsize = 0.005;
+length = (tfin - tstart)/stepsize + 1;
+c1 = 10;
+c2 = 1;
+c3 = 1;
+Do[M[i + 1] = M[i] + stepsize (-.02 c1 M[i]^2 - c2 M[i]*Di[i]); 
+ Di[i + 1] =  Di[i] + stepsize (c1 M[i]^2 - c2  M[i]*Di[i]);
+ T[i + 1] =  T[i] + stepsize (c3* M[i]*Di[i]), {i, 0, length}]
+ListPlot[{Table[{i*stepsize, M[i]}, {i, 0, length}], 
+  Table[{i*stepsize, Di[i]}, {i, 0, length}], 
+  Table[{i*stepsize, T[i]}, {i, 0, length}]}, 
+ LabelStyle -> Directive[FontSize -> 12, FontFamily -> "Times"], 
+ Joined -> True, 
+ PlotStyle -> {{Thickness[.015], RGBColor[0, 0, 0]}, {Thickness[.015],
+     RGBColor[0, 0, 0]}, {Thickness[.015], RGBColor[0, 0, 0]}}, 
+ AspectRatio -> 1, AxesOrigin -> {0, 0}, 
+ AxesLabel -> {"t (seconds)", "M, D, T (milligrams)"}]
+
+Export["Nmdt1.pdf", %]
+
+(*********  Generates the last of the incorrect graphs (graph (iv) of \
+the project)  *********)
+
+M[0] = .2;
+Di[0] = .2;
+T[0] = .15;
+tstart = 0;
+tfin = 10;
+stepsize = 0.005;
+length = (tfin - tstart)/stepsize + 1;
+c1 = 2;
+c2 = .8;
+Do[M[i + 1] = M[i] + stepsize (-2 c1 M[i]^2 - c2 M[i]*Di[i]); 
+ Di[i + 1] =  Di[i] - stepsize (c1 M[i]^2 - c2  M[i]*Di[i]);
+ T[i + 1] =  T[i] - stepsize (-c2* M[i]*Di[i]), {i, 0, length}]
+ListPlot[{Table[{i*stepsize, M[i]}, {i, 0, length}], 
+  Table[{i*stepsize, Di[i]}, {i, 0, length}], 
+  Table[{i*stepsize, T[i]}, {i, 0, length}]}, 
+ LabelStyle -> Directive[FontSize -> 12, FontFamily -> "Times"], 
+ Joined -> True, 
+ PlotStyle -> {{Thickness[.015], RGBColor[0, 0, 0]}, {Thickness[.015],
+     RGBColor[0, 0, 0]}, {Thickness[.015], RGBColor[0, 0, 0]}}, 
+ AspectRatio -> 1, AxesOrigin -> {0, 0}, 
+ AxesLabel -> {"t (seconds)", "M, D, T (milligrams)"}]
+
+Export["Nmdt2.pdf", %]
+
+(*********  Generates the first of the incorrect graphs (graph (i) of \
+the project)  *********)
+
+M[0] = .2;
+Di[0] = .2;
+T[0] = .15;
+tstart = 0;
+tfin = 10;
+stepsize = 0.005;
+length = (tfin - tstart)/stepsize + 1;
+Do[M[i + 1] = M[i] - stepsize (3 M[i]^2 + 0.05 M[i]*Di[i]); 
+ Di[i + 1] =  Di[i] - stepsize (3 M[i]^2 + 0.4 M[i]*Di[i]);
+ T[i + 1] =  T[i] + stepsize (-M[i]^2 - 0.25* M[i]*Di[i]), {i, 0, 
+  length}]
+ListPlot[{Table[{i*stepsize, M[i]}, {i, 0, length}], 
+  Table[{i*stepsize, Di[i]}, {i, 0, length}], 
+  Table[{i*stepsize, T[i]}, {i, 0, length}]}, 
+ LabelStyle -> Directive[FontSize -> 12, FontFamily -> "Times"], 
+ Joined -> True, 
+ PlotStyle -> {{Thickness[.015], RGBColor[0, 0, 0]}, {Thickness[.015],
+     RGBColor[0, 0, 0]}, {Thickness[.015], RGBColor[0, 0, 0]}}, 
+ AspectRatio -> 1, AxesOrigin -> {0, 0}, 
+ AxesLabel -> {"t (seconds)", "M, D, T (milligrams)"}]
+
+Export["Nmdt3.pdf", %]
+
+(*********  Generates the correct graph (graph (ii) of the project),  \
+
+                    with curves labeled for the answer key   *********)
+
+M[0] = .2;
+Di[0] = .2;
+T[0] = .15;
+tstart = 0;
+tfin = 10;
+stepsize = 0.005;
+length = (tfin - tstart)/stepsize + 1;
+c1 = 2;
+c2 = .8;
+Do[M[i + 1] = M[i] + stepsize (-2 c1 M[i]^2 - c2 M[i]*Di[i]); 
+ Di[i + 1] =  Di[i] + stepsize (c1 M[i]^2 - c2  M[i]*Di[i]);
+ T[i + 1] =  T[i] + stepsize (c2* M[i]*Di[i]), {i, 0, length}]
+ListPlot[{Table[{i*stepsize, M[i]}, {i, 0, length}], 
+  Table[{i*stepsize, Di[i]}, {i, 0, length}], 
+  Table[{i*stepsize, T[i]}, {i, 0, length}]}, 
+ LabelStyle -> Directive[FontSize -> 12, FontFamily -> "Times"], 
+ Joined -> True, 
+ PlotStyle -> {{Thickness[.015], RGBColor[0, 0, 0]}, {Thickness[.015],
+     RGBColor[0, 0, 0]}, {Thickness[.015], RGBColor[0, 0, 0]}}, 
+ AspectRatio -> 1, AxesOrigin -> {0, 0}, 
+ AxesLabel -> {"t (seconds)", "M, D, T (milligrams)"}, 
+ Epilog -> {Red, Text[Style[M,  16], Offset[{0, 1}, {9.9, .016}]], 
+   Text[Style[D, Italic, 16], Offset[{0, 1}, {9.9, .187}]], 
+   Text[Style[T, Italic, 16], Offset[{0, 1}, {9.9, .2065}]] }]
+
+Export["mdt_sol_graph.pdf", %]

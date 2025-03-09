@@ -1,0 +1,158 @@
+\documentclass[11pt]{article}
+\usepackage[left=1in, right=1in, top=0.75in, bottom=1in]{geometry}
+\usepackage{mathexam}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox} %positioning of images
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{latexsym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{comment}
+\usepackage{exsheets}
+\usepackage{pdfpages}
+\usepackage{multicol}
+
+\ExamClass{Math 242}
+\ExamName{Classwork 06: \S 7.7}
+\ExamHead{Fall 2024}
+\fancyfoot{}
+\setlength{\headheight}{13.59999pt}
+
+\let\ds\displaystyle
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\pink}{\textcolor{CarnationPink}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\violet}{\textcolor{violet}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\grn}{\textcolor{green}}
+\newcommand{\uh}{\textcolor{ForestGreen}}
+\newcommand{\bas}[1]{\begin{align*}{#1}\end{align*}}
+
+\pgfplotsset{compat=1.18}
+
+\pgfplotsset%Default tikz axis style
+{
+    axis lines=center, 
+    grid,
+    grid style={very thin, densely dotted, black!50},
+    xmin=-5,    xmax=5,         xtick distance=1,
+    ymin=-5,    ymax=5,         ytick distance=1,
+    restrict y to domain=-10:10, % <-------
+    ticklabel style={font=\scriptsize, fill=white, inner sep=2pt},
+    domain=-5:5, samples=100,
+    no marks, 
+    every axis plot post/.append style={ultra thick, semitransparent,},
+}
+
+\pgfkeys{/pgfplots/Axis Style/.style=
+{
+    grid style={thin, densely dotted, black!50},
+    width=11.5cm, height=5cm,
+    axis x line=center, 
+    axis y line=middle, 
+    samples=100,
+    ymin=-1.1, ymax=1.1,
+    xmin=-.1, xmax=6.4,
+    domain=0:2*pi
+}}
+
+\def\myalign#1{%
+  \def\trule{\noalign{\smallskip\hrule\medskip}}
+  \def\nebc{\nearrow\bigcup}
+  \def\sebc{\searrow\bigcup}
+  \def\pminf{{}_{-\infty}|^{+\infty}}
+  \let\Inf\infty
+  \def\amp{&}% props to Bruno; I just love this trick
+  \vbox{\mathsurround0pt\openup1\jot
+    \halign{%
+      &$\displaystyle##\hfil\tabskip0pt$&\amp##\tabskip1em\crcr
+      \noalign{\hrule height1pt\smallskip}#1\noalign{\smallskip\hrule height1pt}\crcr}}}
+
+\linespread{1.3}
+
+\begin{document}
+
+    \hrule
+    \vspace{.5cm}
+    \noindent\textbf{Name:} \underline{\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad}
+
+    \begin{enumerate}
+        \item Use the Fundamental Theorem of Calculus part I (FTC1) together with the trapezoidal rule to find an approximate value of $\arctan(5)$ (use 0 for $a$ since $\tan(0)=0,$ so $\arctan(0)=0$ as well). Without calculating the sum, work out an expression for $T_5$. Write out all the terms in the sum without using sigma notation (your answer should be a single fraction). Check your answer against $\arctan(5)\approx\dfrac{6070}{4420}$.
+
+        \red{By FTC1, $$\arctan(x)=\int_{0}^{x}\frac{1}{1+x^{2}}dx,$$ so $$\arctan(5)=\int_{0}^{5}\frac{1}{1+x^{2}}dx.$$ Since we want to use $T_{5}$ and our integral spans $[0,5]$, $\Delta x=\frac{5}{5}=1$ and $x_{i}=i$. Our $f(x_{i})$ values are as follows:}
+
+        \textcolor{red}
+        {
+            \bas
+            {
+                f(x_{0})    &=  1\\[.5em]
+                f(x_{1})    &=  \frac{1}{2}\\[.5em]
+                f(x_{2})    &=  \frac{1}{5}\\[.5em]
+                f(x_{3})    &=  \frac{1}{10}\\[.5em]
+                f(x_{4})    &=  \frac{1}{17}\\[.5em]
+                f(x_{5})    &=  \frac{1}{26}.
+            }
+        }
+        \textcolor{red}
+        {
+            This gives
+            \bas
+            {
+                T_{5}   &=          \frac{1}{2}\left[1+2\cdot\frac{1}{2}+2\cdot\frac{1}{5}+2\cdot\frac{1}{10}+2\cdot\frac{1}{17}+\frac{1}{26}\right]\\[.5em]
+                        &=          \frac{1}{2}\cdot2\left[\frac{1}{2}+\frac{1}{2}+\frac{1}{5}+\frac{1}{10}+\frac{1}{17}+\frac{1}{52}\right]\\[.5em]
+                        &=          \frac{6091}{4420}.
+            }
+        }
+        
+        \newpage
+        \item Although $\arctan(5)$ is irrational, using the trapezoidal rule or Simpson's rule only requires evaluating a rational function--we only need to know how to do $+,-,\times,\div$ in order to calculate the approximation. These are steps you can easily ask a computer or calculator to do. Although it took you a while to write these out by hand, it's something a machine can do, with a much higher value of $n$, in a tiny fraction of a second. Instead, let's focus on the accuracy of the approximation: use the error formula for Trapezoidal rule
+        $$E_T \le \frac{(\max_{x\in [a,b]} |f''(x)|(b-a)^3)}{24 n^2} \qquad E_S \le \frac{(\max_{x\in [a,b]} |f^{(\mathrm{iv})}(x)|(b-a)^5)}{180 n^4}
+        $$ 
+        The derivatives of $f(x) = (1+x^2)^{-1}$ are:
+        \begin{align*} 
+        f''(x) &= \frac{6x^2-2}{(1+x^2)^3}
+        &
+        f^{(\mathrm{iii})}(x) &= 24\frac{x(1-x)(1+x)}{(1+x^2)^4} \\
+        f^{(\mathrm{iv})}(x) &= 24\frac{5x^4 - 10x^2 + 1}{(x^2 + 1)^5}
+        &
+        f^{(\mathrm{v})}(x) &= -240\frac{x(3x^4 - 10x^2 + 3)}{(x^2 + 1)^6}
+        \end{align*}
+        \begin{enumerate}
+            \item Find which $x$ in the interval $[0,5]$ returns the largest value of $|f''(x)|$ (This is $\max_{x\in[0,5]}$).
+            
+            \red{Using the first derivative test along with the extreme value theorem, we get that we need to check the values of  $f''(1)$, $f''(0)$, and $f''(5)$ (since $-1$ isn't in the interval we care about). Checking these coordinates for extrema, we get $f''(0) = -2$, $f''(1) =\frac12$ and $f''(5) = \frac{148}{26^3}$, so $|f''(x)|\le 2$, or in other words $\max_{x\in[0,5]}=2$.}
+            
+            \item Estimate the size of the error you would get in part (1) using the trapezoid rule. How does this compare to the difference you observed?
+            
+            \red{We get $$E_T \le \frac{2\times 125 }{24 \times 25} = \frac{5}{12}.$$ As our difference between our estimated value of $\arctan(5)=\frac{6091}{4420}$ using the trapezoidal rule and the given approximation $\frac{6070}{4420}$, we get the difference of $\frac{21}{4420}$ which is less than $\frac{5}{12}$}
+            \item For what value of $n$ is $E_T$ guaranteed to be less than $0.01$? Make sure to set up the correct inequality before solving it.
+            
+            {\em solution:}
+            $$ E_T \le \frac{2\times 125}{24 n^2}\le .01\longrightarrow n^2 \ge \frac{100 \times 125}{12}\longrightarrow n\ge\sqrt{ \frac{25\times 125}{3}}
+            \longrightarrow n\ge 33$$
+            \newpage
+            \item Find  $\max_{x\in [0,5]} |f^{(\mathrm{iv})}(x)|$
+            
+            {\em solution} factor $f^{(\mathrm{v})}(x)$ to get critical points: $3x^4 -10x^2+3 = (3x^2 -1)(x^2-3)$ which means $x = \pm \sqrt3, \pm \frac1{\sqrt{3}},0$ are the critical points. Plugging $x = $0$ ,\sqrt{3}, \frac{1}{\sqrt{3}}$,  and $5$ into $f^{(\mathrm{iv})}(x)$ gives
+            \begin{align*}
+            f^{(\mathrm{iv})}(0)=24,& &
+            f^{(\mathrm{iv})}(\frac{1}{\sqrt{3}})=24\times \frac{\frac59 - \frac{10}{3} +1}{(\frac43)^5} = 
+            %24\times\frac{\frac{16}{9}}{(\frac{4}{3})^5}=
+            \frac{81}{8}\\
+            f^{(\mathrm{iv})}(\sqrt{3})=24 \times \frac{5\times 9 - 30+1}{4^5} = \frac{3}{8}, & &
+            f^{(\mathrm{iv})}(5)=24\times \frac{5^5 -250+1}{26^5}\ll 1
+            \end{align*}
+            So $\max_{x\in[0,5]} |f^{(\mathrm{iv})}(x)|=24$.
+            \item For what value of $n$ is $E_S$ guaranteed to be less than $E_T$? Again, make sure to set up the correct inequality before solving it.\\
+            {\em solution:}
+            $$\frac{24\times 5^5}{180 n^4}\le \frac{2 \times 5^3}{24 \times n^2} \longrightarrow { 8 \times 5} \le n^2\longrightarrow n\ge 7\ge\sqrt{40}$$
+        \end{enumerate}
+    \end{enumerate}
+\end{document}

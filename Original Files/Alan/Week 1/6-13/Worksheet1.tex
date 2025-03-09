@@ -1,0 +1,353 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}{1}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}{0}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Worksheet 1: Trigonometry Review}
+
+
+\begin{enumerate}
+\item  Convert between degrees and radians:
+ 
+ 
+\begin{changemargin}{0cm}{6.3cm}
+\begin{multicols}{3}
+\begin{enumerate}
+
+\item[(a)] $180^{\circ}=$ 
+\ifsolutions \textcolor{blue}{$\pi$} \fi
+\vspace{.25in}
+
+\item[(d)] $30^{\circ}=$ 
+\ifsolutions \textcolor{blue}{$\displaystyle \frac{\pi}{6}$} \fi
+\vspace{.25in}
+ 
+\item[(b)] $135^{\circ}=$ 
+\ifsolutions \textcolor{blue}{$\displaystyle \frac{3\pi}{4}$} \fi
+\vspace{.25in}
+
+\item[(e)] $\displaystyle \frac{\pi}{4}=$ 
+\ifsolutions \textcolor{blue}{$45^{\circ}$} \fi
+\vspace{.25in}
+
+\item[(c)] $\displaystyle \frac{3\pi}{2}=$ 
+\ifsolutions \textcolor{blue}{$270^{\circ}$} \fi
+\vspace{.25in}
+
+\item[(f)] $\displaystyle \frac{11\pi}{6}=$ 
+\ifsolutions \textcolor{blue}{$330^{\circ}$} \fi
+\vspace{.25in}
+
+\end{enumerate}
+\end{multicols}
+\end{changemargin}
+
+
+\item  Review the unit circle:
+\begin{changemargin}{0cm}{0cm}
+\begin{multicols}{3}
+
+\begin{enumerate}
+
+\item[(a)] $\displaystyle \sin{(3\pi)}=$ 
+\ifsolutions \textcolor{blue}{$0$} \fi
+\vspace{.25in}
+
+\item[(d)] $\displaystyle \sin{\left(-\frac{\pi}{6} \right)}=$ 
+\ifsolutions \textcolor{blue}{$\displaystyle-\frac{1}{2}$} \fi
+\vspace{.25in}
+
+\item[(b)] $\displaystyle \cos{\left( \frac{5\pi}{4} \right)}=$ 
+\ifsolutions \textcolor{blue}{$\displaystyle -\frac{\sqrt{2}}{2}$} \fi
+\vspace{.25in}
+
+\item[(e)] $\displaystyle \sec{\left( \frac{5\pi}{3} \right)}=$ 
+\ifsolutions \textcolor{blue}{$2$} \fi
+\vspace{.25in}
+
+\item[(c)] $\displaystyle \tan{\left(\frac{7\pi}{6} \right)}=$
+\ifsolutions \textcolor{blue}{$\displaystyle \frac{\sqrt{3}}{3}$} \fi
+\vspace{.25in}
+
+\item[(f)] $\displaystyle \tan{\left(-\frac{3\pi}{2}\right)}=$
+\ifsolutions \textcolor{blue}{undefined} \fi
+\vspace{.25in}
+
+\end{enumerate}
+\end{multicols}
+\end{changemargin}
+
+\item  Review the inverse trig functions:
+\begin{changemargin}{0cm}{0cm}
+\begin{multicols}{3}
+\begin{enumerate}
+
+\item[(a)] $\displaystyle \arcsin{\left(-\frac{\sqrt{3}}{2}\right)}=$ 
+\ifsolutions \textcolor{blue}{$-\frac{\pi}{3}$} \fi
+\vspace{.25in}
+
+\item[(d)] $\displaystyle \arctan{(-1)}=$ 
+\ifsolutions \textcolor{blue}{$-\frac{\pi}{4}$} \fi
+\vspace{.25in}
+
+\item[(b)] $\displaystyle \arccos{(-1)}=$ 
+\ifsolutions \textcolor{blue}{$\pi$} \fi
+\vspace{.25in}
+
+\item[(e)] $\displaystyle \sec^{-1}{(2)}=$ 
+\ifsolutions \textcolor{blue}{$\frac{\pi}{3}$} \fi
+\vspace{.25in}
+
+\item[(c)] $\displaystyle \tan^{-1}{\left(\sqrt{3}\right)}=$
+\ifsolutions \textcolor{blue}{$\frac{\pi}{3}$} \fi
+\vspace{.25in}
+
+\item[(f)] $\displaystyle \arccos{\left(\frac{3}{2}\right)}=$
+\ifsolutions \textcolor{blue}{undefined} \fi
+\vspace{.25in}
+
+\end{enumerate}
+\end{multicols}
+\end{changemargin}
+
+
+\item  Review trig identities: match each expression on the left with all expressions on the right that produce a trig identity.
+\vspace{.1in}
+
+\begin{tikzpicture}
+\node at (0, 7) [right] {(1) $\cos^2{x} =$};
+\draw[blue,thick, opacity=\opsol] (2.6,7) -- (9,8);
+\draw[blue,thick, opacity=\opsol] (2.6,7) -- (9,5);
+\node at (0, 5) [right] {(2) $\sin{(2x)=}$};
+\draw[blue,thick, opacity=\opsol] (2.6,5) -- (9,4);
+\node at (0, 3) [ right] {(3) $\cos{(2x)}=$};
+\draw[blue,thick, opacity=\opsol] (2.6,3) -- (9,6);
+\draw[blue,thick, opacity=\opsol] (2.6,3) -- (9,2);
+\draw[blue,thick, opacity=\opsol] (2.6,3) -- (9,1);
+\node at (0, 1) [ right] {(4) $\sin^2x$=};
+\draw[blue,thick, opacity=\opsol] (2.6,1) -- (9,3);
+\draw[blue,thick, opacity=\opsol] (2.6,1) -- (9,7);
+
+\node at (9, 8) [ right] {(a) $1-\sin^2{x}$};
+\node at (9, 7) [ right] {(b) $\frac{1}{2}(1-\cos{2x})$};
+\node at (9, 6) [ right] {(c)
+ $\cos^2{x}-\sin^2{x}$};
+\node at (9, 5) [ right] {(d)
+ $\frac{1}{2}(1+\cos{2x})$};
+\node at (9, 4) [ right] {(e)
+ $2\sin{x}\cos{x}$};
+\node at (9, 3) [ right] {(f) $1-\cos^2{x}$};
+\node at (9, 2) [ right] {(g) $1-2\sin^2{x}$};
+\node at (9, 1) [ right] {(h) $2\cos^2{x}-1$};
+\node at (9, 0) [ right] {(i) $\cos^2{x}+\sin^2{x}$};
+\end{tikzpicture}
+\newpage
+
+\noindent Now we will apply our knowledge of basic trigonometric functions (and inverse trigonometric functions) to some real-world problems.  
+You will need these skills later in the semester.
+\item A 15-foot long ladder is leaning against a wall
+with its base 2 feet from the wall.  Find the angle the ladder makes with the floor.  Use a calculator to compute the answer in radians and in degrees.
+
+\sol{3.2 in}{
+\begin{wrapfigure}{l}{4cm}
+\begin{tikzpicture}[scale =0.3]
+\pgfmathsetmacro{\Arad}{.75}%
+\pgfmathsetmacro{\Angle}{97.66}%
+\pgfmathsetmacro{\XValueArc}{\Arad*cos(\Angle)}%
+\pgfmathsetmacro{\YValueArc}{\Arad*sin(\Angle)}%
+\draw [thick] ($(2,0)+(\XValueArc,\YValueArc)$) %starting point of the arc
+    arc (\Angle:180:\Arad); %(starting angle, ending angle, radius)
+\draw [ultra thick] (0,0) -- (6,0);% Horizontal
+\draw [ultra thick] (0,0) -- (0,15);% Vert
+\draw [ultra thick] (2,0) -- (0,14.8); %Top
+\node at (2.5,7) {$15$ ft};
+\node at (1,-1) {$2$ ft};
+\node at (1,.8){$\theta$};
+\end{tikzpicture}
+\end{wrapfigure}
+Looking at a picture of the situation, we see that the ladder forms the hypotenuse of a right triangle between the wall and floor. With reference to the angle the ladder makes with the floor, the adjacent side is 2 ft, while the hypotenuse is 15 ft. So we have:
+\begin{align*}
+\cos\theta &= \dfrac{2}{15}\\
+\theta &= \arccos\left(\dfrac{2}{15}\right)\\
+\theta &\approx1.437 \text{ radians}\\
+\text{or} \hspace{2em}\theta &\approx 82.34^{\circ}
+\end{align*}}
+
+
+\item The bottom of the ladder in the previous problem starts to slide away
+from the wall at the constant rate of 1 foot per second. 
+
+When will the ladder make a $60^{\circ}$ angle with
+the ground?
+
+\sol{2.5 in}{
+We need to determine how far the base of the ladder is from the wall when the ladder makes a $60^{\circ}$ angle with the ground. Let $t$ be the time (in seconds) since the ladder started sliding, so at time $t$ the bottom of the ladder is $2+t$ feet from the wall. The length of the ladder is still 15 feet.\\\\
+Using right-triangle trigonometry: $$\cos60^{\circ} = \dfrac{2+t}{15}\quad\Rightarrow\quad \dfrac{1}{2} = \dfrac{2+t}{15}\quad\Rightarrow\quad t=\frac{15}{2}-2\quad\Rightarrow\quad t=5.5 \text{ sec}$$
+}
+
+\newpage
+
+% \begin{comment}
+% \item When will the ladder make a $45^{\circ}$ angle with
+% %the ground?
+
+% \sol{1.8 in}{
+% Similarly:
+% $$\cos45^{\circ} = \dfrac{2+t}{15}\quad\Rightarrow\quad \dfrac{\sqrt{2}}{2} = \dfrac{2+t}{15}\quad\Rightarrow\quad t=\dfrac{15\sqrt{2}}{2}-2\quad\Rightarrow\quad t\approx8.6 \text{ sec}$$
+% }
+% \end{enumerate}
+% \end{comment}
+
+
+\noindent Practice solving some trigonometric equations:
+
+\item  Find all solutions to the equation $2\sin{x}+1=0$\\
+\sol{1.2in}{Simplifying gives $\sin{x}=-\frac{1}{2}$.  There are two points on the unit circle that match this, at $x=-\frac{\pi}{6}$ and $x=\frac{7\pi}{6}$.  The function $\sin{x}$ is periodic with period $2\pi$, so all solutions are of the form $x=-\frac{\pi}{6}+2\pi n$ or
+$x=\frac{7\pi}{6}+2\pi n$, where $n$ is an integer.}
+
+\item  Use technology to help you find at least two approximate solutions to the equation $\tan{2x} = 20$.\\
+\sol{1.5in}{One solution occurs when $2x=\arctan{20}$.  Using a calculator (in radian mode), I get $2x \approx 1.5208$, so $x \approx 0.7604$.  Recalling that $\tan{x}$ has a period of $\pi$, a second solution would occur when $2x =\arctan{20} + \pi$, so $x \approx .7604+\frac{\pi}{2} \approx 2.3312$.}
+
+\noindent More practice with applications:
+\item On the shore sits Sea Lion Rock. A lighthouse stands off-shore, 100 yards east of Sea Lion Rock.  Due north of  Sea Lion
+Rock is the exclusive See Sea Lion Motel.  The lighthouse light rotates twice a minute. If the beam of
+light from the lighthouse takes 5 seconds to travel along the shore from Sea Lion Rock
+to the motel, how far is the motel from the rock?\\
+\sol{3.6 in}{
+\begin{wrapfigure}{l}{4cm}
+\begin{tikzpicture}[scale =1.3]
+\pgfmathsetmacro{\Arad}{.75}%
+\pgfmathsetmacro{\Angle}{120}%
+\pgfmathsetmacro{\XValueArc}{\Arad*cos(\Angle)}%
+\pgfmathsetmacro{\YValueArc}{\Arad*sin(\Angle)}%
+\draw [thick,<-] ($(2,0)+(\XValueArc,\YValueArc)$) %starting point of the arc
+    arc (\Angle:180:\Arad); %(starting angle, ending angle, radius)
+\draw [ultra thick] (0,0) -- (2,0);% Horizontal
+\draw [ultra thick] (0,0) -- (0,4);% Vert
+\draw [ultra thick, dotted] (2,0) -- (0,1.5); 
+\draw [ultra thick] (2,0) -- (0,4); 
+\draw [thick,->] (.1,1.7)--(0.1,3.4);
+\draw[thick,fill] (0,0) circle(0.1);
+\draw [decorate,decoration={brace,amplitude=12pt},xshift=-4pt,yshift=0pt]
+(0,0) -- (0,4) node [midway,xshift=-0.25in] 
+{$y$};
+\node at (1,-0.5) {$100$ yd};
+\node at (1.2,.3){$\omega$};
+\end{tikzpicture}
+\end{wrapfigure}
+The first thing we should do is convert our angular velocity into units of $\frac{\text{rad}}{\text{sec}}$: $$\omega=\dfrac{2\text{ rev}}{1\text{ min}}\left(\dfrac{2\pi \text{ rad}}{1\text{ rev}}\right)\left(\dfrac{1\text{ min}}{60\text{ sec}}\right)=\dfrac{\pi \text{ rad}}{15 \text{ sec}}$$
+If it takes 5 seconds for the light to travel between the Sea Lion Rock and the See Sea Lion Motel, then the angle in which the light passes during this time is: $$\theta = \omega \cdot t=\dfrac{\pi \text{ rad}}{15 \text{ sec}}\cdot (5 \text{ sec})=\dfrac{\pi}{3} \text{ rad}$$
+Using trig ratios to solve, we have:
+\[\tan\theta = \dfrac{y}{100}\quad\Rightarrow\quad y = 100\cdot\tan\left(\dfrac{\pi}{3}\right)=100\sqrt{3}\approx 173 \text{ yd}\]
+}
+
+
+\newpage
+\item While staring out the window, you notice 
+	\begin{enumerate}
+		\item[a)] that it is a warm and sunny day, 
+		\item[b)] that your line of sight to the top of a nearby tree makes an angle of 45 degrees above the horizontal, and
+		\item[c)] that your line of sight to the base of the tree makes an angle of 30 degrees below the horizontal. 
+	\end{enumerate}
+			Taking advantage of a), you go outside and measure that it is 40 feet from the building to the base of the tree. How tall is the tree?
+
+\sol{2.5in}{\\
+\begin{tabular}{cp{\dimexpr 0.825\linewidth}}
+\begin{tikzpicture}[yshift=20]
+\draw [thick] (0,0) -- (2,0) {};
+\draw [thick] (2,0) -- (2,2) {};
+\draw [thick] (2,0) -- (2,-1.15) {};
+\draw [thick] (0,0) -- (2,2) {};
+\draw [thick] (0,0) -- (2,-1.15) {};
+\draw [decorate,decoration={brace,amplitude=12pt}] (0,2.1) -- (2,2.1) node [midway, yshift=20] {40 ft};
+\draw [thick] (0.5,0) arc (0:45:0.5) {};
+\node at (0.9,0.3) {$45^\circ$};
+\draw [thick] (1,0) arc (0:-30:1) {};
+\node at (1.4,-0.3) {$30^\circ$};
+% (*Mathematica sun...*)
+% Map[{0.5*Cos[# Pi/180], 4 + 0.5*Sin[# Pi/180]} &, Range[270, 360, 10]]
+% Map[{0.6*Cos[# Pi/180], 4 + 0.6*Sin[# Pi/180]} &, Range[270, 360, 10]]
+\draw (0,3.5) arc (270:360:0.5) {};
+\draw (0,3.5) -- (0,3.4) {};
+\draw (0.086, 3.507) -- (0.104, 3.409) {};
+\draw (0.171,3.53) -- (0.205,3.436) {};
+\draw (0.25,3.566) -- (0.3,3.48) {};
+\draw (0.321,3.616) -- (0.385,3.54) {};
+\draw (0.383,3.678) -- (0.459,3.614) {};
+\draw (0.433,3.75) -- (0.519,3.7) {};
+\draw (0.469,3.828) -- (0.563,3.794) {};
+\draw (0.492,3.913) -- (0.59,3.895) {};
+\draw (0.5,4) -- (0.6,4) {};
+\end{tikzpicture}&\begin{minipage}[b]{\linewidth}
+Draw a triangle from your window, straight across, then vertically to the top of the tree. The angle at your window is $45^{\circ}$, and the adjacent side is $40$ feet, which means the opposite side is also $40$ feet. This is how high the tree extends above your window.\\\\
+Then, draw a another triangle from the window, straight across then down to the bottom of the tree. The angle at the window is $30^{\circ}$ and the adjacent side is $40$ feet; that means the opposite side (the height of your window) is $40\cdot \tan{30^\circ}\approx23$ feet.\\\\
+The total height of the tree is the sum of these two heights, which is about 63 feet.
+\end{minipage}\end{tabular}
+}
+
+
+\item The red stripe on a barber pole makes one complete revolution around the pole. If the pole is 50 inches tall and has the amazingly precise radius of ${ \frac{25}{\pi \sqrt 3}}$ inches, what angle does the stripe make with base of the pole, and how long is the stripe?  (Assume the stripe is a thin line.)\\
+\sol{3.55in}{\\
+\begin{wrapfigure}{l}{4cm}
+\begin{tikzpicture}
+\draw [thick] (0,0) -- (2.8,0) {};
+\draw [thick] (2.8,0) -- (2.8,5) {};
+\draw [thick] (2.8,5) -- (0,5) {};
+\draw [thick] (0,5) -- (0,0) {};
+\draw [thick] (0,0) -- (2.8,5) {};
+\node at (1.2,2.7) {$\ell$};
+\draw [thick] (1,0) arc (0:60:1) {};
+\node at (1.1,0.75) {$\theta$};
+\draw [decorate,decoration={brace,amplitude=12pt}] (2.8,-.1) -- (0,-.1) node [midway, yshift=-25] {$\frac{50}{\sqrt{3}}$ ft};
+\draw [decorate,decoration={brace,amplitude=12pt}] (2.9,5) -- (2.9,0) node [midway, xshift=25] {50 ft};
+\end{tikzpicture}
+\end{wrapfigure}
+The trick is to imagine the barber pole as a rectangle that is rolled up into a cylinder. The stripe makes one complete revolution which means that it goes from the bottom left corner of the rectangle to the top right of the rectangle directly. Now the width of the rectangle is the circumference of the pole: $2\pi r = \frac{50}{\sqrt{3}}$ inches. The height of the rectangle is the height of the pole: $50$ inches. So the right triangle formed has opposite side $50$ and adjacent side $\frac{50}{\sqrt{3}}$, which means the tangent of the angle we're looking for satisfies 
+$$ \tan{\theta} = \frac{50}{\frac{50}{\sqrt{3}}} = \sqrt{3}.$$ $$\theta = \arctan{\sqrt{3}} = \frac{\pi}{3} = 60^{\circ}$$ The length of the stripe can be found with the Pythagorean Theorem as $\ell^2=50^2+\left(\frac{50}{\sqrt{3}}\right)^2$, so $\ell=\frac{100}{\sqrt{3}}$, making the length of the strip $\frac{100}{\sqrt{3}}$ inches.}
+
+
+\end{enumerate}
+
+\end{document}

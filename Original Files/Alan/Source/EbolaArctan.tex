@@ -1,0 +1,138 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{calc}
+\usepackage{fancyhdr}
+
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, multicol, enumerate, hyperref}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb,latexsym,epsfig,amscd,arydshln}
+			
+\parskip = 0.2in
+
+\def\ds{\displaystyle}
+
+\setlength{\parindent}{0pt}
+
+\newcounter{saveenum}
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\opsol}{1}
+    \newcommand{\usol}[1]{\underline{\textcolor{red}{#1} \hspace{.2 in}}}
+    \newcommand{\sol}[1]{\textcolor{red}{#1}}
+\else
+    \newcommand{\opsol}{0}
+    \newcommand{\usol}[1]{\underline{\textcolor{white}{#1} \hspace{.2 in}}}
+    \newcommand{\sol}[1]{\textcolor{white}{#1}}
+\fi
+
+
+\begin{document}
+\pagestyle{fancy}
+\lhead{\bf Math 1300: Calculus I}
+\rhead{\bf Project:  Ebola, and $\arctan{(x)}$}
+
+{\large \textbf{Modeling with an inverse trig function -- an Ebola outbreak in 1995}} \\
+Goal: To study a model for deaths due to an Ebola outbreak and to use this model to discover a connection between the values of a function and the area under the function's derivative.
+
+\smallskip
+
+In 1995 there was a 90-day-long outbreak of Ebola in the Democratic Republic of Congo (DRC). The points below are a plot of a function $N(t)$ which represents the total number of deaths from the beginning of the outbreak to the end of day $t$. 
+
+\includegraphics[scale=1]{cumdeaths_data.pdf}
+
+\begin{enumerate}
+
+\item 
+\begin{enumerate}
+
+\item Translate the equation $N(22)=15$ into an explanatory English sentence.\\
+
+\sol{\quad By day 22 of the outbreak, 15 people had died.\\\\}
+
+
+\item The data shows that $13=N(16)=N(17)=N(18)=N(19)=N(20)=N(21).$ What can you conclude from this data? (Give your answer in a complete English sentence.)\\\\
+
+\sol{\quad 13 people had died by day 16, and then there were no new deaths on days 17, 18, 19, 20 or 21.  The next person died on day 22, when it looks like N increased again.  We can't quite tell from the graph how many new deaths there were on that day, but at least 14 had died by day 22.}
+
+\end{enumerate}
+
+\newpage
+
+An important way to analyze data is to find a function that models the data--which means that the graph of the function closely fits the data points.
+The function
+\[D(t)=\frac{1654}{21} \left( \arctan \left( \frac{2(t-45)}{21} \right)+ \arctan \left( \frac{30}{7} \right) \right) \]
+is a good model for the 1995 Ebola data as the below graph shows:
+
+\includegraphics[scale=.9]{cumdeaths_both.pdf}
+
+\item How well does the {\it mathematical model} $D(t)$ for the number of deaths represent the {\it actual} cumulative death count $N(t)$?    When does the model least accurately reflect the data?  When do we see the largest discrepancy between the rate of change of the model and the rate of change of the actual data?  \\
+\sol{The model fits quite well, though the actual count seems to sag a bit below the model in a couple of places, for $t$ in the 30s and 50s.  The model is least accurate between days 35 and 40, where the gap between the curve and the points is largest. The rate of change (slope) is notably inaccurate around day 40 (when the rate of change of the data is significantly steeper than the model predicts).  Then around day 45 the data looks pretty flat (derivative close to 0) while the model is actually at its steepest (largest derivative occurs at the inflection point).}
+
+\item Assuming, for the moment,  that the actual cumulative death count is given by the above function $D(t)$, show that   the instantaneous death rate $R(t)$, in deaths per day, is given by the formula$$R(t)= \frac{3308}{441+4 (t-45)^2 }.$$ 
+%It may help to recall that $\ds \frac{d}{dx}[\arctan (x)]=\frac{1}{1+x^2}.$
+ 
+\sol{$$\aligned R(t)= D'(t)&= \frac{d}{dt}\biggl[\frac{1654}{21} \left(\arctan\left(\frac{2 (t-45)}{21}\right)+\arctan\left(\frac{30}{7}\right)\right)\biggr]\\&= \frac{1654}{21} \frac{d}{dt}  \arctan\left(\frac{2 (t-45)}{21}\right) \\&= \frac{1654}{21} \cdot\frac{1}{1+\ds\biggl(\frac{2 (t-45)}{21}\biggr)^2}\cdot \frac{d}{dt}   \left(\frac{2 (t-45)}{21}\right)   
+\\&= \frac{1654}{21} \cdot\frac{2}{21}\cdot\frac{1}{1+\ds\biggl(\frac{2 (t-45)}{21}\biggr)^2}  =  \frac{3308}{441+4 (t-45)^2 }.  \endaligned$$}
+
+\vfill
+
+\newpage
+
+\noindent The function $R(t)$ that you found in problem 3 is sketched on the axes below.  (Note the bell shape!!)
+
+\ifsolutions
+\includegraphics[scale=1.5]{deathratesol.pdf}
+\else
+\includegraphics[scale=1.5]{deathrate_riemann.pdf}
+\fi
+ \noindent  Note that we've dashed in a rectangle over each of the first three intervals of length 5, on the above $t$ axis.  The height of each rectangle is just the value of the function $R(t)$ at the right endpoint of the interval in question.
+
+\smallskip
+
+\item  Continue the process of drawing rectangles over each of the above subintervals of length 5, on the $t$ axis, with the height of each rectangle being the value of $R(t)$ at the rightmost edge of the rectangle. 
+
+\item  Let $T(t_0)$ denote the {\it total area} of the rectangles you've sketched in, between $t=0$ and $t=t_0$.  Compute $T(20)$, $T(40)$, $T(60)$, and $T(80)$.  (Recall that each rectangle has base length $5$, and height given by the value of $R(t)$ at the right endpoint of the rectangle.)  (The total areas you are considering here are called {\it Riemann sums}; more on these later in class.)
+
+\sol{$$\aligned T(20)&=5R(5)+5R(10)+5R(15)+5R(20)=15.2316\\
+T(30)&=5R(5)+5R(10)+5R(15)+5R(20)+\cdots+5R(30)=35.6695\\
+T(40)&=5R(5)+5R(10)+5R(15)+5R(20)+\cdots+5R(40)=85.9096\\
+T(60)&=5R(5)+5R(10)+5R(15)+5R(20)+\cdots+5R(60)=185.989\\
+T(80)&=5R(5)+5R(10)+5R(15)+5R(20)+\cdots+5R(80)=206.907\\
+T(90)&=5R(5)+5R(10)+5R(15)+5R(20)+\cdots+5R(90)=211.261\\
+\endaligned$$}
+
+\newpage
+ 
+\item  Compare the above numbers $T(20)$,  $T(40)$, $T(60)$, and $T(80)$, to the numbers $D(20)$, $D(40)$, $D(60)$, and $D(80)$ you get by plugging in the appropriate $t$-values into the formula for $D(t)$ above.  Do you see a correspondence between these sequences of numbers?  Do you have any idea why this correspondence should be true?
+
+\smallskip\noindent
+(This correspondence amounts to a HUGE theorem, called the Fundamental Theorem of Calculus, which we'll discuss in class later.)
+
+\sol{\quad We compute that $$\aligned D(20)&=13.2632,\  D(30)=30.0472,\  D(40)=70.6609,\\  D(60)&=181.281,\  D(80)=206.427,\  D(90)=211.328\endaligned$$
+%\vspace{5mm}
+\quad Note that these values of $D$ are quite close, at least for $t\ge60$, to the corresponding values of $T$ given on the previous page. 
+\vspace{5mm}
+\quad The BIG IDEA behind what we're seeing here is this. Consider the area of any of the above rectangles -- say, for the sake of argument, the 9th rectangle indicated above (the tallest one). The baselength of of this rectangle is 5 days, and the height is $R(45)$.  But remember $R(45)=D'(45)$, so the height of the rectangle is  $D'(45)$, which is {\it the instantaneous rate of change of $D(t)$} at $t=45$.  But instantaneous rates of change are {\it roughly} equal to average rates of change, over short enough intervals, so the height of the rectangle is {\it roughly} equal to the average rate of change of $D(t)$ over the interval from $t=40$ from $t=45$. \\
+Now area=base$\times$height, so:
+$$\aligned
+\hbox{area of rectangle}&\approx \hbox{5 days $\times$ average death rate over those 5 days}
+\\&=\hbox{{\it total}, or {\it cumulative}, number of deaths over those five days.}\endaligned$$The moral of the story is that there is a relationship between {\it total change} on the one hand, and {\it area under the graph of the rate of change function} on the other. \\
+This relationship is {\it formalized} by the Fundamental Theorem of Calculus, which we'll get to soon.}
+\vfill
+Why do you think the values of $T(t)$ that you calculated in problem 5 start off higher than corresponding values of $D(t)$, and then later $D(t)$ catches up?
+
+\sol{\quad $R(t)$ starts off increasing, so the rectangles are all above the curve, giving a larger area than under the curve itself.  So in the beginning $T(t)$ is larger than $D(t)$.  But later $R(t)$ decreases, so the rectangles lie below the curve.  There the areas of the rectangles are smaller than the area under the curve, so $T(t)$ is growing slower than $D(t)$.  By the time we get to $t=80$, the errors pretty much balance out and $T(t)$ is close to $D(t)$. }
+\vfill
+
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
+

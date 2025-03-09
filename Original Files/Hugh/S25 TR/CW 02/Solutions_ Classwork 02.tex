@@ -1,0 +1,172 @@
+\documentclass[11pt]{article}
+\usepackage[left=1in, right=1in, top=0.75in, bottom=1in]{geometry}
+\usepackage{mathexam}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox} %positioning of images
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{latexsym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{comment}
+\usepackage{exsheets}
+\usepackage{pdfpages}
+\usepackage{multicol}
+
+\ExamClass{Math 242}
+\ExamName{Classwork 02}
+\ExamHead{Fall 2024}
+\fancyfoot{}
+\setlength{\headheight}{13.59999pt}
+
+\let\ds\displaystyle
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\pink}{\textcolor{CarnationPink}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\violet}{\textcolor{violet}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\grn}{\textcolor{green}}
+\newcommand{\uh}{\textcolor{ForestGreen}}
+\newcommand{\bas}[1]{\begin{align*}{#1}\end{align*}}
+
+\pgfplotsset{compat=1.18}
+
+\pgfplotsset%Default tikz axis style
+{
+    axis lines=center, 
+    grid,
+    grid style={very thin, densely dotted, black!50},
+    xmin=-5,    xmax=5,         xtick distance=1,
+    ymin=-5,    ymax=5,         ytick distance=1,
+    restrict y to domain=-10:10, % <-------
+    ticklabel style={font=\scriptsize, fill=white, inner sep=2pt},
+    domain=-5:5, samples=100,
+    no marks, 
+    every axis plot post/.append style={ultra thick, semitransparent,},
+}
+
+\pgfkeys{/pgfplots/Axis Style/.style=
+{
+    grid style={thin, densely dotted, black!50},
+    width=11.5cm, height=5cm,
+    axis x line=center, 
+    axis y line=middle, 
+    samples=100,
+    ymin=-1.1, ymax=1.1,
+    xmin=-.1, xmax=6.4,
+    domain=0:2*pi
+}}
+
+\def\myalign#1{%
+  \def\trule{\noalign{\smallskip\hrule\medskip}}
+  \def\nebc{\nearrow\bigcup}
+  \def\sebc{\searrow\bigcup}
+  \def\pminf{{}_{-\infty}|^{+\infty}}
+  \let\Inf\infty
+  \def\amp{&}% props to Bruno; I just love this trick
+  \vbox{\mathsurround0pt\openup1\jot
+    \halign{%
+      &$\displaystyle##\hfil\tabskip0pt$&\amp##\tabskip1em\crcr
+      \noalign{\hrule height1pt\smallskip}#1\noalign{\smallskip\hrule height1pt}\crcr}}}
+
+\linespread{1.3}
+
+\begin{document}
+
+    \hrule
+    \vspace{.5cm}
+    \noindent\textbf{Name:} \underline{\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad\qquad}
+
+    \begin{enumerate}
+        \item Differentiate the function $f(x)=\dfrac{e^{\sqrt{x}}}{x}$.
+
+        \textcolor{red}
+        {
+            We're using either the product or quotient rule in this problem, the chain rule, and our new natural exponential function rule. Recall that $\ddx e^{f(x)}=f'(x)e^{f(x)}.$ I'll assume we all remember the quotient rule and how to apply it so I'll use the product rule. First we need to rewrite $f(x)$ as $$f(x)=x^{-1}\cdot e^{x^{\frac{1}{2}}}.$$
+            Now we clearly have a product of two functions of $x$.
+            \bas
+            {
+                f'(x)   &=  \ddx(x^{-1})e^{x^{\frac{1}{2}}}+x^{-1}\ddx\left(e^{x^{\frac{1}{2}}}\right)\\
+                        &=  -x^{-2}\cdot e^{x^{\frac{1}{2}}}+x^{-1}\left(\frac{1}{2}x^{-\frac{1}{2}}e^{x^{\frac{1}{2}}}\right).
+            }
+            We can clean this up (but not on an exam!) to get the more manageable
+            $$f'(x)=\frac{e^{\sqrt{x}}(\sqrt{x}-2)}{2x^{2}}.$$
+        }
+        
+        \item Evaluate the integral $\displaystyle\int2xe^{3x^2+4}dx$.
+        
+
+        \textcolor{red}
+        {
+            Remember for $u$-sub, we're looking for our $u$ to be some function of our independent variable ($x$ in this case) which has been composed with (is inside of) another function where we have something that looks at least a little bit like its derivative somewhere, generally attached to our differential ($dx$ in this case) through multiplication. $u$-substitution undoes the chain rule so we're looking for something of the form $f'(g(x))g'(x)$.
+        }
+        
+        \red
+        {
+            We have a function in another function here. The function $3x^{2}+4$ has been composed with the function $e^{x}$ to get $e^{3x^{2}+4}$. We can also see that $3x^{2}+4$ has as its derivative, a $6x$, or a degree 1 monic polynomial. While we don't have $6x$ anywhere, we have $2x=\frac{1}{3}\cdot6x$. So we'll try $u=3x^2+4$ and $du=6xdx$, giving us that the $2xdx$ that we have is actually $\frac{1}{3}du$. We can now rewrite this integral as a much more simple-to-solve integral:
+            $$\int2xe^{3x^2+4}dx=\frac{1}{3}\int e^{u}du=\frac{1}{3}e^{3x^{2}+4}+c.$$
+        }
+        \newpage
+        \item Find the derivative of the function $y=\dfrac{\log_{4}(x^{2}+1)}{3x}$.
+
+        \red{This is actually much easier than it looks. We can use the change-of-base formula for logarithms and a bit of algebra to turn this into a straightforward product rule derivative. $$\frac{\log_{4}(x^{2}+1)}{3x}=\frac{1}{3}x^{-1}\frac{\ln(x^{2}+1)}{\ln(4)}=\frac{1}{3\ln(4)}\left[x^{-1}\ln(x^{2}+1)\right].$$}
+
+        \red{Since $\frac{1}{3\ln(4)}$ is a constant multiple, we just deal with the stuff in the square bracers using the product rule to get $$\ddx\frac{1}{3\ln(4)}\left[x^{-1}\ln(x^{2}+1)\right]=  \frac{1}{3\ln(4)}\left[-x^{-2}\ln(x^{2}+1)+x^{-1}\frac{2x}{x^{2}+1}\right].$$}
+
+        
+        \item Use logarithmic differentiation to find the derivative of $(\sin(2x))^{\sqrt{x}}$.
+        
+        \red{So in this problem we're told to use logarithmic differentiation, but we should be able to recognize that when we have something that looks like $f(x)^{g(x)}$, we should be using logarithmic differentiation. We'll start by naming this expression: $$y=(\sin(2x))^{\sqrt{x}}.$$ We do this because we know that when we take the derivative of $\ln(y)$, we get a $y'$, which is the thing we want to solve for. Taking the natural logarithm of both sides of the equation to get $$\ln(y)=\ln\left((\sin(2x))^{\sqrt{x}}\right).$$}
+
+        \red{We can now use the properties of natural logarithms to turn the exponent into a factor, getting the equation $$\ln(y)=\sqrt{x}\ln(\sin(2x)).$$}
+
+        \textcolor{red}
+        {
+            Now it's just a product rule problem.
+            \bas
+            {
+                \ddx{\ln(y)}    &=  \ddx\left[x^{\frac{1}{2}}\ln(\sin(2x))\right]\\
+                \frac{y'}{y}    &=  \frac{1}{2}x^{-\frac{1}{2}}\ln(\sin(2x))+\sqrt{x}\frac{2\cos(2x)}{\sin(2x)}\\
+                y'              &=  y\cdot x\left[\frac{1}{2}x^{-\frac{1}{2}}\ln(\sin(2x))+\sqrt{x}\frac{2\cos(2x)}{\sin(2x)}\right]\\
+                                &=  (\sin(2x))^{\sqrt{x}}\cdot\left[\frac{1}{2}x^{-\frac{1}{2}}\ln(\sin(2x))+\sqrt{x}\frac{2\cos(2x)}{\sin(2x)}\right]
+            }
+        }
+        \newpage
+        \item Evaluate the integral $\displaystyle\int_{0}^{1}x^{2}\cdot7^{\frac{-x^{3}}{4}}dx$.
+        
+        \red{This is a straightforward (but not necessarily easy to see) $u$-substitution problem. Take $u$ to be the exponent $-\frac{x^3}{4}$, then $du=-\frac{3}{4}x^{2}dx$. We don't have $du$, but we have $x^{2}dx=-\frac{4}{3}du$.}
+
+        \red{Since this is a definite integral and we're using $u$-sub, we need to change our limits of integration accordingly; $u(0)=0$ and $u(1)=-\frac{1}{4}$. Now it's a fairly simple integration:}
+
+        \textcolor{red}
+        {
+            \bas
+            {
+                \int_{0}^{1}x^{2}\cdot7^{\frac{-x^{3}}{4}}dx    &=  -\frac{4}{3}\int_{0}^{-\frac{1}{4}}7^{u}du\\
+                                                                &=  \frac{4}{3}\int_{-\frac{1}{4}}^{0}7^{u}du\\
+                                                                &=  \frac{4}{3}\cdot\frac{1}{\ln(7)}7^{u}\biggr\vert_{-\frac{1}{4}}^{0}\\
+                                                                &=  \frac{4}{3\ln(7)}\left(1-\frac{1}{\sqrt[4]{7}}\right).
+            }
+        }
+        \item Evaluate the integral $\displaystyle\int\dfrac{\cos(x)+\sec^{2}(x)}{\sin(x)+\tan(x)}dx$
+
+        \red{Take $u=\sin(x)+\tan(x)$, then $du=\cos(x)+\sec^{2}(x)$ and our integral becomes}
+
+        \textcolor{red}
+        {
+            \bas
+            {
+                \int\frac{\cos(x)+\sec^{2}(x)}{\sin(x)+\tan(x)}dx   &=  \int\frac{1}{u}du\\
+                                                                    &=  \ln|u|+c\\
+                                                                    &=  \ln|\sin(x)+\tan(x)|+c.
+            }
+        }
+    \end{enumerate}
+
+\end{document}

@@ -1,0 +1,203 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tikz,pgf,pgfplots,xcolor}
+
+\hypersetup{colorlinks, linkcolor=red}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+%\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2sol}}
+	\newcommand{\opsol}{1}
+	\newcommand{\usol}[1]{\underline{\hspace{.5 in} \textcolor{blue}{#1} \hspace{.5 in}}}
+	\newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2}}
+	\newcommand{\opsol}{0}
+	\newcommand{\usol}[1]{\underline{\hspace{.5 in} \textcolor{white}{#1} \hspace{.5 in}}}
+	\newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+ 
+ \pgfplotsset{minor grid style={dotted,gray}}
+ 
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\chead{}
+%\rhead{\bf Project: The derivative function} 
+\rhead{\bf The Derivative Function}
+
+\begin{enumerate}
+\item  The purpose of this problem is to see how to construct a derivative function one point at a time by looking at a graph.\\
+Background review: estimating derivatives, one point at a time:
+\begin{itemize}
+\item The derivative of a function at a point represents the slope (or rate of change) of a function at that point.
+\item  If you have a graph, you can estimate the derivative one point at a time by drawing the tangent line at that point, then calculating the slope of that tangent line (remember, slope is rise over run).
+\end{itemize}
+\begin{enumerate}
+\item  Go to the website \url{http://www.shodor.org/interactivate/activities/Derivate/}
+\item  Enter the function $y = x^2-x-2$.  Use the tool to calculate the slope of the graph at each of the points $x$ = -1, 0, 1, 2
+and 2.5.  Enter the values of the slope in the following table:
+\begin{center}
+\begin{tabular}{c || c |   c | c | c | c }			
+  $x$  & $-1$ & $0$ & $1$  & 2 & 2.5\\
+\hline
+  slope of  $f$ at $x$ & \tblsol{-3} & \tblsol{-1}& \tblsol{1}& \tblsol{3} & \tblsol{4}   \\
+\end{tabular}
+\end{center}
+
+\vspace{.2in}
+
+
+\item Now plot these points and connect them smoothly to see a graph of $f'(x)$
+
+\medskip\begin{center}\hskip-.4in
+%\fsol{.5}{emptygrid}
+\begin{tikzpicture}
+\begin{axis}[axis x line=middle,axis y line=middle,grid=both, minor xtick = {-100.5, -99.5, ..., 100.5}, minor ytick = {-100.5, -99.5, ..., 100.5} ,ymin=-4,ymax=4,xmin=-3.5,xmax=4.5,width=12cm,title={$y=f'(x)$}]
+\addplot[opacity=\opsol,color=blue,mark=none,domain=-10:10,samples=100,thick] {2*x-1};
+\end{axis}
+
+\end{tikzpicture}
+\end{center}
+\item What do you think the formula for this graph is?
+
+\sol{.2 in}{It's a straight line with slope $2$ and $y$-intercept $(0, -1)$, so $y=2x-1$}
+
+\newpage
+\end{enumerate}
+
+\item In this problem, you'll calculate the derivative of the same function as the previous problem, but this time you'll do it analytically (with formulas)
+\begin{enumerate}
+
+\item  Calculate the derivative of $f(x) = x^2 -x - 2$.\\
+$\displaystyle f'(x) = \lim_{h\rightarrow 0}\frac{f(x+h)-f(x)}{h}=$
+
+
+\sol{3 in}{
+\begin{align*}
+f'(x) &= \lim_{h\to 0} \frac{f(x+h)-f(x)}{h} \\
+&= \lim_{h\to 0} \frac{( (x+h)^2 - (x+h)-2) - (x^2 -x - 2)}{h} \\
+&= \lim_{h\to 0} \frac{x^2+2xh+h^2-x-h-2-x^2+x+2}{h} \\
+&= \lim_{h\to 0} \frac{2xh+h^2-h}{h} \\
+&= \lim_{h\to 0} \frac{h(2x+h-1)}{h} \\
+&= \lim_{h\to 0} (2x+h-1)\\
+&= 2x-1.
+\end{align*}
+}
+
+\item  Do your results from this problem match your results from the last problem?
+
+\sol{.3 in}{Yes}
+\end{enumerate}
+
+\item Khan academy has an exercise that gives a good visual and tactile experience of producing the derivative function point by point.  Do at least one exercise on this website:
+\begin{sloppypar}
+\url{http://www.tinyurl.com/math1300-week4}
+\end{sloppypar}
+In the space below, sketch the graph of $f(x)$ and $f'(x)$ from one of the exercises you did.
+\sol{1in}{Solutions vary.}
+
+
+\newpage
+\item Below is a graph of a function.
+\begin{center}\hskip-.4in
+	%\fsol{.5}{emptygrid}
+	\begin{tikzpicture}
+	\begin{axis}[axis x line=middle,axis y line=middle,grid=both, minor xtick = {-100.5, -99.5, ..., 100.5}, minor ytick = {-100.5, -99.5, ..., 100.5} ,ymin=-4,ymax=4,xmin=-3.5,xmax=4.5,width=12cm]
+	\addplot[color=black,mark=none,domain=-4:5,samples=100,thick] {7/30*(1/4*x^4-2/3*x^3-5/2*x^2+6*x)-11/45};
+	\end{axis}
+	\end{tikzpicture}
+\end{center}
+Without the aid of technology, use the graph of the function above to sketch a graph of its derivative function on the axes below.
+\medskip\begin{center}\hskip-.4in
+%\fsol{.5}{emptygrid2}
+\begin{tikzpicture}
+\begin{axis}[axis x line=middle,axis y line=middle,grid=both, minor xtick = {-100.5, -99.5, ..., 100.5}, minor ytick = {-100.5, -99.5, ..., 100.5} ,ymin=-4,ymax=4,xmin=-3.5,xmax=4.5,width=12cm]
+\addplot[opacity = \opsol,color=blue,mark=none,domain=-4:5,samples=100,thick] {7/30*(x+2)*(x-1)*(x-3)};
+\addplot[opacity=\opsol,fill=blue,color=blue,only marks,mark=*] coordinates{(-2,0)(1,0)(3,0)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\newpage
+\item Based on your experience above, what seems to be true about the relationship between $f(x)$ and $f'(x)$?
+\begin{enumerate}
+\item Where $f(x)$ is increasing, $f'(x)$ is \usol{positive}. 
+
+\vspace{.2in}
+
+\item Where $f(x)$ is decreasing, $f'(x)$ is \usol{negative}.
+
+\vspace{.2in}
+
+\end{enumerate}
+
+\item Below are some more involved questions. We will be addressing these in the coming sections.  Do you have any guesses for these?
+
+\begin{enumerate}
+\item Where $f(x)$ is concave up, $f'(x)$ is \usol{increasing}.
+
+\vspace{.2in}
+
+\item Where $f(x)$ is concave down, $f'(x)$ is \usol{decreasing}.
+
+\vspace{.2in}
+
+\begin{spacing}{2}
+\item Where $f(x)$ is \usol{discontinuous}, \usol{has a cusp or corner}, or \usol{has a vertical tangent line} $f'(x)$ is undefined. 
+\end{spacing}
+
+\sol{.6in}{Note: discontinuities can include where $f(x)$ is undefined, has a vertical asymptote, has a jump discontinuity, or has a hole.}
+
+\item What will the derivative be when $f(x)$ has a relative high point (maximum) or relative low point (minimum)?  
+
+\sol{.8 in}{At the relative extreme points of $f(x)$, the derivative will be zero or will be undefined.}
+
+\item If the derivative is 0 at a point, what are all the ways the original function could look? 
+
+\sol{.9 in}{The top of a hill ($y=-x^2$ at $x=0$), the bottom of a valley ($y=x^2$ at $x=0$), or a horizontal tangent line that is
+neither a high point or a low point ($y=x^3$ at $x=0$).}
+
+\item What about if the derivative has a relative maximum or minimum?
+
+\sol{.8 in}{Where the derivative has a relative maximum the original function has its steepest positive slope and where the derivative has a relative minimum the original function has its steepest negative slope.  The function changes concavity there.}
+
+\end{enumerate}
+
+
+
+\end{enumerate}
+
+\end{document}
+
+
+
+

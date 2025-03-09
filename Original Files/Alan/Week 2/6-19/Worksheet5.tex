@@ -1,0 +1,186 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=.5 in]{geometry}
+\usepackage{calc}
+\usepackage{framed}
+
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, multicol, hyperref, cancel}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb, amsthm, latexsym, epsfig, amscd, arydshln}
+			
+\parskip = 0.2in
+
+\setlength{\parindent}{0pt}
+
+\def\ds{\displaystyle}
+
+\newcounter{saveenum}
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\tsol}[1]{\textcolor{blue}{#1}}
+    \newcommand{\boxsol}[1]{\textcolor{blue}{$$\boxed{#1}$$}}
+\else
+    \newcommand{\tsol}[1]{\textcolor{white}{#1}}
+    \newcommand{\boxsol}[1]{$$#1$$}
+\fi
+
+\newcommand{\lcell}[1]{
+\begin{minipage}[c][1 in]{4.5 in}
+#1
+\end{minipage}}
+
+\newcommand{\rcell}[1]{
+\begin{minipage}[c][1 in]{1 in}
+Step: \underline{\Huge$\,$\tsol{#1}$\,$}
+\end{minipage}}
+
+\newcommand{\acell}[1]{
+\begin{minipage}[c][0.9 in]{2.16 in}
+#1
+\end{minipage}}
+
+\newcommand{\ablank}[1]{
+\begin{Huge}
+\fbox{$\textcolor{white}{#1}$}
+\end{Huge}
+}
+
+\begin{document}
+\pagenumbering{gobble}
+\begin{enumerate}
+
+\item Calculate the derivative (slope of the tangent line) using the definition.
+
+\vspace{.2 in}
+
+\begin{tabular}{| c | c |} \hline
+\lcell{Distribute/FOIL: \[f'(3)=\lim_{h \rightarrow 0} \frac{9+6h+h^2+15+5h-24}{h} \]} & \rcell{4} \\ \hline
+\lcell{Collect like terms: \[f'(3)=\lim_{h \rightarrow 0} \frac{h^2+11h}{h} \]} & \rcell{5} \\ \hline
+\lcell{Evaluate the limit: \[f'(3)=11\]}  & \rcell{8} \\ \hline
+\lcell{Definition of the derivative at $x=3$: \[f'(3)=\lim_{h \rightarrow 0} \frac{f(3+h)-f(3)}{h}\]} & \rcell{1} \\ \hline
+\lcell{Factor: \[f'(3)=\lim_{h \rightarrow 0} \frac{h(h+11)}{h} \] } & \rcell{6} \\ \hline
+\lcell{Begin Simplifying: \[f'(3)=\lim_{h \rightarrow 0} \frac{(3+h)(3+h)+5(3+h)-24}{h} \]} & \rcell{3} \\ \hline
+\lcell{Cancel: \[f'(3)=\lim_{h \rightarrow 0} h+11\]} & \rcell{7} \\ \hline
+\lcell{Use $f(x)=x^2+5x$ \[f'(3)=\lim_{h \rightarrow 0} \frac{(3+h)^2+5(3+h)-24}{h} \]} & \rcell{2} \\ \hline
+\end{tabular}
+
+\newpage
+
+\item $f(x)=3x^2-x$. Find $f'(-2)$ by circling the correct next step from each row. In the third column, explain why this is the correct step and what caused the error in the incorrect step.
+
+\unenumerate{\begin{tabular}{ c | c | c | c |} \hline
+{\small Step 1.} & \acell{\boxsol{\lim_{h \rightarrow 0} \frac{f(-2+h)-f(-2)}{h}}} & \acell{\[ \lim_{h \rightarrow -2} \frac{f(-2+h)-f(-2)}{h}\]} & \acell{\tsol{The definition of derivative has $h\rightarrow 0$.}} \\ \hline
+{\small Step 2.} & \acell{\[ \lim_{h \rightarrow 0} \frac{3(-2+h)^2+2+h+14}{h}\]} & \acell{\boxsol{\lim_{h \rightarrow 0} \frac{3(-2+h)^2+2-h-14}{h}}} & \acell{\tsol{The numerator should be\\ $3(-2+h)^2-(-2+h)-14$. In left column the negative is not distributed, and then there is another sign error with $f(-2)$.}} \\ \hline
+{\small Step 3.} & \acell{\boxsol{\lim_{h \rightarrow 0} \frac{3(4-4h+h^2)+2-h-14}{h}}} & \acell{\[ \lim_{h \rightarrow 0} \frac{3(4+h^2)-2-h-14}{h}\]} & \acell{\tsol{$(-2+h)^2 = (-2+h)(-2+h) = 4-4h+h^2$. Algebra error in the right column - it was not distributed correctly.}} \\ \hline
+{\small Step 4.} & \acell{\[ \lim_{h \rightarrow 0} \frac{12-4h+h^2+2-h-14}{h}\]} & \acell{\boxsol{ \lim_{h \rightarrow 0} \frac{12-12h+3h^2+2-h-14}{h}}} & \acell{\tsol{The $3$ wasn't distributed to all three terms in the left column.}} \\ \hline
+{\small Step 5.} & \acell{\boxsol{ \lim_{h \rightarrow 0} \frac{-12h+3h^2-h}{h}}} & \acell{\[ \lim_{h \rightarrow 0} \frac{3h^2-13h+12}{h}\]} & \acell{\tsol{In the right column the constants were added wrong. The left column is correct, although not fully simplified yet.}} \\ \hline
+{\small Step 6.} & \acell{\[ \lim_{h \rightarrow 0} \frac{-12\cancel{h}+3h^2-h}{\cancel{h}} \]} & \acell{\boxsol{\lim_{h \rightarrow 0} \frac{3h^2-13h}{h}}} & \acell{\tsol{The left column has a serious algebra error - no cancellation unless the $h$ is factored out first.}} \\ \hline
+{\small Step 7.} & \acell{\[ \frac{3h^2-13h}{h} \]} & \acell{\boxsol{\lim_{h \rightarrow 0} \frac{h(3h-13)}{h}}} & \acell{\tsol{The left column is missing a limit.}} \\ \hline
+{\small Step 8.} & \acell{\boxsol{\lim_{h \rightarrow 0} (3h-13)}} & \acell{\[3h-13h\]} & \acell{\tsol{The right column is missing a limit. Also, it looks like they used the wrong answer from Step 7, and then incorrectly simplified.}} \\ \hline
+{\small Step 9.} & \acell{\[-10h\]} & \acell{\boxsol{-13}} & \acell{\tsol{The left column is a (correct) simplification of the wrong choice for Step 8.}} \\ \hline
+\end{tabular}}
+
+\newpage
+
+\item $f(x)=\sqrt{x}$. Find $f'(4)$ by filling in the boxes with the correct mathematical expressions.
+\begin{Large}
+\begin{spreadlines}{.4 in}
+\begin{align*}
+f'(4) &= \lim_{h \rightarrow 0} \frac{f\bigl(\ablank{\tsol{4+h}}\bigr)-f\bigl(\ablank{\tsol{4}}\bigr)}{h} \\
+&= \lim_{h \rightarrow 0} \ablank{\tsol{\frac{\sqrt{4+h}-\sqrt{4}}{h}}} \\
+&= \lim_{h \rightarrow 0} \frac{\sqrt{4+h}-2}{h} \cdot \frac{\sqrt{4+h}+2}{\sqrt{4+h}+2} \\
+&= \lim_{h \rightarrow 0} \ablank{\tsol{\frac{4+h+2\sqrt{4+h}-2\sqrt{4+h}-4}{h \left(\sqrt{4+h}+2 \right)}}} \\
+&= \lim_{h \rightarrow 0} \frac{4+h+\ablank{\tsol{-4}}}{h\left(\sqrt{4+h}+2\right)} \\
+&= \lim_{h \rightarrow 0} \frac{\ablank{\tsol{h}}}{h\left(\sqrt{4+h}+2\right)} \\
+&= \lim_{h \rightarrow 0} \frac{1}{\sqrt{4+h}+2} \\
+&= \frac{1}{\sqrt{4+\ablank{\tsol{0}}}+2} \\
+&= \ablank{\tsol{\frac{1}{4}}} \\
+\end{align*}
+\end{spreadlines}
+\end{Large}
+
+\newpage
+\item Now you're on your own!  Use the definition of the derivative to calculate the following derivatives.
+\begin{enumerate}
+\item $\ds f(x) = 7x^2 + 5x$.  Find $f'(2)$.
+
+\bigskip
+
+\tsol{
+\begin{large}
+\begin{spreadlines}{.4 in}
+\begin{align*}
+\text{Definition of derivative at $x=2$:} \qquad f'(2) &= \lim_{h \rightarrow 0} \frac{f\left( 2+h \right) - f(2)}{h} \\
+\text{Use the function $f(x)=7x^2+5x$:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\left( 7(2+h)^2 +5(2+h) \right) - \left( 7 \cdot 2^2 + 5\cdot 2 \right)}{h}  \\
+\text{FOIL and simplify:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\left( 7(4+4h+h^2) +10+5h \right) - \left( 28 + 10 \right)}{h}  \\
+\text{Distribute and simplify:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{ 28 + 28h + 7h^2 +10+5h  - 38 }{h}  \\
+\text{Collect constant terms:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{ 28h + 7h^2 + 5h }{h}  \\
+\text{Collect all like terms:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{ 7h^2 + 33h}{h}  \\
+\text{Factor:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{ h \left( 7h + 33 \right) }{h}  \\
+\text{Cancel:} \qquad \qquad &= \lim_{h \rightarrow 0}  7h + 33 \\
+\text{Evaluate the limit:} \qquad \qquad &= 7(0)+33  \\
+&= 33.
+\end{align*}
+\end{spreadlines}
+\end{large}
+}
+
+\vfill \newpage
+\item $\ds f(x)=\frac{1}{x}$. Find $f'(x)$.
+
+\bigskip
+
+\tsol{
+\begin{large}
+\begin{spreadlines}{.4 in}
+\begin{align*}
+\text{Definition of derivative at $x=3$:} \qquad f'(3) &= \lim_{h \rightarrow 0} \frac{f\left( 3+h \right) - f(3)}{h} \\
+\text{Use the function $f(x)=\frac{1}{x}$:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\frac{1}{3+h} - \frac{1}{3}}{h} \\
+\text{Clear mini-denominators (optional):} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\frac{1}{3+h} - \frac{1}{3}}{h} \cdot \frac{3(3+h)}{3(3+h)} \\
+\text{Distribute:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\frac{3(3+h)}{3+h} - \frac{3(3+h)}{3}}{3h(3+h)}\\
+\text{Simplify:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{3 - (3+h)}{3h(3+h)}\\
+\text{} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{-h}{3h(3+h)}\\
+\text{Cancel:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{-1}{3(3+h)}\\
+\text{Evaluate the limit:} \qquad \qquad &=   \frac{-1}{3(3+0)} \\
+&=   -\frac{1}{9}. \\
+\end{align*}
+\end{spreadlines}
+\end{large}
+}
+
+\vfill \newpage
+\item $\ds f(x)=\frac{2}{\sqrt{x}}$.  Find $f'(x)$.
+
+\bigskip
+
+\tsol{
+\begin{large}
+\begin{spreadlines}{.4 in}
+\begin{align*}
+\text{Definition of derivative at $x=4$:} \qquad f'(4) &= \lim_{h \rightarrow 0} \frac{f\left( 4+h \right) - f(4)}{h} \\
+\text{Use the function $f(x)=\frac{2}{\sqrt{x}}$:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\frac{2}{\sqrt{4+h}} - \frac{2}{\sqrt{4}}}{h}  \\
+\text{Simplify just a little:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\frac{2}{\sqrt{4+h}} - 1}{h}  \\
+\text{Clear mini-denominator (optional):} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{\frac{2}{\sqrt{4+h}} - 1}{h} \cdot \frac{\sqrt{4+h}}{\sqrt{4+h}} \\
+\text{Distribute and simplify:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{2 - \sqrt{4+h}}{h\sqrt{4+h}}  \\
+\text{Multiply by a conjugate:}\qquad \qquad &= \lim_{h \rightarrow 0} \frac{\left( 2 - \sqrt{4+h} \right)}{h\sqrt{4+h}} \cdot \frac{\left( 2+\sqrt{4+h} \right) }{\left( 2+\sqrt{4+h} \right)}\\
+\text{FOIL:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{4 + 2\sqrt{4+h} - 2\sqrt{4+h} - (4+h) }{h\sqrt{4+h}\left( 2+\sqrt{4+h} \right)}\\
+\text{Simplify:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{- h }{h\sqrt{4+h}\left( 2+\sqrt{4+h} \right)}\\
+\text{Cancel:} \qquad \qquad &= \lim_{h \rightarrow 0} \frac{- 1 }{\sqrt{4+h}\left( 2+\sqrt{4+h} \right)}\\
+\text{Evaluate the limit:} \qquad \qquad &= \frac{- 1 }{\sqrt{4+0}\left( 2+\sqrt{4+0} \right)}\\
+&= -\frac{1}{8}.
+\end{align*}
+\end{spreadlines}
+\end{large}
+}
+
+
+\vfill \newpage
+\end{enumerate} 
+
+\end{enumerate}
+\end{document}

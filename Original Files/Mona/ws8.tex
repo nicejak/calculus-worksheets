@@ -1,0 +1,110 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+%\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+%\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{tasks}
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+\chead{\MyTopicTitle} % Top center header
+\rhead{\MyAssignment} % Top right header
+\lfoot{\MyCampus} % Bottom left footer
+%\cfoot{June 14, 2022} % Bottom center footer
+\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\setlength{\headheight}{14.49998pt}
+
+\let\ds\displaystyle
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\pink}{\textcolor{CarnationPink}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\violet}{\textcolor{violet}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\grn}{\textcolor{green}}
+\newcommand{\uh}{\textcolor{ForestGreen}}
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 242}
+\newcommand{\MyAssignment}{Review 2}
+\newcommand{\MySemester}{Fall 2024}
+\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+
+\pgfplotsset{compat=1.18} 
+\begin{document}
+\noindent Name: \hspace{4in}Section:
+\vspace{0.5cm}
+
+
+
+\begin{enumerate}
+\item \[\int e^{2x} \cos(x)\:dx\]
+\vfill
+
+\item \[\int \frac{1}{x\sqrt{2-x^2}} \: dx\] \vfill
+
+
+
+
+\newpage
+
+\item\[\int \sin(x) \cos(3x) \: dx \]
+\vfill
+
+
+\item \[\int \frac{x^3+4}{x^3-4x} \:dx \]
+\vfill
+\newpage
+
+\item \[\int \tan^3 (x) \sec (x)\:dx \]
+
+\vfill
+\item \[\int \frac{x}{\sqrt{x+1}}\: dx \]
+
+\vfill
+
+\newpage
+\item \[ \int \sin^3(x) \cos^2(x) \: dx \]
+\vfill
+\item \[ \int \frac{dx}{\sqrt{x^2+2x}}\]
+\vfill
+
+
+\newpage
+\item Determine whether the integral converges or diverges.
+\begin{enumerate}
+\item \[\int_1^\infty \: \frac{1}{\sqrt{x^4+1}} dx\]
+\vfill
+\item \[ \int_0^1 \frac{1}{x}\: dx\]
+\vfill
+\end{enumerate}
+\item Suppose we use Simpson's rule with n=4 to estimate $\int_1^5 3x^3-2x+1 dx$.  What is the error of this estimate?  Try to answer without plugging any values into functions or even computing derivatives!  What if n=2?  Is there a general principle you can see here?
+ 
+\vfill
+\vfill
+
+
+
+\end{enumerate}
+
+\end{document}
+

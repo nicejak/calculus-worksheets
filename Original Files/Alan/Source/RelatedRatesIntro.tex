@@ -1,0 +1,186 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usetikzlibrary{patterns}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+
+
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; To hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\ww}{WeBWorK }
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vs}[1]{\vspace{#1 pt}}
+
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\rhead{\bf Project: Related Rates} 
+
+\begin{enumerate}
+\item A spherical snowball melts in such a way that the instant at which its radius is 20 cm, its radius is decreasing at 3 cm/min. At what rate is the volume of the ball of snow changing at that instant?
+\begin{enumerate}
+\item Diagram:  Draw a picture of the melting snowball. Label the variables of interest.
+
+\sol{2.5 in}{
+\begin{center}
+\begin{tikzpicture}
+	\draw (0,0) -- (2,0);
+	\draw (1,0.25) node {$r$};
+	\draw (0,0) circle (2);
+	\draw [->] (4,-1) -- (1.75,-1.25);
+	\draw (5.1,-1) node {$V \text{(volume)}$};
+	\draw (4,1.5) circle (0.5);
+	\draw (4,1.5) -- (4,1.95);
+	\draw (4,1.5) -- (4.2,1.7);
+	\draw (5.25,1.5) node {$t \text{(time)}$};
+\end{tikzpicture}
+\end{center}}
+
+\item Rates:  What is the known rate of change?  What is the needed rate of change?  Include units.
+
+\sol{.8 in}{The known rate of change is $\dfrac{dr}{dt}=-3 \frac{\text{cm}}{\text{min}}$, and the unknown rate of change is $\dfrac{dV}{dt}$, units $\frac{\text{cm}^3}{\text{min}}$.}
+
+\item Equation: The rates in the previous part involved the variables $V$ and $r$.  Write an equation from geometry relating $V$ and $r$.
+
+\sol{.8 in}{$V = \dfrac{4}{3} \pi r^3$}
+
+\item Differentiate:  because the snowball is melting, both the radius and volume are really functions of time. Differentiate your formula from the last part with respect to time, $t$, in minutes. 
+
+\sol{.8 in}{$\ds \frac{dV}{dt} = \frac{4}{3} \pi 3 r^2 \frac{dr}{dt} = 4 \pi r^2 \frac{dr}{dt}$}
+
+\item Substitute and solve:  Plug all known quantities into your equation from the last part and solve for the desired rate.  Answer the question asked.
+
+\sol{.8 in}{$\ds \frac{dV}{dt} = 4 \pi \cdot 20^2 \cdot -3 \left(\frac{\text{cm}^3}{\text{min}}\right)$}
+
+\end{enumerate}
+\newpage
+
+\item  Omar flies his kite 150m high, where the wind causes it to move horizontally away from him at the rate of 5m per second. In order to maintain the kite at a height of 150m, Omar must allow more string to be let out. At what rate is the string being let out when the length of the string already out is 250m?
+\begin{enumerate}
+\item Diagram:
+
+\sol{2 in}{
+\begin{center}
+\begin{tikzpicture}
+	\draw (0,0) -- (2,1.5);
+	\draw (0,0) -- (2,0);
+	\draw (2,0) -- (2,1.5);
+	\draw (1,-0.25) node {$x$};
+	\draw (.75,1) node {$s$};
+	\draw (2.5,.75) node {$150$};
+	\draw (4,2) circle (0.5);
+	\draw (4,2) -- (4,2.45);
+	\draw (4,2) -- (4.2,2.2);
+	\draw (5.25,2) node {$t \text{(time)}$};
+\end{tikzpicture}
+\end{center}}
+
+\item Rates:
+
+\sol{.8 in}{The known rate is $\dfrac{dx}{dt}$ and the unknown rate is
+$\dfrac{ds}{dt}$.}
+
+\item Equation:
+
+\sol{.8 in}{$s^2=150^2+x^2$}
+
+\item Differentiate:
+
+\sol{.8 in}{$2 s \dfrac{ds}{dt} = 2 x \dfrac{dx}{dt} $}
+
+\item Substitute:
+
+\sol{.8 in}{At the time in question, $s=250$.  To get $x$ at this instant, $250^2=150^2+x^2$, so $x=200\text{m}$. Substituting into the equation from the last part:\\
+$2\cdot 250 \dfrac{ds}{dt} = 2 \cdot 200 \cdot 5$}
+
+\item Solve:
+
+\sol{.8 in}{$\dfrac{ds}{dt} = \dfrac{200 \cdot 5}{250}\left(\dfrac{\text{m}}{\text{s}}\right)=4\dfrac{\text{m}}{\text{s}}$.}
+
+\end{enumerate}
+
+\newpage
+
+\item On the shore sits Sea Lion Rock. A lighthouse stands off-shore, 100 yards east of Sea Lion Rock.  173 yards due north of  Sea Lion
+Rock is the exclusive See Lion Motel.  The lighthouse light rotates twice a minute. At the moment the beam of light hits the motel, how fast is the beam of light moving along the coast?
+
+\sol{6 in}{
+\begin{center}
+\begin{tikzpicture}
+\draw (0,-0.5) -- (0,4.1);
+\draw (-0.25,-0.25) rectangle (0,0);
+\draw (-1,-0.125) node {$\text{Rock}$};
+\draw (-0.25,3.8) -- (-0.125,4) -- (0,3.8);
+\draw (-1,3.8) node {$\text{Motel}$};
+\draw (1.75,-0.25) -- (2,0.75) -- (2.25,0.75) -- (2.5,-0.25) -- (1.75,-0.25);
+\draw (2,0.75) -- (2.25,0.75)-- (2.25,1) -- (2,1) -- cycle;
+\draw (2,0.875) -- (0,4.05);
+\draw (2,0.875) -- (0,3.75);
+\draw (2,1) arc (180:0:0.125);
+\draw [dashed] (1.75,-0.25) -- (0,-0.25);
+\draw (3.5,2) node {$\approx$};
+\draw (5,0) -- (5,4) -- (7,0) -- cycle;
+\draw (4.75,2) node {$y$};
+\draw (6,-0.25) node {$100$};
+\draw (6.65,0.25) node {$\theta$};
+	\draw (7,3.5) circle (0.5);
+	\draw (7,3.5) -- (7,3.95);
+	\draw (7,3.5) -- (7.2,3.7);
+	\draw (8.25,3.5) node {$t \text{(time)}$};
+\end{tikzpicture}
+\end{center}
+Since the beam of light makes two full circles per minute, $\ds \frac{d\theta}{dt} =2 \cdot 2 \pi \left(\frac{\text{rad}}{\text{min}}\right)$. The rate we want to know is $\frac{dy}{dt}$.
+\[ \tan(\theta) = \frac{y}{100} \]
+\[ \sec^2(\theta) \frac{d \theta}{dt} = \frac{1}{100} \frac{dy}{dt} \]
+\[ \frac{dy}{dt} = 100 \sec^2(\theta) \frac{d\theta}{dt} \]
+Using the Pythagorean Theorem, the hypotenuse of the triangle is about 200 meters.  So $\sec(\theta) = \frac{\text{hypotenuse}}{\text{adjacent}} \approx \frac{200}{100}=2$.
+\[ \frac{dy}{dt} \approx 100 \cdot 2^2 \cdot 4
+\pi \left(\frac{\text{yards}}{\text{min}}\right)=1600\pi\frac{\text{yards}}{\text{min}} \]
+}
+
+\end{enumerate}
+
+
+\end{document}

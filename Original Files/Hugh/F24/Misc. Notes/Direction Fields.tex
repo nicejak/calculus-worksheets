@@ -1,0 +1,66 @@
+\documentclass[11pt]{article}
+\usepackage[left=1in, right=1in, top=0.75in, bottom=.5in]{geometry}
+\usepackage{mathexam}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[export]{adjustbox} %positioning of images
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{latexsym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{pgfplots}
+\usepackage{comment}
+\usepackage{exsheets}
+\usepackage{pdfpages}
+\usepackage{multicol}
+\usetikzlibrary{calc}
+\pgfplotsset{compat=1.18}
+
+\ExamClass{Math 242}
+\ExamName{Notes: \S9.2: Direction Fields}
+\ExamHead{Fall 2024}
+\fancyfoot{}
+\setlength{\headheight}{13.59999pt}
+
+\let\ds\displaystyle
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\pink}{\textcolor{CarnationPink}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\violet}{\textcolor{violet}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\grn}{\textcolor{green}}
+\newcommand{\uh}{\textcolor{ForestGreen}}
+\newcommand{\bas}[1]{\begin{align*}{#1}\end{align*}}
+
+
+\begin{document}
+    \begin{figure}[h]
+        \begin{minipage}[c]{0.48\linewidth}
+            \includegraphics[width=\linewidth]{F24/Misc. Notes/y'=x+y.png}
+            \caption{$y'=x+y$}
+            \end{minipage}
+            \hfill
+            \begin{minipage}[c]{0.48\linewidth}
+            \includegraphics[width=\linewidth]{F24/Misc. Notes/y'=xy.png}
+            \caption{$y'=xy$}
+        \end{minipage}%
+    \end{figure}
+
+    \begin{figure}[h]
+        \begin{minipage}[c]{0.48\linewidth}
+            \includegraphics[width=\linewidth]{F24/Misc. Notes/Population curve.png}
+            \caption{$\frac{dP}{dt}=kP\left(1-\frac{P}{M}\right)$}
+            \end{minipage}
+            \hfill
+            \begin{minipage}[c]{0.48\linewidth}
+            \includegraphics[width=\linewidth]{F24/Misc. Notes/Blank.png}
+            \caption{$y'=\frac{x}{y}$}
+        \end{minipage}%
+    \end{figure}
+        
+\end{document} 

@@ -1,0 +1,191 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage{calc}
+
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, multicol, enumerate, hyperref, tabu}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb,latexsym,epsfig,amscd,arydshln}
+			
+\parskip = 0.2in
+
+\def\ds{\displaystyle}
+
+\setlength{\parindent}{0pt}
+
+\newcounter{saveenum}
+
+\newif\ifsolutions
+%\solutionstrue
+\solutionsfalse
+\ifsolutions
+    \newcommand{\opsol}{1}
+    \newcommand{\usol}[1]{\underline{\hspace{.1 in} \textcolor{blue}{#1} \hspace{.1 in}}}
+    \newcommand{\sol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\opsol}{0}
+    \newcommand{\usol}[1]{\underline{\hspace{.1 in} \textcolor{white}{#1} \hspace{.1 in}}}
+    \newcommand{\sol}[1]{\textcolor{white}{#1}}
+\fi
+
+
+
+\begin{document}
+\pagenumbering{gobble}
+
+
+{\large \textbf{Area accumulation functions and the FTC, graphical perspective}} \\
+
+\begin{enumerate}
+\item Example:
+
+\vspace{-.2 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2, xmax=6,
+	ymin=-1.2, ymax=2.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, width=4 in, grid=major, ylabel={$f$},
+ 	restrict y to domain=-1.2:3
+	]
+	\addplot [black, smooth, very thick] plot coordinates {(-2,1)(1,1)};
+	\addplot [black, smooth, very thick] plot coordinates {(1,1)(2,2)};
+	\addplot [black, smooth, very thick] plot coordinates {(2,2)(3,2)};
+	\addplot [black, smooth, very thick] plot coordinates {(3,2)(6,-1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+
+\vspace{-.1 in}
+\item $\ds F(x)=\int_0^x f(t) \,dt$. $F'(x)=\usol{f(x)}$
+
+\item Evaluate the following:
+\begin{multicols}{3}
+$F(0)= \sol{0}$  \\
+$F'(0)= \sol{1} $ \\
+$F''(0)= \sol{0} $ \\
+
+$F(2)= \sol{2.5} $  \\
+$F'(2)= \sol{2} $  \\
+$F''(2)= \sol{DNE} $  \\
+
+$F(5)= \sol{6.5} $  \\
+$F'(5)= \sol{0} $  \\
+$F''(5)= \sol{-1} $  \\
+\end{multicols}
+
+\vspace{-.2 in}
+\item Find a formula for $F'(x)$ between $x=1$ and $x=2$.
+
+\sol{$F'(x)=x$ for $1 \leq x \leq 2$.}
+\vfill
+
+\item Find a formula for $F(x)$ between $x=1$ and $x=2$
+
+\sol{$\ds F(x)=\frac{x^2}{2}+\frac{1}{2}$ for $1 \leq x \leq 2$.}
+\vfill
+
+\item Sketch $F(x)$.
+
+\vspace{-.2 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2, xmax=6,
+	ymin=-2, ymax=7.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, width=4 in, grid=major,
+ 	restrict y to domain=-2:7.2
+	]
+	\addplot [opacity=\opsol, blue, very thick, domain=-2:1] {x};
+	\addplot [opacity=\opsol, blue, smooth, very thick, domain=1:2] {x^2/2+.5};
+	\addplot [opacity=\opsol, blue, smooth, very thick, domain=2:3] {2*x-1.5};
+	\addplot [opacity=\opsol, blue, smooth, very thick, domain=3:6] {-x^2/2+5*x-6};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\item Sketch $F'(x)$.
+
+\vspace{-.2 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2, xmax=6,
+	ymin=-1.2, ymax=2.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, width=4 in, grid=major,
+ 	restrict y to domain=-1.2:3
+	]
+	\addplot [opacity=\opsol, blue, smooth, very thick] plot coordinates {(-2,1)(1,1)};
+	\addplot [opacity=\opsol, blue, smooth, very thick] plot coordinates {(1,1)(2,2)};
+	\addplot [opacity=\opsol, blue, smooth, very thick] plot coordinates {(2,2)(3,2)};
+	\addplot [opacity=\opsol, blue, smooth, very thick] plot coordinates {(3,2)(6,-1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+
+\newpage
+
+\item Example:
+
+\vspace{-.2 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2, xmax=8,
+	ymin=-1.2, ymax=1.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, width=5 in, grid=major, ylabel={$h$},
+	]
+	\addplot [black, smooth, very thick, domain=-2:3] {-.25*(x-1)^2+1};
+	\addplot [black, smooth, very thick, domain=3:8] {.25*(x-5)^2-1};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\vspace{-.1in}
+\begin{enumerate}
+\item $\ds H_1(x)=\int_0^x h(t) \,dt$. $H_1'(x)=\usol{h(x)}$ \\
+
+At what $x$ values does $H_1(x)$ have:
+
+{\tabulinesep=1.4mm
+\begin{tabu}{ r  l }
+ critical points & \usol{$x=-1, 3, 7$} \\
+ local minima & \usol{$x=-1, 7$} \\
+ local maxima & \usol{$x=3$} \\
+ inflection pts & \usol{$x=1, 5$} \\
+\end{tabu}}
+
+\vspace{.3 in}
+
+\item Now $\ds H_2(x)=\int_{-1}^x h(t) \,dt$. \\
+
+At what $x$ values does $H_2(x)$ have:
+
+{\tabulinesep=1.4mm
+\begin{tabu}{ r  l }
+ critical points & \usol{$x=-1, 3, 7$} \\
+ local minima & \usol{$x=-1, 7$} \\
+ local maxima & \usol{$x=3$} \\
+ inflection pts & \usol{$x=1, 5$} \\
+\end{tabu}}
+
+\vspace{.3 in}
+
+\item What is the difference between $H_1(x)$ and $H_2(x)$?
+
+\sol{$H_1(x)$ and $H_2(x)$ have the same shape, but $H_2(x)$ is shifted up from $H_1(x)$ by the area accumulated under the curve between $x=-1$ and $x=0$.}
+
+\end{enumerate}
+\end{enumerate}
+\end{document}

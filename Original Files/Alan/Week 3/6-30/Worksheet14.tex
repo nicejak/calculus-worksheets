@@ -1,0 +1,87 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, comment, multicol, hyperref, tabu}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\pagestyle{fancy}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To hide solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2sol}}
+    \newcommand{\tsol}[2]{\textcolor{blue}{\textbf{Solution:}}\quad\vspace{-.25 in}#2}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2}}
+    \newcommand{\tsol}[2]{#1}
+\fi
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Worksheet 14: Summary of Graphing}
+\setlength\parindent{0cm}
+Goal: Produce graphs of functions with all key features labeled.
+
+\begin{enumerate}
+\item Consider the function 
+\[f(x) = x-3x^{1/3}.\]
+Without technology, find the following if they exist:\\ \ \\
+Zeros of $f(x)$
+\vfill
+Asymptotes of $f(x)$
+\vfill
+Local Minimums and Maximums of $f(x)$
+\vfill
+Inflection points of $f(x)$
+\vfill
+\newpage
+With the information from the last page, graph $f$ including key points and and properties.
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-6, xmax=6,
+    ymin=-4, ymax=4,
+    xtick={-6,...,6},  
+    ytick={-4,...,4},
+    yticklabels= {,,},
+    major tick length={0},
+    line width=1pt,
+    axis lines=center, height=4in, width = 6in, grid=major
+    ]
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\newpage
+\item Again, find the key features of 
+\[g(x) = x(x-4)^3\]
+then graph the function on the next page.
+\newpage
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-6, xmax=6,
+    ymin=-6, ymax=6,
+    xtick={-6,...,6},  
+    ytick={-6,...,6},
+    yticklabels= {,,},
+    major tick length={0},
+    line width=1pt,
+    axis lines=center, height=6in, width = 6in, grid=major
+    ]
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{enumerate}
+\end{document}

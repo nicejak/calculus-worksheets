@@ -1,0 +1,208 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}{1}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}{0}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Worksheet 4: Continuity and the IVT}
+
+\begin{enumerate}
+    \item \begin{enumerate}[label = \alph*.]
+        \item From the graph of $f$ below, state the numbers at which $f$ is discontinuous and explain why.
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[
+            axis lines = center,
+            xlabel = \(x\),
+            ylabel = {\(f(x)\)},
+            xmin=-5, xmax=8,
+            ymin=-1.1, ymax=3.1,
+            ymajorgrids=true,
+            xmajorgrids=true,
+            xtick={-4,-2,0,2,4,6},
+            ytick={},
+        ]
+        \addplot [
+            domain=-5:-2, 
+            samples=100, 
+            color=black,
+        ]
+        {x/2+3};
+    
+        \addplot [
+            domain=-2:0, 
+            samples=100, 
+            color=black,
+        ]
+        {x/2+2};
+    
+        \addplot [
+            domain=0:2, 
+            samples=100, 
+            color=black,
+        ]
+        {1/(x+0.5)};
+    
+        \addplot [
+            domain=2:3.99, 
+            samples=100, 
+            color=black,
+        ]
+        {1/(x-4)+3};
+    
+        \addplot [
+            domain=4:8, 
+            samples=100, 
+            color=black,
+        ]
+        {8/x};
+        
+        \addplot[
+            only marks,
+            color=black,
+            mark=o,
+            ]
+            coordinates {
+            (-4,1)(-2,1)(2,1/2.5)
+            };
+    
+        \addplot[
+            only marks,
+            color=black,
+            mark=*,
+            ]
+            coordinates {
+            (-2,2)(2,2.5)(4,2)
+            };
+        \end{axis}
+        \end{tikzpicture}
+        \end{center}
+        \sol{0in}{$x=-4,-2,2,4$}
+        \vfill
+
+        \item For each of the numbers stated in part a., determine whether $f$ is continuous from the right, continuous from the left, or neither.
+        
+        \sol{0in}{$x=-4$, neither. $x=-2$, left. $x=2$, right. $x=4$, right.}
+        \vfill
+    \end{enumerate}
+    \item Consider the function
+    \[f(x) = \begin{cases}
+        \frac{x^2-x}{x^2-1}, & x \neq 1 \\
+        1, & x=1
+    \end{cases}.\]
+    Is the function continuous everywhere? If not, then where is the function discontinuous? Explain why for either case.
+    
+    \sol{0in}{The function is not continuous at $x=1$ since $\lim_{x\to 1} f(x) = \frac{1}{2}$ while $f(1) = 1$.}
+    \vfill
+
+    \newpage
+    \item Consider
+    \[f(x) = \begin{cases}
+        x+2, & x < 0 \\
+        2x^2, & 0 \leq x \leq 1 \\
+        2 - x, & x > 1
+    \end{cases}.\]
+    Find the numbers at which $f$ is discontinuous. At which of these numbers is $f$ continuous from the right, continuous from the left, or neither.
+
+    \sol{0in}{$f$ is discontinuous at both $x=0,1$. At $x=0$, $f$ is right continuous. At $x=1$, $f$ is left continuous.}
+    \vfill
+
+    \item Use the definition of continuity and the properties of limits to show that the function $f$ is continuous on the given interval.
+    \[f(x) = x+\sqrt{x-4}, \quad [4,\infty).\]
+    \\\\
+    \sol{0in}{Let $a \in [4,\infty)$. Then
+    \[\lim_{x\to a} x + \sqrt{x-4} = \lim_{x\to a} x + \lim_{x\to a} \sqrt{x-4} = a + \sqrt{a-4} = f(a).\]
+    So $f$ is continuous on the interval given.}
+    \vfill
+    
+    \item Use continuity to solve the limit.
+    \[\lim_{x\to\pi} \sin(x+\sin{x}).\]
+
+    \sol{0in}{
+    \[\lim_{x\to \pi} \sin(x+\sin{x}) = \sin(\lim_{x\to \pi} x + \sin{x}) = \sin(\pi + \sin(\pi)) = 0\]}
+    \vfill
+    
+    \newpage
+    
+    \item For what value of the constant $c$ is the function $f$ continuous on $(-\infty, \infty)$?
+    \[f(x) = \begin{cases}
+        cx^2 + 2x, & x < 2\\
+        x^3 - cx, & x \geq 2
+    \end{cases}.\]
+    \sol{1in}{Let $\lim{x\to 2^-} f(x) = \lim{x\to 2^+} f(x)$. Then
+    \[4c + 4 = 8 - 2c \implies c = 2/3.\]}
+    \vfill
+
+    \item Use intermediate value theorem to show that there is a root of the given equation on the specified interval.
+    \begin{enumerate}[label = \alph*.]
+        \item $x^4 + x-3=0, \quad (1,2)$.
+        
+        \sol{.5in}{Let $f(x) = x^4 + x - 3$. Then $f(1) = -1$ and $f(2) = 15$. Then by the intermediate value theorem, since $f$ is continuous on $(1,2)$ and $-1 < 0 < 15$, there exists a value $c \in (1,2)$ such that $f(c) = 0$.}
+        \vfill
+        \item $x^5 - x^2 - 4 = 0, \quad (-\infty,\infty)$.
+
+        \sol{.5in}{Let $f(x) = x^5 - x^2 - 4$. Then $f(0) = -4$ and $f(2) = 24$. Then by the intermediate value theorem, since $f$ is continuous everywhere and $-4 < 0 < 24$, then there exists a value $c\in (0,2)$ such that $f(c) = 0$.}
+        \vfill
+    \end{enumerate}
+
+    \newpage
+
+    \item \begin{enumerate}[label = \alph*.]
+        \item Show that the absolute value function $F(x) = |x|$ is continuous everywhere.
+
+        \sol{0.5in}{When $x < 0$, $F(x) = -x$, which is continuous. When $x > 0$, $F(x) = x$, which is also continuous. We must only check that the limit matches the value. $\lim_{x\to 0} F(x) = 0 = F(0)$, so $F$ is continuous everywhere.}
+        \vfill
+        \item Explain why the result above shows that if $f$ is a continuous function on an interval, then $|f|$ is also continuous.
+
+        \sol{0.5in}{$|f|$ is continuous on its domain since we can compose two continuous functions to obtain a continuous function.}
+        \vfill
+    \end{enumerate}
+    
+    \item Is there a number that is exactly 1 more than its cube?
+    
+    \sol{0.5in}{Yes.}
+    \vfill
+\end{enumerate}
+
+\end{document}

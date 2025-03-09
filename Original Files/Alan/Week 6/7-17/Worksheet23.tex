@@ -1,0 +1,157 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\pgfplotsset{compat=1.10}
+\usepgfplotslibrary{fillbetween}
+\usepackage{comment}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{enumitem}
+
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{theorem}{Theorem}
+\setlength{\headheight}{15pt}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Worksheet 23 Area Between Curves} 
+
+\begin{enumerate}
+    \item Find the area of the shaded region. \\
+    \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[thick,smooth,no markers,
+            xmin=-0.5, xmax=4.5,
+            ymin=-0.5, ymax=4.5,
+            % xtick={-4,...,4},  
+            % xticklabels= {,,},
+            % ytick={-4,...,4},
+            % yticklabels= {,,},
+            major tick length={0},
+            line width=1pt,
+            axis lines=center, height=3in, width = 3in, grid=major]
+            \addplot [domain=0.01:4.5, samples=100, name path=f, thick, color=red!50]
+            {sqrt(x)} node[above,pos=0.5] {$\sqrt{x}$} ;
+            \addplot [domain=0.4:4.5, samples=100, name path=g, thick, color=blue!50]
+            {x^(-2)} node[right,pos=0.5] {$\frac{1}{x^2}$} ;
+            \addplot[blue!50, opacity=0.3] fill between[of= f and g, soft clip={domain=1:4}];
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \newpage
+    \item Sketch the area enclosed by the given curves and find its area. 
+    \begin{align*}
+        f(x) & = x^2 \\
+        g(x) & = 4x-x^2
+    \end{align*}
+    \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[thick,smooth,no markers,
+            xmin=-0.5, xmax=4.5,
+            ymin=-0.5, ymax=4.5,
+            % xtick={-4,...,4},  
+            % xticklabels= {,,},
+            % ytick={-4,...,4},
+            % yticklabels= {,,},
+            major tick length={0},
+            line width=1pt,
+            axis lines=center, height=3in, width = 3in, grid=major]
+            % \addplot [domain=0.01:4.5, samples=100, name path=f, thick, color=red!50]
+            % {sqrt(x)} node[above,pos=0.5] {$\sqrt{x}$} ;
+            % \addplot [domain=0.4:4.5, samples=100, name path=g, thick, color=blue!50]
+            % {x^(-2)} node[right,pos=0.5] {$\frac{1}{x^2}$} ;
+            % \addplot[blue!50, opacity=0.3] fill between[of= f and g, soft clip={domain=1:4}];
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \newpage
+    \item Sketch the area enclosed by the given curves and find its area. 
+    \begin{align*}
+        f(x) & = x^3 \\
+        g(x) & = x \\
+        x & \geq 0
+    \end{align*}
+    \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[thick,smooth,no markers,
+            xmin=-0.4, xmax=1.4,
+            ymin=-0.4, ymax=1.4,
+            % xtick={-4,...,4},  
+            % xticklabels= {,,},
+            % ytick={-4,...,4},
+            % yticklabels= {,,},
+            major tick length={0},
+            line width=1pt,
+            axis lines=center, height=3in, width = 3in, grid=major]
+            % \addplot [domain=0.01:4.5, samples=100, name path=f, thick, color=red!50]
+            % {sqrt(x)} node[above,pos=0.5] {$\sqrt{x}$} ;
+            % \addplot [domain=0.4:4.5, samples=100, name path=g, thick, color=blue!50]
+            % {x^(-2)} node[right,pos=0.5] {$\frac{1}{x^2}$} ;
+            % \addplot[blue!50, opacity=0.3] fill between[of= f and g, soft clip={domain=1:4}];
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \newpage
+    \item Use calculus to find the area of the triangle with the given vertices. Feel free the sketch the triangle, but you must use integrals to calculate the area.
+    \[(0,0), \quad (3,1), \quad (1,2)\]
+    \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[thick,smooth,no markers,
+            xmin=-0.5, xmax=3.5,
+            ymin=-0.5, ymax=3.5,
+            % xtick={-4,...,4},  
+            % xticklabels= {,,},
+            % ytick={-4,...,4},
+            % yticklabels= {,,},
+            major tick length={0},
+            line width=1pt,
+            axis lines=center, height=3in, width = 3in, grid=major]
+            % \addplot [domain=0.01:4.5, samples=100, name path=f, thick, color=red!50]
+            % {sqrt(x)} node[above,pos=0.5] {$\sqrt{x}$} ;
+            % \addplot [domain=0.4:4.5, samples=100, name path=g, thick, color=blue!50]
+            % {x^(-2)} node[right,pos=0.5] {$\frac{1}{x^2}$} ;
+            % \addplot[blue!50, opacity=0.3] fill between[of= f and g, soft clip={domain=1:4}];
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+\end{enumerate}
+
+
+
+\end{document}

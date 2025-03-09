@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+%\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+%\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{tasks}
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+\chead{\MyTopicTitle} % Top center header
+\rhead{\MyAssignment} % Top right header
+\lfoot{\MyCampus} % Bottom left footer
+%\cfoot{June 14, 2022} % Bottom center footer
+\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+\setlength{\headheight}{14.49998pt}
+
+\let\ds\displaystyle
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\pink}{\textcolor{CarnationPink}}
+\newcommand{\orange}{\textcolor{orange}}
+\newcommand{\purple}{\textcolor{purple}}
+\newcommand{\violet}{\textcolor{violet}}
+\newcommand{\cyan}{\textcolor{cyan}}
+\newcommand{\grn}{\textcolor{green}}
+\newcommand{\uh}{\textcolor{ForestGreen}}
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 242}
+\newcommand{\MyAssignment}{Worksheet 11}
+\newcommand{\MySemester}{Fall 2024}
+\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+
+\pgfplotsset{compat=1.18} 
+\begin{document}
+\noindent Name: \hspace{4in}Section:
+\vspace{0.5cm}
+
+
+
+\begin{enumerate}
+\item Test the series for convergence or divergence.
+\begin{enumerate}
+\item $\sum_{k=1}^{\infty}\frac{\sqrt[3]{k}-1}{k(\sqrt{k}+1)}$
+\vfill
+
+\item $\sum_{n=1}^\infty (-1)^n \frac{n^2-1}{n^2+1}$
+\vfill
+\item $\sum_{n=1}^{\infty} \frac{n^{2n}}{(1+n)^{3n}}$
+\vfill
+\newpage
+
+\item $\sum_{n=2}^\infty \frac{1}{n \sqrt{\ln{n}}}$
+\vfill
+
+
+\end{enumerate}
+
+
+
+\item Find the radius of convergence and interval of convergence of the series.
+\begin{enumerate}
+\item $\sum_{n=1}^{\infty}\frac{x^n}{n3^n}$
+\vfill
+\newpage
+\item $\sum_{n=1}^{\infty}\frac{x^n}{2n-1} $
+\vfill
+\item $\sum_{n=1}^{\infty}\frac{(-1)^nx^n}{n^2} $
+\vfill
+\newpage
+\item $\sum_{n=1}^{\infty}\frac{n}{4^n}(x-3)^{2n} $
+\vfill
+\item $\sum_{n=0}^{\infty}\frac{(x-2)^n}{n^2+1} $
+\vfill
+\end{enumerate}
+\item Find a power series representation for the function and determine the radius of convergence.\\
+$f(x)=\frac{x}{(1+4x)^2}$
+\vfill
+
+
+
+\end{enumerate}
+
+
+\end{document}

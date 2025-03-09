@@ -1,0 +1,87 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+%\chead{\MyTopicTitle} % Top center header
+\rhead{\MyAssignment} % Top right header
+%\lfoot{\MyCampus} % Bottom left footer
+\cfoot{} % Bottom center footer
+%\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+
+
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 241}
+\newcommand{\MyAssignment}{Worksheet 7}
+%\newcommand{\MySemester}{Spring 2020}
+%\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+% ----------
+% BEGIN DOCUMENT
+% ----------
+
+
+\begin{document} 
+\begin{enumerate}
+   \item Given the function on the interval:
+$$f(x) = \sqrt{x+3}, \quad [1,6]$$
+    \begin{enumerate}
+        \item Verify that $f(x)$ satisfies the hypotheses of the Mean Value theorem.
+        \vspace{3in}
+        \item Find all numbers $c$ which satisfy the conclusion of the Mean Value theorem.
+        \vfill
+    \end{enumerate}
+\pagebreak
+
+    \item Given the function $f(x) = x^3-3x^2-9x+4$
+\begin{enumerate}
+    \item Find the open intervals where $f$ is increasing/decreasing.
+    \vfill
+
+    \item Use the first derivative test to find the local maxima/minima of $f$.
+    \vfill
+\end{enumerate}
+\pagebreak
+\item Given the function $f(x) = 2x^3-15x^2-36x+100$
+\begin{enumerate}
+    \item Find the open intervals where $f$ is increasing/decreasing.
+    \vfill
+
+    \item Use the first derivative test to find the $x$-values of the local maxima/minima of $f$.
+    \vfill
+\pagebreak
+
+    \item Find the intervals of concavity and any points of inflection.
+    \vfill
+
+    \item Use the second derivative test to confirm the $x$-values of the local maxima/minima found in (b).
+    \vfill
+\end{enumerate}
+\pagebreak
+\end{enumerate}
+\end{document}

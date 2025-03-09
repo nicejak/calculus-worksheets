@@ -1,0 +1,129 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=.5in]{geometry}
+\usepackage{calc}
+
+\usepackage{amsmath, fancyhdr, color, enumerate, framed}
+
+			
+\parskip = 0.2in
+
+\def\ds{\displaystyle}
+
+\setlength{\parindent}{0pt}
+
+\newif\ifsolutions
+\solutionsfalse
+%\solutionstrue
+\ifsolutions
+    \newcommand{\opsol}{1}
+    \newcommand{\usol}[1]{\underline{\hspace{.1 in} \textcolor{blue}{#1} \hspace{.1 in}}}
+    \newcommand{\sol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\opsol}{0}
+    \newcommand{\usol}[1]{\underline{\hspace{.1 in} \textcolor{white}{#1} \hspace{.1 in}}}
+    \newcommand{\sol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcounter{saveenum}
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+
+{\large \textbf{Area accumulation functions and the FTC: an analytical perspective}} \\
+
+\begin{enumerate}
+\item Let $\ds F(x)=\int_3^x e^{5t} \, dt$
+
+\begin{enumerate}
+\item Find a formula for $F(x)$ by anti-differentiating and substituting.
+
+\sol{$\ds F(x)=\int_3^x e^{5t} \, dt = \dfrac{1}{5} e^{5t}\Big|_3^x = \dfrac{1}{5}e^{5x}-\dfrac{1}{5}e^{15} $.}
+\vfill
+
+\item Differentiate to find $F'(x)$.
+
+\sol{Taking the derivative of the previous result with respect to $x$ gives $F'(x)=e^{5x}$.}
+\vfill
+
+\item Explain your result.
+
+\sol{Using the Evaluation Theorem (a part of the FTC), we found a formula for $F(x)$ by antidifferentiating, substituting and subtracting. Then when we found the derivative of $F'(x)$ we basically undid our work. So we ended up with the function inside the integral, with the upper limit of integration $x$ substituted for $t$.}
+\vfill
+
+\item Why does the lower limit of integration not affect the derivative?
+
+\sol{The lower limit is constant and only shifts the area accumulation function; it does not affect its rate of change. Another way to look at it is that when we took the derivative in part (b), that part of the function was a constant so its rate of change was 0.}
+\vfill
+
+\item Using what you noticed and learned above, find $\ds \frac{d}{dx} \left[\int_{-5}^x \arctan{t} \,dt \right]$.
+
+\sol{$\ds \arctan{x}$}
+\vfill
+
+\end{enumerate}
+
+
+In summary:
+\begin{framed}
+The Fundamental theorem of Calculus, Part 1: If $f$ is continuous on $[a,b]$, then \\
+$\ds \frac{d}{dx} \left[\int_{a}^x f(t)\,dt \right]$ = \usol{$f(x)$} (for $a<x<b$).\\
+Worded differently, if $F(x)$ = $\ds \int_{a}^x f(t)\,dt$, then $F'(x) = $\usol{$f(x)$}.
+\end{framed}
+
+\item Let $\ds F(x)= \int_4^{x^2} \cos{t} \,dt$
+
+\begin{enumerate}
+\item Find a formula for $F(x)$ by anti-differentiating.
+
+\sol{$\ds F(x)=\int_4^{x^2} \cos{t} \,dt = \sin{t} \Big|_4^{x^2} = \sin{\left( x^2 \right)}-\sin{(4)}$}
+\vfill
+
+\item Differentiate to find $F'(x)$. Look at your answer and notice how it relates to the definition of $F(x)$.
+
+\sol{$F'(x)=2x \cos \left( x^2 \right)$}
+\vfill
+
+\newpage
+\item Using what you noticed and learned above, find $\ds \frac{d}{dx} \left[\int_{2}^{\sin{x}} \ln{t} \,dt \right]$.
+
+\sol{$\cos{(x)} \ln{( \sin x)}$}
+\vfill
+\end{enumerate}
+
+In summary:
+\begin{framed}
+If $\ds F(x)=\int_0^{g(x)} f(t) \,dt$, then  $F'(x)$ = \usol{$f(g(x))\cdot g'(x)$}.
+\end{framed}
+
+\vfill
+
+\item If $\ds F(x)=\int_x^{0} f(t) \,dt$, what is $F'(x)$? Hint: notice that $\ds F(x) = -\int_0^{x} f(t) \,dt$.
+
+\sol{$F'(x)=-f(x)$}
+\vfill
+
+\item  If $\ds F(x)=\int_{3x}^{x^2} \sin{t} \,dt$, what is $F'(x)$?  Hint: the integral can be broken into two parts, so \\
+$\ds F(x)=\int_{3x}^{0} \sin{t} \,dt + \int_{0}^{x^2} \sin{t} \,dt$.
+
+\sol{$\ds F'(x) = 2x\sin{x^2} - 3\sin{3x}$}
+\vfill
+
+In summary:
+\begin{framed}
+If $\ds F(x)=\int_{a(x)}^{b(x)} f(t) \,dt$, then $F'(x)=$ \usol{ $f(b(x)) \cdot b'(x) -f(a(x))\cdot a'(x)$}
+\end{framed}
+\vfill
+
+\item Use the above result to answer the following: if $\ds F(x)=\int_{x^3}^{1-x} \frac{t+1}{t-1} \,dt$, what is $F'(x)$?
+
+\sol{$\ds F'(x)=-\frac{1-x+1}{1-x-1}-3x^2 \cdot \frac{x^3+1}{x^3-1}=\frac{2-x}{x}-3x^2 \cdot \frac{x^2+1}{x^2-1}$}
+\vfill
+
+
+
+\end{enumerate}
+\end{document}

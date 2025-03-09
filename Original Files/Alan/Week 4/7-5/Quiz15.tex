@@ -1,0 +1,72 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}{1}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}{0}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Quiz 15: Mean Value Theorem}
+\begin{enumerate}
+\item Graph the function
+\[f(x) = \frac{x}{x^3-1} = \frac{x}{(x-1)(x^2+x+1)}\]
+by including roots, asymptotes, local minimums and maximums, and inflection points. Use exact values when labeling these points. You do not need to find the $y$ value corresponding to each points $x$ value. There is space to graph on the back.
+\newpage
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-6, xmax=6,
+    ymin=-6, ymax=6,
+    xtick={-6,...,6},  
+    xticklabels= {,,},
+    ytick={-6,...,6},
+    yticklabels= {,,},
+    major tick length={0},
+    line width=1pt,
+    axis lines=center, height=6in, width = 6in, grid=major
+    ]
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+
+\end{document}

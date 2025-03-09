@@ -1,0 +1,66 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}{1}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}{0}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Quiz 19: Areas}
+\begin{enumerate}
+\item The speed of a runner increased steadily during the first three seconds of a race. Her speed at half-second intervals is given in the table below with time in seconds and velocity in feet per second. Find an estimate for the distance that she traveled during these three seconds. You do not need to simplify your answer.
+\begin{center}
+    \begin{tabular}{|l|c|c|c|c|c|c|c|}
+        \hline
+        $t$ sec & 0 & 0.5 & 1.0 & 1.5 & 2.0 & 2.5 & 3.0 \\
+        \hline
+        $v$ ft/sec & 0 & 6.2 & 10.8 & 14.9 & 18.1 & 19.4 & 20.2\\
+        \hline
+    \end{tabular}
+\end{center}
+\sol{1in}{
+\[d = 0 \cdot 0.5 + 6.2 \cdot 0.5 + 10.8 \cdot 0.5 + 14.9 \cdot 0.5 + 18.1 \cdot 0.5 + 19.4 \cdot 0.5\]
+\[ = 0.5 ( 0 + 6.2 + 10.8 + 14.9 + 18.1 + 19.4) \ ft\]
+}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,93 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+%\chead{\MyTopicTitle} % Top center header
+\rhead{\MyAssignment} % Top right header
+%\lfoot{\MyCampus} % Bottom left footer
+\cfoot{} % Bottom center footer
+%\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+
+
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 241}
+\newcommand{\MyAssignment}{Worksheet 5}
+%\newcommand{\MySemester}{Spring 2020}
+%\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+% ----------
+% BEGIN DOCUMENT
+% ----------
+\begin{document}
+    \begin{enumerate}
+
+\item Find the following limits.
+    \begin{enumerate}
+        \item $\displaystyle\lim_{x\to 0} \dfrac{\sin(10x)\sin(4x)}{3x^2}$
+        \vfill
+
+        \item $\displaystyle\lim_{x\to 0} \dfrac{2x}{\sin(4x)}$
+        \vfill
+        \item $\displaystyle\lim_{\theta\to 0} \dfrac{\tan(2x)}{\sin(5x)}$
+        \vfill
+    \end{enumerate}
+
+\pagebreak
+
+\item Write out chain rule, $(f(g(x))' = $
+\vspace{0.1in}
+\item Compute the following derivatives
+\begin{enumerate}
+    \item $f(x) = \tan(x^2+x+1)$
+    \vfill
+
+    \item $g(s) = (s^4+2s^3-5)^{100}$
+    \vfill
+
+    \item $f(t) = (\sin(2t^3+t))^{-4}$
+    \vfill
+\end{enumerate}
+\pagebreak
+
+ \item We are going to find the equation of the tangent line of $$x^3+xy-y^2=x^2y$$ at the point $(1,-1).$
+    \begin{enumerate}
+        \item Use implicit differentiation to differentiate both sides of the equation.
+        \vspace{3in}
+
+        \item Use the fact that $(1,-1)$ is a point on the graph to find $y'$ at that point.
+        \vfill
+
+        \item Use the information above to find the equation of the tangent line.
+        \vspace{1in}
+    \end{enumerate}
+    \pagebreak
+    
+    \item Use implicit differentiation to find $y'$ for $$x^3 + 4x^2y + y^2 = 8.$$
+\end{enumerate}
+\end{document}

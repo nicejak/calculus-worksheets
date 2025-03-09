@@ -1,0 +1,120 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}{1}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}{0}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\parskip = 0.2in	% vertical space between paragraphs
+\parindent = 0.0in  % no indent
+
+\def\ds{\displaystyle}
+
+\newcommand{\xfont}[1]{\[\textcolor{gray}{\mathtt{#1}}\]}
+
+\begin{document}
+
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Worksheet 5}
+
+A student was asked to find the derivative of the following functions.  Mark each answer as correct or incorrect.  If the answer is wrong, explain to the student both what their error was and how to do the problem correctly.  At the top of a page, give the total score out of 10.
+
+\begin{enumerate}
+\item $f(x)=x^3+7x^2-3+\sqrt{x}$
+\xfont{f'(x)=3x+14x-3+\frac{1}{2\sqrt{x}}}
+\vfill
+\item $g(x)=x^2\sin{x}$
+\xfont{g'(x)=2x\cos{x}}
+\vfill
+\item $h(x)=\tan^2 x$
+\xfont{h'(x)=2\tan{x} \cdot \sec^2 x}
+\vfill
+\item $q(x)=\dfrac{x}{\sin{x}}$
+\xfont{q'(x)=\frac{x\cos{x}-\sin{x}}{-(\sin{x})^2}}
+\vfill
+\newpage
+\item $h(x)f(x)g(x)$
+\xfont{(h(x)f(x)g(x))' = h'(x)f(x)g(x) + h(x)f'(x)g(x) + h(x)f(x)g'(x)}
+\vfill
+\begin{minipage}{0.65\textwidth}
+\item Find $h'(2)$. Assume $f(1)=2, f(2)=0, f'(1)=3, f'(2)=4$.
+\\
+$g(x)$ is given by the graph to the right.
+\end{minipage}
+\begin{minipage}{0.25\textwidth}
+\begin{tikzpicture}
+\begin{axis}[
+    ylabel=$g(x)$,
+   	xmin=-4, xmax=4,
+	ymin=-2, ymax=4,
+	major tick length={10},  tick style={semithick,color=black},
+	xtick={-3,1, 3}, ytick={2},
+	line width=1pt,
+ 	axis lines=center, height=1.7 in, width=2 in, grid=none
+	]
+    \addplot [black, smooth, very thick, samples=2, domain=1:4] {-x+3};
+    \addplot [black, smooth, very thick, samples=2, domain=-4:1] {.5*x+3/2};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\vspace{-.2in}
+\begin{enumerate}
+\item $h(x)=f(x)g(x)$
+\xfont{h'(2)=f(2) \cdot g'(2)+f'(2) \cdot g(2) = 0\cdot-1+4\cdot1=4}
+\vfill
+\item $h(x)=\frac{f(x)}{g(x)}$
+\xfont{h'(2)=g'(2) / f'(2)=-1/4}
+\vfill
+\end{enumerate}
+% \newpage
+
+% As additional practice, complete the following exercises.
+% \item Given the function $f(x) = \sin{x}$, calculate the 24th derivative of $f$, $f^{(24)}(x)$.
+% \vfill
+% \item Prove that $\frac{d}{dx} (\sec{x}) = \sec{x} \cdot \tan{x}$.
+% \vfill
+% \item Solve
+% \[\lim_{x\to 0} \frac{\sin{x}}{\sin{\pi x}}.\]
+% \vfill
+\end{enumerate}
+
+\end{document}
+
+

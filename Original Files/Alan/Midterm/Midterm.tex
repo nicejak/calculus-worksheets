@@ -1,0 +1,113 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usetikzlibrary{patterns}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+
+
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; To hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\ww}{WeBWorK }
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vs}[1]{\vspace{#1 pt}}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Midterm}
+\begin{center}
+Math 241 Midterm\\
+Name: \\
+\vspace{1in}
+    \renewcommand{\arraystretch}{2}
+    Grade Rubric \\ \ \\
+    \begin{tabularx}{0.8\textwidth}{|X|X|X|}
+        \hline
+        1 & 15 & \\
+        \hline
+        2 & 15 & \\
+        \hline
+        3 & 15 & \\
+        \hline
+        4 & 20 & \\
+        \hline
+        5 & 20 & \\
+        \hline
+        6 & 15 & \\
+        \hline
+    \end{tabularx}
+    
+    \vspace{1in}
+    Read each question carefully and answer appropriately. Do \textbf{not} use any digital device during the exam.
+\end{center}
+\newpage
+\begin{enumerate}
+    \item Compute the following limit
+    \[\lim_{\theta \to \infty} \sin\left(\frac{1}{2\theta}\right)\theta\]
+    \newpage
+    \item Suppose you are given the curve 
+    \[xy = \frac{4x^2}{\sqrt{\sin(\pi x)}}\]
+    as well as the points $(1,1)$, $(\frac{1}{2},2)$. What are the tangent lines at these two points?
+    \newpage
+    \item Recall that a function $f$ is differentiable at a point if $f'(a)$ exists, and is not differentiable otherwise. 
+    
+    Using the definition of differentiable, prove that $f(x) = |x-6|$ is not differentiable at 6. Furthermore, find a piece-wise formula for $f'$.
+    \newpage
+    \item
+    \begin{enumerate}
+        \item The \textit{van der Waals} equation for a fixed $n$ moles of a gas is 
+        \[\left(P + \frac{n^2 a}{V^2}\right) (V-nb) = nRT\]
+        where $P$ is the pressure, $V$ is the volume, and $T$ is the temperature of the gas. The constant $R$ is the universal gas constant and $a,b$ are positive constants that characterize the particular gas. If $T$ remains constant, find $\frac{dV}{dP}$.
+        \vfill
+        \item Find the rate of change of volume with respect to pressure of $1$ mole of carbon dioxide at a volume of $V = 10 \text{ L}$ and a pressure of $P = 2.5 \text{ atm}$. Use $a = 4 \text{ L}^2\text{-atm}/\text{mole}^2$ and $b = 0.05 \text{ L/mole}$.
+        \vfill
+    \end{enumerate}
+    \newpage
+    \item Water is leaking out of an inverted conical tank at a rate of 10,000 $\text{cm}^3/\text{min}$ at the same time that water is being pumped into the tank at a constant rate. The tank has height 6 m and the diameter at the top is 4 m. If the water level is rising at a rate of 20 cm/min when the height of the water is 2 m, find the rate at which water is being pumped into the tank.
+    \newpage
+    \item Suppose that we don't have a formula for $g(x)$ but we know that $g(2)=-4$ and $g'(x) = \sqrt{x^2 + 5}$ for all $x$. Use linear approximation to estimate $g(1.95)$.
+\end{enumerate}
+\end{document}

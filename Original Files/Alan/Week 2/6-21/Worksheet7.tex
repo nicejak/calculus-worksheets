@@ -1,0 +1,170 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, comment, multicol, hyperref, tabu}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\pagestyle{fancy}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To hide solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionstrue
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2sol}}
+    \newcommand{\tsol}[2]{\textcolor{blue}{\textbf{Solution:}}\quad\vspace{-.25 in}#2}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2}}
+    \newcommand{\tsol}[2]{#1}
+\fi
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Worksheet 7: Chain Rule}
+
+\begin{enumerate}
+
+\item Let $f(x)=(3x^2+1)^2$. We are going to find the derivative of $f(x)$ in three ways and then compare the answers.
+
+\begin{enumerate}
+\item Algebraically multiply out the expression for $f(x)$ and then take the derivative.
+
+\sol{1.5in}{\[f(x)=(3x^2+1)^2=9x^4+6x^2+1 \text{ so } f'(x)=36x^3+12x\]}
+
+\item View $f(x)$ as a product of two functions, $f(x)=(3x^2+1)(3x^2+1)$ and use the product rule to find $f'(x)$.
+
+\sol{1.5 in}{Let $u=3x^2+1$ and $v=3x^2=1$, then $(uv)'=u'v+v'u=(6x)(3x^2+1)+(6x)(3x^2+1)=36x^3+12x$}
+
+\item Apply the chain rule directly to the expression $f(x)=(3x^2+1)^2$
+
+\sol{1.5 in}{$f'(x)=2(3x^2+1)(6x)=36x^3+12x$}
+
+\item Are your answers in parts a, b, and c the same? Why or why not?
+
+\sol{1.5 in}{All the answers are the same because it doesn't matter which method you use to take a derivative. If done correctly, they should all give the same answer.}
+
+\end{enumerate}
+
+\newpage
+
+\item Let $f(x)=\sin(2x).$ We are going to find the derivative of $f(x)$ in two ways and then compare answers.  You will need the double angle formulas for this problem:
+\begin{itemize}
+\item $\sin{2x}=2\sin{x}\cos{x}$
+\item $\cos{2x}=\cos^2{x}-\sin^2{x}$
+
+\end{itemize}
+
+\begin{enumerate}
+\item Rewrite $\sin(2x)$ using the double-angle formula, then apply the product rule to find $f'(x)$.
+
+\sol{1.5in}{$f(x)=\sin{2x}=2\sin(x)\cos(x)$, by the sine double angle-formula. Let $u=2\sin(x)$ and $v=\cos(x)$, then $f'(x)=2\cos(x)\cos(x)-2\sin(x)\sin(x)=2(\cos^2(x)-\sin^2(x)$)}
+
+\item Apply the chain rule directly to the expression $f(x)=\sin(2x)$ to find its derivative a second way.
+
+\sol{1.2in}{$f'(x)=\cos(2x) \cdot 2=2\cos(2x)$}
+
+\item Are your answers in parts a and b the same? Why or why not?
+
+\sol{1.2 in}{
+Part (a) gives = $f'(x)=2(\cos^2(x)-\sin^2(x))$, by the cosine double-angle formula, $f'(x)=2\cos(2x)$. The two answers are the same because it doesn't matter which method you use to take a derivative. If done correctly, they should all give the same answer.}
+
+\end{enumerate}
+
+
+\item Suppose $f$ is differentiable and that $g(x) = (f(\sqrt{x}))^3$. 
+\begin{enumerate}
+\item Calculate $g'(x)$ (your answer will include $f$ and $f'$).
+
+\sol{.5in}{Applying the chain rule twice we get $g'(x)=3(f(\sqrt{x}))^2f'(\sqrt{x})\frac{1}{2\sqrt{x}}$.} 
+
+\item If $f(2)=1$ and $f'(2)=-2$, calculate $g'(4)$.
+
+\sol{.8in}{
+$g'(4)=3(f(\sqrt{4}))^2f'(\sqrt{4})\frac{1}{2\sqrt{4}} = 3(f(2))^2f'(2)\frac{1}{4}=3\cdot1^2\cdot-2\cdot\frac{1}{4}=-\frac{3}{2}$.}
+\end{enumerate}
+\newpage
+
+
+\item Let $f(x)$ and $g(x)$ be two functions. Values of $f(x)$ and $f'(x)$ are given in the table below and the graph of $g(x)$ is as shown.
+
+\begin{multicols}{3}
+
+\begin{tabular}{c|c c c}
+$x$ & 1 & 2 & 3 \\ \hline
+$f(x)$ & 3 & 2 & 1 \\ \hline
+$f'(x)$ & 4 & 5 & 6 \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=3.5,
+	ymin=-1, ymax=4.5,
+	xtick={0,...,3},  
+	ytick={0,...,4},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, grid=major, ylabel=$g(x)$
+	]
+    \addplot [ultra thick, samples=9, domain=0:2] {2*x};
+    \addplot [ultra thick, samples=9, domain=2:3] {12-4*x};
+    \addplot [only marks] table {
+0 0
+2 4
+3 0  
+};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{multicols}
+
+\begin{enumerate}
+\item Let $h(x)=g(f(x))$. Find $h'(3)$.
+
+\sol{1 in}{$h'(3)=g'(f(3)) \cdot f'(3)=g'(1) \cdot f'(3)=2 \cdot 6=12$}
+
+\item Let $k(x)=f(g(x))$.  Find $k'(1)$.
+
+\sol{1in}{$k'(1)=f'(g(1)) \cdot g'(1)=f'(2) \cdot g'(1)=5 \cdot 2=10$.}
+
+
+
+\end{enumerate}
+\newpage
+\item Suppose $f(x)$ is a differentiable function, $g(x)=f(x)^2$, and $h(x)=f(x)^3 = f(x)g(x)$.
+
+\begin{enumerate}
+\item Use the product rule to find a formula for $g'(x)$.
+
+\sol{1.5 in}{
+\begin{align*}
+g(x)&=f(x)f(x) \\
+g'(x)&=f'(x)f(x)+f(x)f'(x) \\
+&=2f(x)f'(x)
+\end{align*}}
+\item Use the product rule and the previous answer to find a formula for $h'(x)$.   Compare your answer to what you would get using the chain rule.
+
+\sol{1.5in}{
+\begin{align*}
+h'(x)&=[f(x)f(x)]f(x) \\
+h'(x)&=[f(x)f(x)]'f(x)+[f(x)f(x)]f'(x) \\
+&=2f(x)f'(x)f(x)+f(x)f(x)f'(x) \\
+&=3f(x)f(x)f'(x)=3f(x)^2f'(x)
+\end{align*}}
+\item What would you guess is the derivative of $f(x)^n$?  Does this match the result you get using the chain rule?
+
+\sol{.5 in}{$[f(x)^n]'=nf(x)^{n-1}f'(x)$}
+
+\end{enumerate}
+\end{enumerate}
+\end{document}

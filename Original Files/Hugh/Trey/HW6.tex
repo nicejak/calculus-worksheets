@@ -1,0 +1,53 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+% SET UP HEADER AND FOOTER
+
+
+\title{MATH 242 - HW6}
+\date{due: 02/28/2024}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}
+
+\item Compute the following definite integral accurate to 6 decimal places:
+$$\int_1^37\sqrt{2x+3}dx$$
+\newpage
+\item Approximate (include 6 decimal places) the integral by computing $S_4$ (by using Simpson’s Rule with $n=4$).
+\newpage
+\item Using the last two problems, what is the magnitude of the absolute error $|E_{S_4}|=|\int_1^37\sqrt{2x+3}dx-S_4|$?
+\vfill
+\item What is the upper bound of $|E_{S_4}|$ applied to this particular $n=4$, $a=1$, $b=3$, and $f(x)=7\sqrt{2x+3}$? Comment on how this compares to what you found in the last question.
+
+\vfill
+
+\newpage
+\item Suppose that you would have liked to estimate the previous integral to an accuracy having an Error  of $|E|<10^{-6}$. How large would you need to choose $n$ for...
+\begin{enumerate}
+    \item Simpson's Rule?
+    \item the Trapezoid Rule?
+    \item Mid-point Rule?
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

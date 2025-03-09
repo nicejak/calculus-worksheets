@@ -1,0 +1,93 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usetikzlibrary{patterns}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+
+
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; To hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\ww}{WeBWorK }
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vs}[1]{\vspace{#1 pt}}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Homework 8,9,10} 
+\begin{enumerate}
+    \item[2.3 18.] Differentiate the function.
+    \[y = \frac{\sqrt{x}+x}{x^2}.\]
+    \vfill
+    \item[2.3 30.] Differentiate.
+    \[h(t) = \frac{6t+1}{6t-1}.\]
+    \vfill
+    \item[2.3 42.] Differentiate.
+    \[F(t) = \frac{At}{Bt^2+Ct^3}.\]
+    \vfill 
+    \newpage
+    \item[2.4 16.] Differentiate.
+    \[y = x^2\sin{x}\tan{x}.\]
+    \vfill
+    \item[2.4 22.] Find an equation of the tangent line to the curve at the given point.
+    \[y = (1+x)\cos{x}, \quad (0,1).\]
+    \vfill 
+    \item[2.4 46.] Find the limit.
+    \[\lim_{x\to 0} \csc{x}\sin(\sin{x}).\]
+    \vfill
+    \newpage
+    \item[2.5 10.] Find the derivative of the function.
+    \[g(x) = (2-\sin{x})^{3/2}.\]
+    \vfill
+    \item[2.5 30.] Find the derivative of the function.
+    \[s(t) = \sqrt{\frac{1+\sin{t}}{1+\cos{t}}}.\]io
+    \vfill
+    \item[2.5 38.] Find the derivative of the function.
+    \[y = \sin(t+\cos{\sqrt{t}}).\]
+    \vfill
+\end{enumerate}
+
+
+\end{document}

@@ -1,0 +1,68 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{multicol}
+
+%%%%%%%%%%%%%
+\usepackage{pgfplots}
+\usetikzlibrary{calc}
+\usepackage{wrapfig}
+\usepackage{enumitem}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}{1}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}{0}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
+\let\endchangemargin=\endlist 
+
+\begin{document}
+
+\lhead{\bf Math 241: Calculus I}
+\rhead{\bf Quiz 5: Limits and Continuity}
+\begin{enumerate}
+\item Recall the Squeeze Theorem that states 
+
+\textbf{Theorem:} (Squeeze Theorem) \\
+If $f(x) \leq g(x) \leq h(x)$ when $x$ is near $a$ and 
+\[\lim_{x\to a} f(x) = \lim_{x\to a}h(x) = L\]
+then
+\[\lim_{x\to a}g(x) = L.\]
+
+Using the above theorem, prove that
+\[\lim_{x\to 0} x^4 \cos\left(\frac{2}{x}\right) = 0.\]
+\vfill
+\newpage
+\item Suppose that $f(x) = x^2$. Solve and simplify the following limit.
+\[\lim_{h \to 0} \frac{f(x+h)-f(x)}{h}.\]
+\vfill
+
+\end{enumerate}
+
+\end{document}

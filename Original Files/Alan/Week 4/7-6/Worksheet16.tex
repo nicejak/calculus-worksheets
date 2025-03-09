@@ -1,0 +1,104 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+
+\setlength{\headheight}{15pt}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Worksheet 16: Newton's Method} 
+\textbf{Please do not use a factoring or graphing calculator on this first page.}
+
+\begin{enumerate}
+
+\item Find the $x$-intercepts of $x^2 + 2x -3$ using \textbf{any} method you like (except a calculator). You may factor, use the quadratic equation, or even guess.
+\vfill
+\item Let's change the function just barely by adding 1 to it to obtain $x^2 + 2x -2$. What are the $x$-intercepts of this equation now?
+\vfill
+\item Changing the function just barely again by increasing the degree to 3, we obtain $x^3 + 2x - 2$. Do not solve for the $x$-intercepts yet. Rather, explain why this new equation is difficult to find exact roots of.
+\vfill
+
+\newpage
+\item Newton's method is a method for approximating the roots of an equation using geometry and derivatives. Use the graph below of $y=x^3 + 2x -2$ to help you estimate the $x$-intercept using Newton's method in the next parts
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=0, xmax=2,
+    ymin=-5, ymax=5,
+    xtick={0,...,2},  
+    % xticklabels= {,,},
+    ytick={-5,...,5},
+    yticklabels= {,,},
+    major tick length={0},
+    line width=1pt,
+    axis lines=center, height=6in, width = 6in, grid=major
+    ]
+    \addplot [samples=100, domain=-2:2] {x^3+2*x-2};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\newpage
+\begin{enumerate}
+    \item Newton's method requires an initial first guess for a root. Pick an integer $x$-value on the graph to declare as your first guess $x_1$.
+    \vspace{1in}
+    \item Draw the linearization of the function at your first guess $x_1$. Does your $x$-intercept of the linearization on the graph approximate the root of the original equation $x^3 + 2x -2$?
+    \vfill
+    \item Write out the linearization equation and solve for the $x$-intercept, and label it $x_2$. You may use a calculator to help you calculate.
+    \vfill
+    \item Repeat the above two steps for a further approximation. So graph the second linearization and find $x_3$.
+    \vfill
+    \vfill
+\end{enumerate}
+\newpage
+\item The generalization of this process arises a formula 
+\[x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}\] 
+where $x_n$ is a previous estimation and $x_{n+1}$ is the successive estimation (hopefully better).
+
+Use this equation to find the root of $x^7 + 4 = 0$ with the first guess $x_1 = -1$. Only estimate with 2 approximations (that is, find $x_3$).
+\vfill
+\newpage
+\item Approximate $\sqrt[4]{75}$ using Newton's method.
+\vfill
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass[letterpaper,10pt]{article}
+\usepackage[letterpaper,margin=.25in,includehead=true]{geometry}
+\usepackage{amsmath, amssymb, fullpage, graphicx, calc}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{color}
+\def\ds{\displaystyle}
+
+\openup1\jot
+\def\scrr{$\underline{\hskip.4in}$}
+\pagestyle{empty}
+\openup1\jot
+\addtolength{\textheight}{.25in}
+\addtolength{\topmargin}{-.25in}
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\opsol}{1}
+    \newcommand{\sol}[1]{\textcolor{red}{#1}}
+\else
+    \newcommand{\opsol}{0}
+    \newcommand{\sol}[1]{\textcolor{white}{#1}}
+\fi
+ 
+\begin{document}
+ 
+\centerline{\large {\bf Project: the  arctangent function }}
+ 
+\hrule
+\bigskip
+
+\begin{enumerate}
+
+\item On the axes below is a graph of the function $y=f(x)=\tan x$, for $-\frac{\pi}{2}< x< \frac{\pi}{2}$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1.6, xmax=1.6,
+	xtick={-1.5708, -0.7854, 0.7854, 1.5708}, 
+	ymin=-8, ymax=8, ytick={-6,-4,...,6},
+	xticklabels={$-\frac{\pi}{2}$,$-\frac{\pi}{4}$,$\frac{\pi}{4}$, $\frac{\pi}{2}$}, 
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=4 in, width=1.6in,grid=major,
+ 	restrict y to domain=-8:8,
+ 	axis equal
+	]
+    \addplot [black, smooth, very thick, samples=299, domain=-1.6:1.6] {tan(deg(x))};
+%    \addplot [dotted, smooth, thin, domain = -2.1:2.1] {x};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+(As $x$ approaches $-\pi/2$ from the right, the graph of $f(x)$ shoots off towards $-\infty$; as $x$ approaches $\pi/2$ from the left, the graph of $f(x)$ shoots off towards $\infty$.)
+\begin{enumerate} 
+\item Explain why this function $f(x)$, when restricted to the given domain, has an inverse function $f^{-1}(x)=\arctan x$.  (Pronounced ``arctangent of $x$.'')
+
+\sol{The above function $y=\tan(x)$ is steadily increasing on the given domain.  (This is clear from the picture. Alternatively, note that $\frac{d}{dx}\tan(x)=\sec^2(x)>0$, since the square of a nonzero number is always positive.  But a function with a positive derivative on an interval is increasing there.)   So $y=\tan(x)$ satisfies the horizontal line test on this interval, so there is only {\it one}  input $x$ for each output  $y$,  so that, if we interchange the roles of $x$ and $y$, we get only one output $y$ per input  $x$.  This is what it means to say $f(x)=\tan(x)$ has an inverse function, which we denote by $g(x)=\arctan(x)$.}
+
+\vfill
+
+\item Sketch the graph of $y=f^{-1}(x)=\arctan x$, on the axes below.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	ymin=-1.6, ymax=1.6,
+	ytick={-1.5708, -0.7854, 0.7854, 1.5708}, 
+	xmin=-8, xmax=8, xtick={-6,-4,...,6},
+	yticklabels={$-\frac{\pi}{2}$,$-\frac{\pi}{4}$,$\frac{\pi}{4}$, $\frac{\pi}{2}$}, 
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.6 in, width=4 in, grid=major,
+ 	restrict x to domain=-8:8,
+ 	axis equal
+	]
+	   \addplot [opacity=\opsol, red, smooth, very thick, samples=299, domain=-8:8]{rad(atan(x))};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\end{enumerate}
+
+\newpage
+
+\item  Note that, because we have defined $\arctan x$ as the inverse of $\tan x$, we have: \[\tan(\arctan x)=x.\] Differentiate both sides of this equation to find a formula for the derivative of $\arctan x$. Express your answer in terms of $\sec^2(\arctan x)$. (You'll need to recall that $\displaystyle\frac{d}{dx}[\tan x]=\sec^2 x$.)
+
+\sol{\[  \frac{d}{dx}[\tan(\arctan x)]=\frac{d}{dx}[x].\] So, by the chain rule and the facts that $\displaystyle\frac{d}{dx}[\tan x]=\sec^2 x$ and $\displaystyle\frac{d}{dx}[x]=1,$\[\sec^2(\arctan x)
+\frac{d}{dx}[ \arctan x]=1.\]  Divide by $\sec^2(\arctan x)
+$ to get
+\[
+\frac{d}{dx}[ \arctan x]=\frac{1}{\sec^2(\arctan x)}.\]}
+ 
+\item Referring to the triangle below, explain why $\sec^2(\arctan x)=1+x^2$. 
+\begin{center}
+\begin{tikzpicture}[scale=.5]
+    \draw (0,0) -- (5,0) -- (5,3) -- cycle;
+    \draw (4.5,0) -- (4.5,.5) -- (5,.5);
+    \draw[opacity=\opsol, red] (1.3,2.2) node {$\sqrt{1+x^2}$};
+    \draw[opacity=\opsol, red] (1.4,0.4) node {$\theta$};
+    \draw (5.5,1.5) node {$x$};
+    \draw (2.7,-0.5) node {$1$};
+\end{tikzpicture}
+\end{center}
+\sol{Consider the angle $\theta$ depicted above.  As the diagram shows, $\tan\theta=x/1=x$, so $\theta=\arctan x$.  Also, the hypotenuse of the above triangle is $\sqrt{1+x^2}$, by the Pythagorean Theorem.  So $$\sec^2(\arctan x)=\sec^2\theta=\left(\sqrt{1+x^2}/1\right)^2=1+x^2.$$}
+\vfill
+\item Use the results of problems 2 and 3 above to show that $\ds \frac{d}{dx}  \arctan x =\frac{1}{1+x^2}.$
+\sol{By problems 2 and 3 successively,
+\[\frac{d}{dx}[ \arctan x]=\frac{1}{\sec^2(\arctan x)}=\frac{1}{1+x^2}.\]}
+\vfill
+\end{enumerate}
+  
+ 
+  
+\end{document}
+ 

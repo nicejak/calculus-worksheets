@@ -1,0 +1,159 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, comment, multicol, hyperref}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\pagestyle{fancy}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{amscd}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newcommand*\Eval[1]{\left.#1\right\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+%\pgfplotsset{compat=1.9}%Removes pgfplots backward compatibility error--not crucial%
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; to hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+        \newcommand{\ans}[1]{\underbar{\qquad \textcolor{red}{#1} \qquad}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+     \newcommand{\ans}[1]{\underbar{\qquad \textcolor{white}{#1} \qquad}}
+\fi
+
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\rhead{Modeling with functions} 
+
+The goal of this project is to practice writing functions that model given situations.  Each of the functions you create should depend on only one variable.  You'll need this skill to solve applied optimization problems.
+
+\begin{enumerate}
+
+\item The product of two numbers $n$ and $m$ is 100, and $n$ must be positive.  (For example, $n = 20$ and $m=$\ans{5} or $n=\frac{2}{3}$ and $m=$\ans{150}).  
+\begin{enumerate}
+\item Write a function that gives their sum in terms of $n$.  What is the domain of this function?
+
+\sol{2 in}{
+	We know that $n\cdot m=100$, and so $m=\frac{100}{n}$.
+	The sum of $n$ and $m$ is therefore
+	\[S(n) = n + \frac{100}{n}.\]
+	The domain of $S$ is $(0,\infty)$.
+}
+\item  Graph that function using technology.  What is its minimum value?  Does it have a maximum value?
+
+\sol{1.5in}{
+	The minimum value is 20 when $n=10$.
+	There is no maximum.
+}
+\end{enumerate}
+
+\item  A rectangle with sides of length $\ell$ and width $w$ has perimeter of 400 yards. (For example, if the length $\ell$ is 50 yards, then $w=$\ans{150 \text{yards}} and the area $A$=\ans{7500 yards}).  Write a function that gives the area in terms of $\ell$.  What is the domain of this function?
+
+\sol{2in}{
+	We know that $2\ell+2w=400$ and the area is $\ell\cdot w$.
+	Solving the first equation for $w$, we have
+	\[A(\ell)=\ell\cdot (200-\ell).\]
+	The domain is $(0,200)$.
+}
+
+\newpage
+\item  A cone has a volume of 231 $\text{in}^3$, which is 1 gallon. (For example, if the height is $h=$ 5 in then the radius is $r=$\ans{6.64 in}).  Find a function that gives its radius in terms of its height.  What is the domain of this function?
+
+\sol{3in}{
+	We know that the volume of a cone is $\frac{1}{3}\pi r^2h$.
+	Setting this equal to $231$, we can solve for $r$:
+	\[231 = \frac{\pi}{3}r^2h\implies r=\sqrt{\frac{693}{\pi\cdot h}}.\]
+	The domain is $(0,\infty)$.
+}
+
+\item A rectangle has its base along the $x$-axis and its upper two vertices lie on the graph of the parabola $y=12-x^2$.  Draw a picture of this.  When the base of the rectangle has length 4, the area of the rectangle is \ans{32}.  Write a function that gives the area of the rectangle in terms of the length of its base.  What is the domain of this function?
+
+\sol{3in}{
+	Let $w$ denote the length of the base and $h$ denote the height of the rectangle.
+	Because the top of the rectangle lies on the graph $y=12-x^2$, we know that
+	\[h = 12-\left( \frac{w}{2} \right)^2.\]
+	The area of the rectangle is therefore
+	\[A(w) = w\cdot \left( 12 - \frac{w^2}{4} \right).\]
+	The domain is $(0,4\sqrt{3})$.
+}
+
+\newpage
+\item  A rectangular box with a top and a square base has a volume of 1 L ($1000 \text{ cm}^3$).  For example, if the length of the base is $x=5$ cm then the surface area is \ans{$850 \text{cm}^2$}. Find a function giving the surface area of the box in terms of $x$, the length of its base.  What is the domain of this function?
+
+\sol{2.5in}{
+The height of the box must be
+\[h = \frac{1000}{x^2}\]
+for the volume to be 1~L.
+The surface area is therefore
+\[S(x)=2x^2 + 4x\cdot\frac{1000}{x^2} = 2x^2 + \frac{4000}{x}.\]
+}
+
+\item  A light-rail system carries 80000 passengers per day at a fare of \$2.25 per ride.  For each 5-cent increase/decrease in fare, surveys predict ridership will drop/grow by 250 passengers.  For example, if the fare is lowered to \$2.00 per ride, then the number of riders is \ans{$81250$} and the revenue is \ans{$\$162500$}.
+\begin{enumerate}
+\item Find a function giving the revenue as a function of $x$, the number of 5-cent increases. (Hint: first find a formula for the number of riders as a function of $x$, and the cost per ride as a function of $x$.)  What is the domain of this function?
+
+\sol{1.5 in}{Number of riders is $q(x)=80000-250x$, and cost per ride is $p(x)=2.25+0.05x$.  So revenue is 
+$R(x)=q(x)p(x)=(80000-250x)(2.25+0.05x)$.}
+
+\item  The function you get should be a parabola which opens downward.  Use calculus to find where the maximum value must occur.  What should the fare be to maximize revenue?
+
+\sol{1.6in}{
+The derivative of $R$ is
+\[R'(x) = .05(80000-250x) - 250(2.25 + .05x)=3437.5-25x.\]
+The minimum of $R$ occurs when $R'=0$, which is true when 
+\[x = \frac{3437.5}{25}\approx137.5.\]
+So the fare ought to be \$137.50.
+}
+\end{enumerate}
+\newpage
+\item A trucking company charges its clients \$30 for each hour of driving time, plus the cost of fuel.  At a driving speed of $v$ miles per hour, the trucks get a mileage of $10-0.07v$ miles per gallon.  The fuel costs \$3.00 per gallon.  Find a function giving the cost per mile to the client as a function of the speed the trucks drive.  What is the domain of the function?
+
+\sol{3in}{
+	At a speed of $v$ miles per hour, the driver takes $\frac{1}{v}$ hours to drive 1 mile, and so the company charges $\frac{30}{v}$ dollars per mile, plus the cost of fuel.
+	The truck can drive $10-.07v$ miles on a gallon of gas, which means one gallon of gas lasts $\frac{1}{10-.07v}$ miles.
+	The gas cost of a mile driven is thus
+	\[\frac{3}{10-.07v}\text{ dollars.}\]
+	The total charge is therefore
+	\[C(v)=\frac{30}{v} + \frac{3}{10-.07v}\text{ dollars}.\]
+	The domain of the function is $\left(0,\frac{10}{.07}\right)$.
+}
+
+\item  A cylinder is inscribed in a cone of radius 10 and height 20.  Find a function for the volume of cylinder as a function of its radius. What is the domain of the function?
+
+\sol{3in}{
+	If the height of the cylinder were $0$, its radius would be 10.
+	On the other hand, if the height of the cylinder were 20, its radius would be 0.
+	Therefore
+	\[h = 20 - 2r.\]
+	The volume of the cone is thus
+	\[V(r)=\frac{1}{3}\pi r^2 (20-2r).\]
+	The domain is $(0,10)$.
+}
+\end{enumerate}
+\end{document}
+

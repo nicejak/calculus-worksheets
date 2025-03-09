@@ -1,0 +1,60 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+% SET UP HEADER AND FOOTER
+
+
+\title{MATH 242 - HW4}
+\date{due: 02/07/2024}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}
+
+\item Compute the integrals using IBP
+\begin{enumerate}
+    \item $\int xe^{-2x}dx$
+    \vfill
+    \item $\int\frac{(\ln({x}))^2}{x^3}dx$
+    \vfill
+    \newpage
+    \item $\int_{1/2}^{1}(x-1)\sin(\pi x)dx$
+    \vfill
+    \item $\int x^5\ln(3x^2)dx$
+    \vfill
+    \newpage
+    \item $\int\frac{x^3e^{x^2}}{(x^2+1)^2}dx\text{ (Hint: }u=x^2e^{x^2}\text{, }dv=\frac{x}{(x^2+1)^2}dx\text{, and use u-sub }t=x^2+1 \text{ to find }v)$
+    \vfill
+    \item $I=\int e^{-2x}\cos(\frac{x}{2})dx\text{ (Hint: Naively this process never terminates. However, it repeats.}$ $\text{Using IBP twice you'll get }I=f(x)-aI\text{ for some }f(x)\text{ and constant }a\text{ then solve for } I)$
+    \vfill
+\end{enumerate}
+\newpage
+\item Compute the integrals using a trig u-sub
+\begin{enumerate}
+    \item $\int_0^{\pi/2}\sin^{2}(2x)\cos^3(x)dx\text{ (Hint: }\sin^2(2x)=(2\sin(x)\cos(x))^2$
+    \vfill
+    \item $\int_0^{\pi/20}\tan^3(5x)\sec^4(5x)dx$
+    \vfill
+\end{enumerate}
+\end{enumerate}
+\end{document}

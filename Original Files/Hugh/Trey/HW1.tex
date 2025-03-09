@@ -1,0 +1,76 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+% SET UP HEADER AND FOOTER
+
+
+\title{MATH 242 - HW1}
+\date{due: 01/17/2024}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}
+
+\item Consider $f:\mathbb{R}\to\mathbb{R}$ given by the rule $x\mapsto f(x)=x^3-x^2+x+1$. 
+
+\begin{enumerate}
+    \item Along with $\displaystyle\lim_{x\to\infty}f(x)=\infty$ and $\displaystyle\lim_{x\to-\infty}f(x)=-\infty$, what fact do we know about $f(x)$ in this case that allows us to conclude it is \emph{onto}?
+    \vfill
+    \item Is $f(x)$ \emph{one-to-one}? How do you know? (You can understand how to answer the question by showing $f'(x)>0$ and concluding something about $f(x)$.)
+    \vfill
+    \item So does an inverse function $f^{-1}(x)$ exist or not? If so, find $f^{-1}(2)$ and find $f^{-1}(-2)$.
+\vspace{1.5cm}
+\end{enumerate}
+
+\pagebreak
+
+\item Find the inverse $f^{-1}(x)$ of the function $f(x)=\frac{2-3\sqrt{x}}{1+4\sqrt{x}}$ (Hint: solve $x=\frac{2-3\sqrt{y}}{1+4\sqrt{y}}$ for $y$.)
+
+\vfill
+
+\item Suppose we know $f(x)=2e^{x-1}+3x-1$ is onto and one-to-one. What is $(f^{-1})'(4)=\quad ?$ (WARNING: Use a formula from the 01/12/2024 class or on pg. 404 in the book, do not try to compute $f^{-1}$ explicitly as in the second problem) 
+\vfill
+
+
+\pagebreak
+
+\item Differentiate the provided function $$g(x)=\sin\Big(\ln(x^2+1)\Big)$$
+
+\vfill
+
+
+\item Differentiate the given function (Hint: exploit the well-known properties of logarithms (1)$\log_b{(yz)}=\log_b{(y)}+\log_b{(z)}$,(2)$\log_b{(\frac{y}{z})}=\log_b{(y)}-\log_b{(z)}$, (3)$\log_b{(z^p)}=p\log_b{(z)}$)
+
+
+$$h(x)=\ln\Big(\frac{2x+1}{(3x+1)^2}\Big)$$
+
+\vfill
+\pagebreak
+
+\item Use ``Logarithmic Differentiation" to find the derivative $f'(x)$ given that
+$$f(x)=\frac{(2x+3)^3\cos(4x)}{(4x^3+5)^4}$$
+
+\end{enumerate}
+
+
+\end{document}

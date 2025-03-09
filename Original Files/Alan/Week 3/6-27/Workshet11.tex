@@ -1,0 +1,141 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usetikzlibrary{patterns}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+
+
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; To hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\ww}{WeBWorK }
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vs}[1]{\vspace{#1 pt}}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Worksheet 11} 
+\begin{enumerate}
+    \item Sketch a graph of a function that is continuous on $[1,5]$ and has the following properties:
+    \begin{enumerate}
+        \item absolute maximum at 5, absolute minimum at 2, local maximum at 3, local minima at 2 and 4.
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[
+           	xmin=0, xmax=5.5,
+        	ymin=-3, ymax=3,
+        	xtick={0,...,5},  
+        	ytick={-3,...,3},
+        	major tick length={0},
+        	line width=1pt,
+         	axis lines=center, height=3in, grid=major
+        	];
+        \end{axis}
+        \end{tikzpicture}
+        \end{center}
+        \item absolute maximum at 2, absolute minimum at 5, 4 is a critical number but there is no local maximum or minimum there.
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[
+           	xmin=0, xmax=5.5,
+        	ymin=-3, ymax=3,
+        	xtick={0,...,5},  
+        	ytick={-3,...,3},
+        	major tick length={0},
+        	line width=1pt,
+         	axis lines=center, height=3in, grid=major
+        	];
+        \end{axis}
+        \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+    \newpage
+    \item \begin{enumerate}
+        \item Sketch the graph of a function on $[-1,2]$ that has an absolute maximum but no absolute minimum.
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[
+           	xmin=-1.5, xmax=2.5,
+        	ymin=-3, ymax=3,
+        	xtick={-1,...,2},  
+        	ytick={-3,...,3},
+        	major tick length={0},
+        	line width=1pt,
+         	axis lines=center, height=3 in, grid=major
+        	];
+        \end{axis}
+        \end{tikzpicture}
+        \end{center}
+        \item Sketch the graph of a function on $[-1,2]$ that is discontinuous but has both an absolute maximum and and absolute minimum.
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[
+           	xmin=-1.5, xmax=2.5,
+        	ymin=-3, ymax=3,
+        	xtick={-1,...,2},  
+        	ytick={-3,...,3},
+        	major tick length={0},
+        	line width=1pt,
+         	axis lines=center, height=3 in, grid=major
+        	];
+        \end{axis}
+        \end{tikzpicture}
+        \end{center}
+    \end{enumerate}
+    \newpage
+    \item What are the critical points of the function $f(x) = 2x^3 - 3x^2 -36x$?
+
+    \sol{}{$f'(x) = 6x^2 -6x -36 = 6(x^2 -x -6) = 6(x-3)(x+2)$ so then the CP are $x=3,-2$.}
+    \vfill
+    \item Find the absolute maximum and absolute minimum values of $f(x) = 2x^3 - 3x^2 -12x + 1$ on the interval $[-2,3]$.
+
+    \sol{}{$f'(x) = 6x^2 - 6x -12 = 6(x^2-x-2) = 6(x-2)(x+1)$ so the CP are $x=2,-1,-2,3$. The values of $f$ are given as $f(-2) = -3, f(-1) = 8, f(2) = -19, f(3) = -8$. Therefore, the absolute maximum is $f(-1) = 8$ and the absolute minimum is $f(2)=-19$.}
+    \vfill
+    \item Find the absolute maximum and absolute minimum values of $f(x) = \frac{1}{x}$ on the interval $[-1,1]$.
+
+    \sol{}{$f$ does not have an absolute minimum or maximum value on the interval.}
+    \vfill
+\end{enumerate}
+\end{document}

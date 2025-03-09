@@ -1,0 +1,365 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[margin=0.25 in]{geometry}
+\usepackage{calc}
+
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, multicol, enumerate, hyperref}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb,amsthm,latexsym,epsfig,amscd,arydshln}
+			
+\parskip = 0.2in
+
+\def\ds{\displaystyle}
+
+\setlength{\parindent}{0pt}
+
+\newcounter{saveenum}
+
+\newif\ifsolutions
+\solutionsfalse
+
+\ifsolutions
+    \newcommand{\opsol}{1}
+    \newcommand{\sol}[1]{\underline{\textcolor{red}{#1} \hspace{.2 in}}}
+    \newcommand{\xsol}[1]{\textcolor{red}{#1}}
+\else
+    \newcommand{\opsol}{0}
+    \newcommand{\sol}[1]{\underline{\textcolor{white}{#1} \hspace{.2 in}}}
+    \newcommand{\xsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\acard}[1]{
+\begin{minipage}[l][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1:4
+	]
+    \addplot [opacity=\opsol, red, smooth, very thick, samples=9, domain=-2:2] plot coordinates {(-2,3) (2,1)};
+    \addplot [opacity=\opsol, mark=*, only marks, red, very thick] coordinates {(-2,3)};
+    \addplot [opacity=\opsol, red, only marks, very thick, mark=*, mark options={scale=1, fill=white}]
+    coordinates{(2,1)};
+\end{axis}
+\end{tikzpicture}
+
+#1
+\end{center}
+\end{minipage}}
+
+\newcommand{\bcard}[1]{
+\begin{minipage}[l][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1.1:3.1
+	]
+    \addplot[<->] [opacity=\opsol, red, very thick, samples=999, domain=-1.9:2] {.5*tan(180/4*x)};
+    \addplot [opacity=\opsol, dashed, red, very thick, samples=9, domain=-2:2] plot coordinates {(-2,-1)(-2,3)};
+    \addplot [opacity=\opsol, dashed, red, very thick, samples=9, domain=-2:2] plot coordinates {(2,-1)(2,3)};
+\end{axis}
+\end{tikzpicture}
+
+#1
+\end{center}
+\end{minipage}}
+
+\newcommand{\ccard}[1]{
+\begin{minipage}[l][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1.2:3.2
+	]
+    \node [opacity=\opsol, red, very thick] at (axis cs:0, 1) {Not Possible};
+\end{axis}
+\end{tikzpicture}
+
+#1
+\end{center}
+\end{minipage}}
+
+\newcommand{\dcard}[1]{
+\begin{minipage}[l][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1.2:3.2
+	]
+    \addplot[<->] [opacity=\opsol, red, smooth, very thick, samples=999, domain=-2:2] {1.867/(.25*sqrt(2*pi))*exp(-((x)^2)/(.25*2^2))};
+\end{axis}
+\end{tikzpicture}
+
+#1
+\end{center}
+\end{minipage}}
+
+\newcommand{\ecard}[1]{
+\begin{minipage}[l][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1.2:3.2
+	]
+    \addplot [opacity=\opsol, red,,smooth, very thick, samples=99, domain=-2:2] {(8/27)*x^3-2*x+1};
+	\addplot [opacity=\opsol, red, only marks, very thick, mark=*, mark options={scale=1, fill=white}]
+    coordinates{(2,-17/27 )(-2, 71/27)};
+\end{axis}
+\end{tikzpicture}
+
+#1
+\end{center}
+\end{minipage}}
+
+\newcommand{\fcard}[1]{
+\begin{minipage}[l][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1:4
+	]
+    \addplot [opacity=\opsol, red, smooth, very thick, samples=9, domain=-2:2] plot coordinates {(-2,1) (1,3)};
+    \addplot [opacity=\opsol, red, smooth, very thick, samples=9, domain=-2:2] plot coordinates {(1,-1) (2,1)};
+    \addplot [opacity=\opsol, mark=*, only marks, red, very thick] coordinates {(-2,1) (1,3) (2,1)};
+    \addplot [opacity=\opsol, red, only marks, very thick, mark=*, mark options={scale=1, fill=white}]
+    coordinates{(1,-1)};
+\end{axis}
+\end{tikzpicture}
+
+#1
+\end{center}
+\end{minipage}}
+
+\newcommand{\gcard}[1]{
+\begin{minipage}[l][2.4 in]{1.7 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1:4
+	]
+    \addplot [opacity=\opsol, red, smooth, very thick, samples=9, domain=-2:2] plot coordinates {(-2,1) (1,3)};
+    \addplot [opacity=\opsol, red, smooth, very thick, samples=9, domain=-2:2] plot coordinates {(1,-1) (2,1)};
+    \addplot [opacity=\opsol, mark=*, only marks, red, very thick] coordinates {(-2,1) (1,1) (2,1)};
+    \addplot [opacity=\opsol, red, only marks, very thick, mark=*, mark options={scale=1, fill=white}]
+    coordinates{(1,3) (1,-1)};
+\end{axis}
+\end{tikzpicture}
+
+#1
+\end{center}
+\end{minipage}}
+
+\newcommand{\carda}{
+\begin{minipage}[l][2.8 in]{1.7 in}
+a)
+\vspace{-.3 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1:4
+	]
+    \addplot [smooth, very thick, samples=99, domain=-2:2] {(8/27)*x^3+(8/18)*x^2-(16/9)*x+1/27};
+    \addplot [mark=*, only marks, black, very thick] coordinates {(-2,3) (2,17/27)};
+\end{axis}
+\end{tikzpicture}
+
+A continuous function with an absolute maximum of \sol{3} at $x=\sol{-2}$ and an absolute minimum of $\sol{-1}$ at $x=\sol{1}$. \\ Domain: $\sol{[-2,2]}$
+\end{center}
+\end{minipage}}
+
+\newcommand{\cardb}{
+\begin{minipage}[l][2.8 in]{1.7 in}
+b)
+\vspace{-.3 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1:4
+	]
+    \addplot [mark=*, smooth, black, very thick] coordinates {(-2,2) (2,1)};
+    \addplot [black, only marks, very thick, mark=*, mark options={scale=1, fill=white}]
+    coordinates{(-2,2) (2,1)};
+\end{axis}
+\end{tikzpicture}
+
+A continuous function with no absolute maximum and no absolute minimum. \\ Domain: $\sol{(-2,2)}$
+\end{center}
+\end{minipage}}
+
+\newcommand{\cardc}{
+\begin{minipage}[l][2.8 in]{1.7 in}
+c)
+\vspace{-.3 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1:3
+	]
+	\addplot [smooth, very thick, samples=99, domain=-2:2] {-2*x^2+(8)*x-7};
+	\addplot [smooth, very thick, samples=99, domain=-2:2] {(2/9)*x^2+(8/9)*x+17/9};
+	\addplot [mark=*, only marks, black, very thick] coordinates {(-2,1) (1,3) (2,1)};
+	\addplot [black, only marks, very thick, mark=*, mark options={scale=1, fill=white}]
+    coordinates{(1,-1)};
+\end{axis}
+\end{tikzpicture}
+
+A discontinuous function with an absolute maximum of $\sol{3}$ at $x=\sol{1}$ and no absolute minimum. \\ Domain: $\sol{[-2,2]}$
+\end{center}
+\end{minipage}}
+
+\newcommand{\cardd}{
+\begin{minipage}[l][2.8 in]{1.7 in}
+d)
+\vspace{-.3 in}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=1.8 in, width=1.8 in, grid=major,
+ 	restrict y to domain=-1.2:3.2
+	]
+    \addplot[<-] [very thick, samples=999, domain=0:2] {1/(10*x)+1};
+    \addplot[->] [very thick, samples=999, domain=-2:0] {1/(10*x)};
+	\addplot [mark=*, only marks, black, very thick] coordinates {(-2,0) (2,1)};
+\end{axis}
+\end{tikzpicture}
+
+An unbounded discontinuous function with no absolute maximum and no absolute minimum. \\ Domain: $\sol{[-2,0) \cup (0,2]}$
+\end{center}
+\end{minipage}}
+
+\begin{document}
+\pagenumbering{gobble}
+
+
+{\large \textbf{The Extreme Value Theorem}} \\
+What does it take to be sure a function has an absolute minimum and an absolute maximum on a given domain?
+\begin{enumerate}[I.]%for capital roman numbers.
+\item Samples -- Study these sample functions and their descriptions and fill in the blanks.
+
+\begin{tabular}{c|c|c|c}
+\carda & \cardb & \cardc & \cardd \\
+\end{tabular}
+
+\begin{spacing}{1.25}
+In sample c), there is no absolute minimum because: 
+
+\sol{as $x \rightarrow 1^+$ there is an open circle, so the lower bound of $y=-1$ is approached but not attained}.
+
+In sample d), there is no absolute maximum because: 
+
+\sol{$f(x)$ has no upper bound on the domain, and the values of the function approach infinity \hspace{.35 in}}.
+\end{spacing}
+
+\vspace{-.1 in}
+\item Examples -- if possible, create graphs of functions satisfying each description
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\acard{A continuous function with an absolute maximum of 3 and no absolute minimum. \\ Domain: $[-2,2)$} & \bcard{A continuous unbounded function with no absolute maximum and no absolute minimum. \\ Domain: $(-2,2)$} & \ccard{A continuous unbounded function with no absolute maximum and no absolute minimum. \\ Domain: $[-2,2]$} & \dcard{A bounded continuous function with an absolute maximum of 3 and no absolute minimum. \\ Domain: $(-\infty,\infty)$} \\
+\ecard{A continuous function with an absolute maximum of 3 and an absolute minimum of -1. \\ Domain: $(-2,2)$} & \fcard{A function with an absolute maximum of 3 and no absolute minimum. \\ Domain: $[-2,2]$} & \gcard{A function with no absolute maximum and no absolute minimum. \\ Domain: $[-2,2]$} & \ccard{A continuous function with no absolute maximum and no absolute minimum. \\ Domain: $[-2,2]$}
+\end{tabular}
+\end{center}
+
+\newpage
+
+\item Theorem: (Extreme Value Theorem) If $f$ is \sol{continuous} on a \sol{closed} interval $[a, b]$, then $f$ must attain an absolute maximum value $f(c)$ and an absolute minimum value $f(d)$ at some numbers $c$ and $d$ in the interval $[a, b]$.
+
+\item Draw a continuous function with domain $[-2,2]$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-2.2, xmax=2.2,
+	ymin=-1.2, ymax=3.2,
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=3 in, width=3 in, grid=major,
+ 	restrict y to domain=-1:4
+	]
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Does it have an absolute maximum and absolute minimum?
+
+\xsol{Yes}
+
+\vfill
+
+Check the functions drawn by your classmates. Do all their examples also have absolute maxima and absolute minima? Explain!
+
+\xsol{Yes. By the Extreme Value Theorem, since they all are continuous on a closed interval, they all must have an absolute maximum and an absolute minimum.}
+
+\vfill
+
+Why does sample b) on the top of the previous page not contradict the Extreme Value Theorem?
+
+\xsol{It is not defined on a closed interval, so the Extreme Value Theorem does not apply.}
+
+\vfill
+
+Why does sample c) on the top of the previous page not contradict the Extreme Value Theorem?
+
+\xsol{It is not continuous on the domain, so the Extreme Value Theorem does not apply.}
+\vfill
+
+Does the function $f(x)=5+54x-2x^3$ have an absolute maximum and an absolute minimum on the interval $[0,4]$?  Why or why not?  If so, how would you go about finding the absolute maximum and absolute minimum?
+
+\xsol{It must have both an absolute maximum and an absolute minimum  because it is a continuous function (since it is a polynomial) on a closed interval.  The absolute minimum and maximum must lie either at the endpoints or where the derivative is 0.  So take the derivative and find the critical numbers.  Plug the endpoints and the ctitical numbers into the $f(x)$ and choose the largest and smallest values.}
+\vfill
+
+\end{enumerate}
+\end{document}

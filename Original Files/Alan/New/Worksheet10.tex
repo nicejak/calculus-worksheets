@@ -1,0 +1,294 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+
+\setlength{\headheight}{15pt}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Worksheet 10: Optimization} 
+
+\begin{enumerate}
+
+\item A farmer has 2400 feet of fencing and wants to use it to fence off a rectangular field.  What are the dimensions of the field that has the largest area, and what is that largest area?\\
+The goal is to model this situation with a function, then use optimization to find the absolute maximum.
+
+\begin{itemize}
+\item[Step 1:]  Draw a picture of several possible fields.  Label the pictures by assigning variables to any quantities that 
+change.  List any other variables that might be important.
+
+\sol{2.5 in}{Where $l$ is length, $w$ is width, and $A$ is area.\\
+\begin{tikzpicture}
+\draw (0,0) -- (2,0) -- (2,2) -- (0,2) -- (0,0);
+\draw (4.5,0) -- (5.5,0) -- (5.5,3) -- (4.5,3) -- (4.5,0);
+\draw (8,0) -- (8.5,0) -- (8.5,3.5) -- (8,3.5) -- (8,0);
+\node at (1, -.3) {$w=600$ ft};
+\node at (1, -.8) {$A=360,000$ ft};
+\node at (-.9, 1) {$l=600$ ft};
+\node at (5, -.3) {$w=300$ ft};
+\node at (5, -.8) {$A=270,000$ ft};
+\node at (3.6, 1.5) {$l=900$ ft};
+\node at (8.25, -.3) {$w=150$ ft};
+\node at (8.25, -.8) {$A=157,500$ ft};
+\node at (7, 1.75) {$l=1050$ ft};
+\end{tikzpicture}
+}
+
+\item[Step 2:] Which quantity from the previous part is the one that we want to maximize?
+
+\sol{1 in}{We need to maximize area, the $A$ variable.}
+
+\item[Step 3:]  Use basic geometry to write a formula for the variable you named in the previous part.  If you end up with a function that has two independent variables (input variables), that's a problem we will have to fix in the next step.
+
+\sol{1 in}{$A=l \times w$}
+
+
+\newpage
+\item[Step 4:] Turn the constraint that we have only 2400 feet of fencing into an equation.  Then use this equation to eliminate one of the variables in Step 3.  You now have a function of one independent variable (input variable), and this is the function to maximize.
+
+\sol{2 in}{Perimeter $=2 \cdot l+ 2 \cdot w$, so we have $2400=2 \cdot l + 2 \cdot w$. Solving for $l$, we have \[l=1200-w.\] We now plug this into our equation for $A$ to get \[A=(1200-w)w.\] This is the equation we want to maximize.}
+
+\item[Step 5:] What is the domain?  (Step 6 will be easier if you actually allow the possibility of ``silly'' rectangles with no area).
+
+\sol{1.5in}{We only have 2400 feet of fencing to work with, so we must have $w+l \le 1200.$ It only makes sense for $l \ge 0$, and $w$ is biggest when $l$ is smallest. So taking $l=0$, we see that $w \le 1200.$ The domain is $[0, 1200]$. We include the endpoints because it is easier to find a maximum on a closed interval, and $A$ is defined at the endpoints.}
+
+\item[Step 6:]  Use one of the procedures you know to find the absolute maximum value on the domain.
+
+\sol{2 in}{We first find $ \frac{dA}{dw}=1200-2w.$ We set this equal to zero and solve for $w$ to find the critical point $w=600$. Finally, we evaluate $A$ for $w=0$, $w=600$, and $w=1200$. $A(0)=0 \text{ ft}^2$, $A(600)=360,000 \text{ ft}^2$, and $A(1200)=0 \text{ ft}^2$. Therefore, $A$ has a maximum value of $360,000 \text{ ft}^2$ when $w=600 \text{ ft}$.}
+
+\item[Step 7:]  Answer the questions asked: what are the dimensions of the field that has the largest area, and what is the largest area?
+
+\sol{1 in}{Putting everything together, we see that if $w=600 \text{ ft}$ then $l=600 \text{ ft}$. Therefore, the dimensions which maximize the area of a field with a perimeter of 2400 ft are $600 \text{ ft} \times 600 \text{ ft}$ field with a maximum area of $360,000 \text{ ft}^2$.}
+
+\end{itemize}
+
+\newpage
+
+\item A farmer has 2400 feet of fencing and this time wants to fence off a rectangular field that borders
+a straight river. The farmer needs no fence along the river. What are the dimensions of the field that has the largest area, and what is that largest area?  (This problem is similar to problem 2; use the same sequence of steps in your solution.)  Explain why your answer is different from Problem 1.
+
+\sol{5.5 in}{We need to maximize area, so we'll maximize $A=l \times w$. We are given the constraint $2400=2l+w$ (Note: we only need one width since the other is covered by the river). \\\\
+We need to use the constraint to eliminate one of the right hand side variables. Solving the constraint for $w$ we have $w=2400-2l$. Substituting this into the area equation we have $A=l(2400-2l)$.\\\\
+We only have 2400 feet of fencing to work with, so we must have $2l+w \le 2400.$ It only makes sense for $w \ge 0$, so taking $w=0$, we see that $l \le 1200.$ Since it doesn't make sense to have negative lengths of fencing, the domain is $[0, 1200]$.
+Notice again we are including the ``silly'' rectangles corresponding to the endpoints of the interval to make the math simpler.\\\\
+Now we can maximize $A=l(2400-2l)$ by solving $\frac{dA}{dl}=0$ for $l$ and comparing the critical points to the end points of the domain. $\frac{dA}{dl}=2400-4l$; solving $0=2400-4l$ gives us the critical point $l=600$.\\\\
+Finally, we evaluate $A$ for $l=0$, $l=600$, and $l=1200$. $A(0)=0 \text{ ft}^2$, $A(600)=720,000 \text{ ft}^2$, and $A(1200)=0 \text{ ft}^2$. Therefore, $A$ has a maximum value of $720,000 \text{ ft}^2$ when $l=600 \text{ ft}$ and $w=1200 \text{ ft}$.\\\\
+The field with maximum area is different than in the previous problem, since we had to fence only one of the horizontal segments.  It makes sense that the field would be longer in this direction since it requires less fencing.  Notice that the total amount of fencing used in the vertical direction is the same as the amount used in the horizontal direction.
+}
+\newpage
+\item A square-bottomed box with no top has a fixed volume of 500 $\text{ cm}^3$ (1/2 Liter).  What is the minimum surface area?
+
+\sol{3.5 in}{We need to minimize surface area. The box will have a bottom with a surface area of $w^2$ and 4 sides with surface area $l \times w$ so we'll minimize $SA=w^2+4l \times w$.\\\\
+Our constraint is $500=l \times w^2$. Solving for $l$ we have $l=500w^{-2}$. Substituting this into the surface area function gives us $SA=w^2+4 \times 500w^{-2} \times w=w^2+2000w^{-1}.$\\\\
+Domain: Both $l$ and $w$ must be non-negative.  We also check the limitations that the constraint might force on the domain. $500 = l \times w^2$, so $l = \frac{500}{w}$.  This means that $l$ cannot be 0. So the domain is $l$ in the interval $(0, \infty)$. Note that in this case $w=0$ cannot be added to the domain, because $SA$ not defined there.\\\\
+Since we are looking for a absolute minimum on an open interval, we need to hope we only have one critical point and that it is a local min. Luckily, setting $\frac{dSA}{dw}=2w-2000w^{-2}=0$ and solving for $w$ gives us only one the critical point $w=10$.  Now $\frac{d^2SA}{dw^2}(10)=6>0$ tells us our critical point is a local minimum by the second derivative test. Thus it is also a absolute minimum on the domain.Therefore a square-bottomed box with no top has a minimum surface area of $SA(10)=100+2000/10= 300 \text{ cm}^2$.}
+
+\item As in the previous problem, a square-bottomed box with no top has a fixed volume of 500 $\text{ cm}^3$ (1/2 Liter).  But this time the material for the bottom costs \$2 per $\text{cm}^2$ while the sides cost \$1 per $\text{cm}^2$.  What dimensions give the minimum cost?
+
+\sol{3.5 in}{This time we need to minimize cost. The box will have a bottom with a cost of $2w^2$ and 4 sides with a cost of  $l \times w$ so we'll minimize $C=2w^2+4l \times w$.\\\\
+Our constraint is $500=l \times w^2$. Solving for $l$ we have $l=500w^{-2}$. Substituting this into the cost function gives us $C=2w^2+4 \times 500w^{-2} \times w=2w^2+2000w^{-1}.$\\\\
+Domain: Both $l$ and $w$ must be non-negative.  We also check the limitations that the constraint might force on the domain. $500 = l \times w^2$, so $l = \frac{500}{w}$.  This means that $l$ cannot be 0. So the domain is $l$ in the interval $(0, \infty)$.\\\\
+Since we are looking for a absolute minimum on an open interval, we need to hope we only have one critical point and that it is a local min. Luckily, setting $\frac{dC}{dw}=4w-2000w^{-2}=0$ and solving for $w$ gives us only one the critical point $w=\sqrt[3]{500}$.  Now $\frac{d^2C}{dw^2}(\sqrt[3]{500})>0$ tells us our critical point is a local minimum by the second derivative test. Thus it is also a absolute minimum on the domain. Therefore the minimum cost occurs when $w=\sqrt[3]{500}$ and $l=\sqrt[3]{500}$.}
+
+
+
+\begin{comment}
+
+%\item The formula 
+%$$ y = f(x) = e^{-ax} \sin{(bx)}$$ 
+%describes the simplest model of damped oscillations, so it arises in many real-world situations. (For example giving a child one push on a swing.) Here $a$ and $b$ are both positive constants.
+
+%\begin{enumerate}
+%\item Use your calculator to sketch a graph of this function for $0\le x\le 6$ with $a=1$ and $b=2$. 
+%\item Use your calculator to graph the function when $a=2$ and $b=2$. Describe in words what happens to the graph.
+%\vspace{1.5in}
+%\item Use your calculator to graph the function when $a=1$ and $b=4$. Describe in words what happens to the graph.
+%\newpage
+%\item For the function $f(x)=e^{-ax}\sin{(bx)}$, show that the critical points occur when 
+%$$ \tan{(bx)} = b/a.$$ What is the smallest positive value of $x$ satisfying this equation? Is it a local maximum or a local minimum?
+%\vspace{3in}
+%\item For the same function, find $f''(x)$. Where do the inflection points occur? How many are there?
+%\end{enumerate}
+
+%\item 
+%
+%
+%\item 
+%\begin{enumerate} 
+%\item Show that $\displaystyle \frac{1}{\sqrt{x+1}} \approx 1 - \frac{x}{2}$ near $x=0$, by computing the tangent line of the function at $x=0$. 
+%
+%\vspace{2.5in}
+%
+%\item More generally, show that the local linearization of $(1+x)^k$ at $x=0$ is $1+kx$. 
+%
+%\vspace{2.5in}
+%
+%\item Obtain a rough estimate for $\sqrt{1.1}$ using the local linearization from part (b) with $k=\tfrac{1}{2}$, without a calculator. Compare the result to the true value (using a calculator). 
+%\vspace{2in}
+%\end{enumerate}
+%
+%\newpage 
+%\item 
+%\begin{enumerate}
+%\item Suppose the local linearization of $f(x)$ at $x=0$ is $a+bx$, and suppose the local linearization of $g(x)$ at $x=0$ is $c+dx$. What is $f(0)$? What is $f'(0)$? What is $g(0)$? What is $g'(0)$?
+%
+%\vspace{2in}
+%
+%\item For the functions $f(x)$ and $g(x)$ above, let $h(x)=f(x)g(x)$. Compute $h(0)$ and $h'(0)$. Use them to find the local linearization of $h(x)$. 
+%
+%\vspace{2.5in}
+%
+%\item Show that if you just multiply $(a+bx)\cdot (c+dx)$ together, and then ignore the $x^2$ term, you get the local linearization of $h(x)$. 
+%
+%\vspace{2.5in}
+%
+%\item Use the technique above to show that the local linearization of $\dfrac{e^{3x}}{1-5x}$ is $1+8x$. Is this easier or harder than using the Quotient Rule?
+%
+%\vspace{2.5in}
+%
+%\item Use the technique above to compute the derivative at $x=0$ of the function 
+%$$ f(x) = \frac{\sin{(7x)} (1+8x) e^{2x}}{1+14x}.$$
+%That is, find the linearization of each term, multiply them together, and every time you multiply two linearizations, ignore the $x^2$ term. The derivative at $x=0$ is then the linear term.
+%Is this easier or harder than just computing the derivative at $x=0$ directly?
+%\vspace{2in}
+%\end{enumerate}
+%
+%
+%\newpage
+%
+%\textbf{The Mean Value Theorem} says:
+% 
+%If $f\colon [a,b]\to\mathbb{R}$ is continuous on $[a,b]$ and differentiable on $(a,b)$, then there exists a number $c$ with $a<c<b$ such that $$f'(c) = \dfrac{f(b)-f(a)}{b-a}.$$
+%
+%
+%
+%\item For the function
+%$$ f(x) = x^3 + 5 x^2+5x+3,$$
+%with $a=-1$ and $b=2$, find a number $c$ such that $c$ is in $(a,b)$ and $f'(c)=\dfrac{f(b)-f(a)}{b-a}$. 
+%
+%\vspace{2.5in}
+%
+%
+%\item If $f(x)=\lvert x-4\rvert$ with $a=1$ and $b=8$, show that there is no $c$ such that 
+%$$ f'(c) = \frac{f(b)-f(a)}{b-a}.$$
+%Why does this not contradict the Mean Value Theorem? 
+%
+%\vspace{2in}
+%
+%
+%\newpage
+%\item Suppose $n$ is an integer. Let $f_n(x) = x^n$. 
+%
+%\begin{enumerate}
+%\item Use a calculator or Wolfram Alpha to sketch rough graphs of $f_n(x)$ on the interval $[0,1]$, for $n=2$, $n=5$, and $n=83$. 
+%
+%\vspace{2in}
+%
+%\item For $a=0$ and $b=1$ and the function $f_n(x)$, what is the number $c$ predicted by the Mean Value Theorem? (It depends on $n$, of course.)
+%
+%\vspace{2in}
+%
+%\item Let $f(x)$ be the function defined by 
+%$\displaystyle f(x) = \lim_{n\to\infty} f_n(x).$
+%Sketch a graph of $f(x)$. Is there a number $c$ in the interval $(0,1)$ such that 
+%$ f'(c) = \frac{f(1)-f(0)}{1-0}?$
+%If so, what is it? If not, why not?
+%
+%\vspace{2in}
+%
+%
+%\end{enumerate}
+%\newpage
+%%\item Tragically, the movie ``Speed 3'' was never actually filmed, but the script features Keanu Reeves on a Segway whose acceleration cannot go above $14$ feet per second-squared (or else Boston explodes). A subplot involves him trying to reach Sandra Bullock in Providence (50.3 miles away) within 90 minutes. Could he have succeeded? 
+%%
+%%\vspace{3in}
+%
+%\item Do the functions graphed below satisfy the hypotheses of the Mean Value Theorem for $a=0$ and $b=1$?
+%Do they satisfy the conclusion?
+%
+%\begin{center}
+%\includegraphics[scale=0.3]{WS9MVTasymptote}
+%\quad 
+%\includegraphics[scale=0.3]{WS9MVTjumper}
+%\end{center}
+%\vspace{1.5in}
+%%\newpage
+%
+%\item Suppose water is flowing at a constant rate into the vase shown in the Figure. Sketch a graph of the depth of the water as a function of time. Mark on the graph the time at which the water reaches the corner of the vase.
+%
+%\includegraphics[scale=1.5]{grecianurn}
+%
+
+\item Goal:  Graph a function, including local min/max and inflection points.  Consider the function 
+$$ f(x) = 3x^4-8x^3+6x^2,$$
+\begin{enumerate}
+\item Find any local maxima and local minima of $f(x)$ on this domain, if any.  Be sure to find the critical points, classify them using either the first or second derivative test, then substitute the $x$-values into $f(x)$ to find the local mininum/maximum values.
+
+\vspace{3.5in}
+
+\item Find the inflection points on this domain, if any.  Be sure to find where the second derivative is zero, use a sign chart to determine whether or not the second derivative changes, then substitute the $x$-valuess into $f(x)$ to find the location of the inflection points.
+
+\newpage
+%\item Plug the local maxima and local minima that you found in part (a) into the formula $f(x)$ to get the $y$-coordinates. Do the same for the inflection points that you found in part (b).
+
+%\vspace{2in}
+
+\item Plot the local extrema and the inflection points on the graph.  Transfer the information from parts (a) and (b) to the number lines for $f'(x)$ and $f''(x)$. Sketch the graph of the function $y=f(x)$, using all of the information.\\
+\begin{center}
+\includegraphics[scale=.5]{emptygrid}\\\\
+\begin{tikzpicture}
+            % a straight line segment
+            \draw[<->] (-6,-.5) -- (4,-.5);
+            \node at (-6.8, -.5) {$f'(x)$:};
+
+            \draw[<->] (-6,-1.5) -- (4,-1.5);
+            \node at (-6.8, -1.5) {$f''(x)$:};
+\end{tikzpicture}
+\end{center}
+\item Now use your graphing calculator to get the graph of $y=f(x)$ on this domain, and compare it to the graph you just drew. How well did you do?
+\vspace{1in}
+\end{enumerate}
+\end{comment}
+
+
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,102 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+%\chead{\MyTopicTitle} % Top center header
+\rhead{\MyAssignment} % Top right header
+%\lfoot{\MyCampus} % Bottom left footer
+\cfoot{} % Bottom center footer
+%\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+
+
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 241}
+\newcommand{\MyAssignment}{Worksheet 4}
+%\newcommand{\MySemester}{Spring 2020}
+%\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+% ----------
+% BEGIN DOCUMENT
+% ----------
+\begin{document}
+    \begin{enumerate}
+        
+
+\item Using $f'$ and $g'$ (prime notation) to denote the derivatives of $f$ and $g$ respectively, write out the following rules:
+
+\begin{enumerate}
+    \item Sum and difference
+    \vspace{0.5in}
+    \item Constant multiple 
+    \vspace{0.5in}
+    \item Product
+    \vspace{0.5in}
+    \item Quotient
+    \vspace{0.5in}
+\end{enumerate}
+
+\item Determine if the following statements are true or false.
+
+\begin{enumerate}
+    \item If $\displaystyle\lim_{x\to a^-} f(x) = f(a)$, then $f$ is continuous at $a$.
+    \vspace{1in}
+    \item $\displaystyle\lim_{x\to a} f(x) = L$ if and only if $\displaystyle\lim_{x\to a^-} f(x) = L = \displaystyle\lim_{x\to a^+} f(x)$.
+    \vspace{1in}
+    \item $f$ is continuous at $a$ means $\displaystyle\lim_{x\to a} f(x) = f(a)$.
+    \vspace{1in}
+    \item If $f$ is continuous at $a$ then $f$ is differentiable at $a$.
+    \vspace{1in}
+\end{enumerate}
+\pagebreak
+
+\item Find the derivative of each function using the differentiation rules/formulas.
+\begin{enumerate}
+    \item $f(x) = 3x^5-5x^{-7} + 2x - \pi^7$
+    \vfill
+    \item $g(y) = 2y^{-1} + 5y^{3/2} - 6$
+    \vfill
+    \item $h(z) = 9\sqrt{z} - 5\sqrt[4]{z^6}$
+    \vfill
+    \pagebreak
+    
+    \item $f(x) = \left(2x+\sqrt[4]{x}\right)\left(x^3-\dfrac{2}{x^3}\right)$
+    \vfill
+    \item $h(s) = \dfrac{s^3-3\sqrt{s}+3/s}{s^6}$ \emph{Hint: Might be easier to do some algebra fist.}
+    \vfill
+    \pagebreak
+    
+    \item $y = x\cos(x) - \csc(x)$
+    \vfill
+    \item $y = \dfrac{\sin(x)}{1+\tan(x)}$
+    \vfill
+    \end{enumerate}
+    \pagebreak
+
+\end{enumerate}
+\end{document}

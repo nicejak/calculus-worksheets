@@ -1,0 +1,84 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true, bottom={.7in}]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+
+\setlength{\headheight}{15pt}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\rhead{\bf Absolute versus Local Extrema} 
+\pagenumbering{gobble}
+
+\noindent Goal:  Practice the difference between finding local extreme points, finding absolute extreme points on a closed interval, and finding absolute extreme points on an open interval. Review:
+\begin{itemize}
+\item  To find local extreme points using the first derivative test, first find the critical points (where $f'(x) = 0$ or $f'(x)$ DNE), then use these as the ``break points'' in a sign chart.
+	At each critical point, determine if the sign of the first derivative changes to see if there is a local max there, a local min there, or neither.  
+
+	Alternately, you can try the second derivative test: if the second derivative is negative at the critical point, the function has a local maximum there, if the second derivative is positive at the critical point, the function has a local minimum there, and if the second derivative is zero, the test is inconclusive.
+\item  To find absolute extreme points on a closed interval, first find the critical points.  Then substitute the critical points and the endpoints of the interval into the function, choosing the largest and smallest $y$-values.
+\item  To find absolute extreme points on an open interval, start by finding all critical points.  Hope that there is only one critical point.  If so, determine if it is a local minimum or maximum (see above).  
+	Since there is only one critical point, if the function has a local min or local max there, it is also an absolute min or absolute max.
+\end{itemize}
+\begin{enumerate}
+\item  Find all local max/local min values of $f(x)=x^2-6x -1$ 
+
+\sol{.8 in}{We have $f'(x)=2x-6$. Setting this equal to zero, we see that there is one critical number at $x=3$. Taking a second derivative we have $f''(x)=2 > 0$. Then $f''(3)=2$, $f$ is concave up at $x=3$, and therefore $f$ has a local minimum at $x=3$}
+
+\item  Find the absolute max/absolute min values of $f(x)=x^2-6x -1$ on the interval $[-1, 4]$
+
+\sol{2 in}{$f(x)$ is a polynomial, so it is continuous, and we are on a closed interval $[-1,4]$. By the Extreme Value Theorem, there is an absolute maximum and minimum, and they must lie either at critical numbers or at endpoints. We now need to check the endpoints of the interval and compare them with the value at the critical number found in part (a). 
+\begin{align*}
+\text{critical number from part (a)} \longrightarrow f(3)&=-10 \\
+\text{left endpoint} \longrightarrow f(-1)&=6 \\
+\text{right endpoint} \longrightarrow f(4)&=-9
+\end{align*}
+Therefore $f$ has an absolute minimum of $-10$ at $x=3$ and an absolute maximum of 6 at $x=-1$.
+}
+
+\item  Find the absolute max/absolute min values (if they exist) of $f(x)=x^2-6x -1$ on the interval $(-\infty, \infty)$.
+
+\sol{1.2in}{(3, -10) was found in part (a) to be a local minimum. Since it is the only critical point on the interval $(-\infty, \infty)$, by the third bullet point above, it must also be an absolute minimum on $(-\infty, \infty)$. $f$ is quadratic with a positive leading coefficient, so there is no absolute maximum on $(-\infty, \infty)$.}
+
+\end{enumerate}
+
+
+\end{document}

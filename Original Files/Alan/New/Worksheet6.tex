@@ -1,0 +1,111 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usetikzlibrary{patterns}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+
+
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; To hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\ww}{WeBWorK }
+\newcommand{\ddx}{\frac{d}{dx}}
+\newcommand{\dydx}{\frac{dy}{dx}}
+\newcommand{\be}{\begin{enumerate}}
+\newcommand{\ee}{\end{enumerate}}
+\newcommand{\vs}[1]{\vspace{#1 pt}}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\textbf{Worksheet 6} \qquad Name: \hspace{2in}}
+
+\begin{enumerate}
+\item Omar flies his kite 150m high, where the wind causes it to move horizontally away from him at the rate of 5m per second. In order to maintain the kite at a height of 150m, Omar must allow more string to be let out. At what rate $\frac{ds}{dt}$ is the string being let out when the length of the string already out is $s= 250$m?
+\begin{enumerate}
+\item Diagram: Draw a picture of the kite moving. Label the variables of interest.
+
+\sol{2.5 in}{
+\begin{center}
+\begin{tikzpicture}
+	\draw (0,0) -- (2,0);
+	\draw (1,0.25) node {$r$};
+	\draw (0,0) circle (2);
+	\draw [->] (4,-1) -- (1.75,-1.25);
+	\draw (5.1,-1) node {$V \text{(volume)}$};
+	\draw (4,1.5) circle (0.5);
+	\draw (4,1.5) -- (4,1.95);
+	\draw (4,1.5) -- (4.2,1.7);
+	\draw (5.25,1.5) node {$t \text{(time)}$};
+\end{tikzpicture}
+\end{center}}
+
+\item Rates:  What is the known rate of change?  What is the needed rate of change?  Include units.
+
+\sol{.8 in}{The known rate of change is $\dfrac{dr}{dt}=-3 \frac{\text{cm}}{\text{min}}$, and the unknown rate of change is $\dfrac{dV}{dt}$, units $\frac{\text{cm}^3}{\text{min}}$.}
+
+\item Equation: The rates in the previous part involved the variables $s$ and $x$.  Write an equation from geometry relating $s$ and $x$.
+
+\sol{.8 in}{$V = \dfrac{4}{3} \pi r^3$}
+
+\item Differentiate: Because the kite is moving horizontally only, the horizontal distance and the string length are functions of time. Differentiate the formula obtained in (c) with respect to time, $t$, in seconds.
+
+\sol{.8 in}{$\ds \frac{dV}{dt} = \frac{4}{3} \pi 3 r^2 \frac{dr}{dt} = 4 \pi r^2 \frac{dr}{dt}$}
+
+\item Substitute and solve:  Plug all known quantities into your equation from the last part and solve for the desired rate.  \textbf{Answer the question asked}.
+
+\sol{.8 in}{$\ds \frac{dV}{dt} = 4 \pi \cdot 20^2 \cdot -3 \left(\frac{\text{cm}^3}{\text{min}}\right)$}
+
+\end{enumerate}
+\newpage
+
+\item Gravel is being dumped from a conveyor belt at a rate of 30 feet cubed per minute, and its coarseness is such that it forms a pile in the shape of a cone whose base diameter and height are always equal. How fast is the height of the pile increasing when the pile is 10 feet high?
+
+\sol{}{
+We have that $\frac{dV}{dt} = 30$ and $d = h = 2r$. The equation for volume is $V = \frac{1}{3} \pi r^2 h = \frac{\pi}{12} h^3$. Then
+\[\frac{dV}{dt} = \frac{\pi}{4} h^2 \cdot \frac{dh}{dt}\]
+and so
+\[30 = \frac{\pi\cdot 100}{4} \cdot \frac{dh}{dt}\implies \frac{dh}{dt} = \frac{120}{100\pi}.\]
+}
+
+\end{enumerate}
+
+\end{document}

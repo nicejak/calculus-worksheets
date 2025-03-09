@@ -1,0 +1,112 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{enumitem}
+
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{theorem}{Theorem}
+\setlength{\headheight}{15pt}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Worksheet 19: Definite Integral} 
+\begin{enumerate}
+    \item Use the Midpoint Rule with $n=4$ to approximate the integral
+    \[\int_0^8 \sin{\sqrt{x}} \ dx\]
+    with the answer rounded to four decimal places.
+    \vfill
+
+    \item The definition of an integral on a range $[a,b]$ is
+    \[\int_a^b f(x) \ dx = \lim_{n\to \infty} \sum_{i=1}^n f(x_i) \Delta x\]
+    where $\Delta x = \frac{b-a}{n}$ and $x_i = a + i \Delta x$.
+    
+    Evaluate $\int_{-2}^0 (x^2 + x) \ dx$ using the definition of the integral.
+    \vfill
+    \newpage
+    \item The graph of $f$ is shown. Evaluate each integral by interpreting it in terms of area.
+    \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=-1, xmax=10,
+        ymin=-4, ymax=4,
+        xtick={-1,...,10},  
+        % xticklabels= {,,},
+        ytick={-4,...,4},
+        % yticklabels= {,,},
+        major tick length={0},
+        line width=1pt,
+        axis lines=center, height=3.64in, width = 5in, grid=major
+        ]
+        \addplot [samples=100, domain=0:2] {x + 1};
+        \addplot [samples=100, domain=2:3] {3};
+        \addplot [samples=100, domain=3:7] {-1.5*x + 7.5};
+        \addplot [samples=100, domain=7:9] {0.5*x - 6.5};
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \begin{enumerate}
+        \item $\displaystyle \int_0^2 f(x) \ dx$
+        \vfill
+        \item $\displaystyle \int_0^5 f(x) \ dx$
+        \vfill
+        \item $\displaystyle \int_5^7 f(x) \ dx$
+        \vfill
+        \item $\displaystyle \int_0^9 f(x) \ dx$
+        \vfill
+    \end{enumerate}
+    \newpage
+    \item Evaluate the integrals by interpreting it in terms of area. You will benefit from sketching the graph.
+    \begin{enumerate}
+        \item $\displaystyle \int_{-1}^2 (1-x) \ dx$
+        \vfill
+        \item $\displaystyle \int_{-3}^0 (1 + \sqrt{9-x^2}) \ dx$
+        \vfill
+    \end{enumerate}
+    \newpage
+    \item Write the equation into a single integral
+    \[\int_{-2}^2 f(x) \ dx + \int_2^5 f(x) \ dx - \int_{-2}^{-1} f(x) \ dx.\]
+    \vfill
+    \item If $\int_0^9 f(x) \ dx = 37$ and $\int_0^9 g(x) \ dx = 16$, find 
+    \[\int_0^9 [2f(x) + 3g(x)] \ dx.\]
+    \vfill
+\end{enumerate}
+\end{document}

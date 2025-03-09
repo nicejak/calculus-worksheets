@@ -1,0 +1,125 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true,top=.75in, bottom=.5in]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\pagenumbering{gobble}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2sol}}
+    \newcommand{\tsol}[2]{\textcolor{blue}{\textbf{Solution:}}\quad\vspace{-.25 in}#2}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\fsol}[2]{\includegraphics[scale=#1]{#2}}
+    \newcommand{\tsol}[2]{#1}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\chead{}
+\rhead{\bf Graphing Using Calculus and Technology} 
+
+\noindent Goal: Use technology to produce a graph of $\displaystyle f(x)=\frac{x^2-4}{2x^3+x+1}$, with all key features labeled.
+\begin{enumerate}
+\item Without technology, find the following:\\\\
+Zeroes of $f(x)$: \underline{\hspace{2in}}\\\\
+Horizontal asymptote of $f(x)$: \underline{\hspace{2in}}\\\\
+To find vertical asymptotes, solve the equation:\underline{\hspace{2in}}\\
+
+\item  Use technology to find the vertical asymptote(s) of $f(x)$:
+\vspace{1in}
+
+\item Use technology to produce a first graph of $f(x)$. Label the scale on the axes.
+
+\tsol{
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=center, height=3in, grid=none,
+    	yticklabels={,,},
+    	xticklabels={,,},
+    	scaled y ticks = false,
+      	ymin=-5, ymax=5,xmin=-10,xmax=10
+	]
+    \addplot [opacity=0,blue, smooth, very thick, samples=100, domain=-10:10] {(x^2-4)/(2*x^3+x+1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}}
+{
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   axis lines=center, height=3in, grid=none,
+    	scaled y ticks = false,
+      	ymin=-5, ymax=5,xmin=-10,xmax=10
+	]
+	    \addplot [blue, smooth, very thick, samples=100, domain=-10:10] {(x^2-4)/(2*x^3+x+1)};
+\end{axis}
+\end{tikzpicture}
+\end{center}}
+
+\item From the graph, do you think there are local extrema? Explain. Yes/No/Not sure yet
+
+\sol{.6in}{It looks like the curve is positive past about $x=2$, then there is a horizontal asymptote.  So there must be a local max somewhere to the right of that positive $x$-intercept. Similarly, it looks like there is local min somewhere to the left of the negative $x$-intercept}.
+
+\item From the graph, do you think there are inflection points? Explain.  Yes/No/Not sure yet
+
+\sol{.6in}{If there really is a local maximum and a local minimum, then there also must be an inflection point to the right of the local max and to the left of the local min.  I can't tell if there are more than those two.}
+
+\newpage
+
+\item Use technology to calculate $f'(x)$. Then use technology to find all critical numbers of $f(x)$.\\\\
+$f'(x) = $\\\\
+Critical numbers of $f'(x)$: \\
+
+\item  Use technology to graph $f'(x)$, then use this graph to classify the critical numbers you found:\\\\
+$f(x)$ has a local maximum/minimum value of \underline{\hspace{1in}} at $x=$\underline{\hspace{1in}} because $f'(x)$ switches from \underline{\hspace{1in}} to \underline{\hspace{1in}} there.\\\\
+$f(x)$ has a local maximum/minimum value of \underline{\hspace{1in}} at $x=$\underline{\hspace{1in}} because $f'(x)$ switches from \underline{\hspace{1in}} to \underline{\hspace{1in}} there.\\
+
+\item  From the graph of $f'(x)$, how many inflection points do you predict? Explain.\\  none/two/four or more/not sure yet
+
+\sol{1in}{I see that $f'(x)$ has a local min and local max between $x=0$ and $x=1$. So $f(x)$ has at least two inflection points. It also looks to me like $f'(x)$ is negative to the right of about $x=4$, then has a horizontal asymptote.  So it has to have another local min, it looks like it is to the right of $x=6$. Similarly, it looks like there is another local min at least to the left of $x=-6$. So I think there are at least four inflection points.}
+
+\item  Use technology to calculate $f''(x)$. Then use technology to find where $f''(x)=0$. Explain why the $x$-values where $f''(x)$ does not exist are not important here.\\\\
+$f''(x)=$\\\\
+Zeroes of $f''(x)$ (hint: numerator of $f''(x)$ must be zero):\\
+
+Why zeroes of denominator of $f''(x)$ are not important:\\
+\item  For each of the zeroes of $f''(x)$ you found above, determine whether or not $f(x)$ has an inflection point there. Use the graph of $f''(x)$ to justify your conclusions.
+
+\sol{1.5in}{}
+\vfill
+\item Return to the graph on the first page and label all key points. Draw a new graph if changing the scale is helpful.
+
+
+\end{enumerate}
+
+
+
+
+\end{document}

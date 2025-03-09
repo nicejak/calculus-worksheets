@@ -1,0 +1,157 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath,fullpage,graphicx,fancyhdr,color}
+\def\scrr{\underbar{\hskip1.3in}}
+\setlength{\headheight}{10pt}
+\setlength{\headsep}{7pt}
+\setlength{\parindent}{0pt}
+\def\ds{\displaystyle}
+\newcommand{\ddx}{\frac{d}{dx}}
+\pagestyle{fancy}
+\def\Red{\color{red}}
+\def\Black{\color{black}}
+\openup1\jot
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\gsol}[2]{#2}
+    \newcommand{\ssol}[1]{\textcolor{red}{#1}}
+    \newcommand{\sol}[1]{\textcolor{red}{#1}}
+    \newcommand{\ans}[1]{\underbar{\qquad \textcolor{red}{#1} \qquad}}
+\else
+    \newcommand{\gsol}[2]{#1}
+    \newcommand{\ssol}[1]{\textcolor{black}{#1}}
+    \newcommand{\sol}[1]{\textcolor{white}{#1}}
+    \newcommand{\ans}[1]{\underbar{\qquad \textcolor{white}{#1} \qquad}}
+\fi
+ 
+ \begin{document}
+\lhead{Calculus I}\chead{} \rhead{\bf Project:  Solar energy, accumulation, and Riemann sums  \sol{SOLUTIONS}}  
+
+The graphs on the last three pages of this project depict power generation and power consumption at an elementary school in Boulder.  The vaguely bell-shaped curve (the green curve on the color graph), call it $g(t)$, represents power {\bf generated} from solar panels installed at the school.  The relatively level, jagged curve (the red curve on the color graph), call it $c(t)$, represents power {\bf consumption} at the school. On the last page, the graphs of $g(t)$ and $c(t)$ are shown together.
+
+\smallskip
+
+The vertical axis is the power axis.  The range is 0-10 kilowatts (kW).  The horizontal axis is the time axis.  The domain is from 12 AM Monday, March 18 until 12 AM Tuesday,
+March 19, 2013. Each of the ticks on the time axis represents 1/2 hour. (The bolder ticks
+are spaced 3 hours apart.)
+
+\smallskip To complete this project, you'll need to know that power times time equals energy (assuming power is supplied at a constant rate over the time interval in question).
+ \begin{enumerate}
+
+\item Consider the bell-shaped (green) curve $g(t)$. What quantity does the {area} under this curve, between two points $t=a$ and $t=b$, represent? What are the units for this quantity?
+
+\sol{The area under $g(t)$, from $t=a$ to $t=b$, represents total energy generated during this time interval.  The units are kilowatt-hours (kWh).}
+
+\vfill
+
+\item Consider the relatively flat (red) curve $c(t)$. What quantity does the {area} under this curve, between two points $t=a$ and $t=b$, represent? What are the units for this quantity?
+
+\sol{The area under $c(t)$, from $t=a$ to $t=b$, represents total energy consumed during this time interval.  The units are kilowatt-hours (kWh).}
+ 
+ \vfill 
+
+\item  On the graph, draw right endpoint Riemann sums, of baselength $\Delta t=2$ hours, representing approximations to:
+
+\begin{enumerate}
+
+\item  The cumulative energy, call it $G(T)$, {\it generated} between $t=0$ and $t=T$ (where $t=0$ is 12 AM Monday, March 18, 2013);
+
+\item The cumulative energy, call it $C(T)$, {\it consumed} between $t=0$ and $t=T$.
+
+
+\end{enumerate}
+
+\sol{See the graph below.  The solid rectangles (blue on the color graph) represent Riemann sums for $g(t)$; the dashed rectangles (black) represent Riemann sums for $c(t)$.}
+\vfill\eject
+
+\item  Using the Riemann sums you drew for the previous exercise, fill out the table, below, of (approximate) values of $g(t)$, $G(T)$, $c(t)$ and $C(T)$.
+\vspace{.3in}
+
+\hskip-.2in
+{\Large \begin{tabular}
+{c|c|c|c|c|c|c|c|c|c|c|c|c|}\hline
+%
+$T$ \quad& \  \ $2$\ \ &\  \   $4$\ \  &\  \    $6$\ \   &\  \  $8$\  \    &\  \    $10$\ \   &\  \    $12$\  \  &\  \    $14$\  \  &\  \    $16$\  \  &\  \    $18$\  \  &\  \    $20$\   &\  \    $22$\   &\  \    $24$\
+\\ 
+\hline
+%
+$g(T)$& \sol{0} & \sol{0} & \sol{0} & \sol{.4} & \sol{6.3} & \sol{8.7} & \sol{9} &\ \sol{6.6} & \sol{.3} & \sol{0} & \sol{0} & \sol{0} \\ \hline
+$G(T)$& \sol{0} & \sol{0} & \sol{0} & \sol{0.8} & \sol{13.4} & \sol{30.8} & \sol{48.8} &\ \sol{62} & \sol{62.6} & \sol{62.6} & \sol{62.6} & \sol{62.6} \\ \hline
+$c(T)$& \sol{0.3} & \sol{0.4} & \sol{0.2} & \sol{2.5} & \sol{2.3} & \sol{2} & \sol{2} & \sol{1.7} & \sol{1.8} & \sol{1.6} & \sol{1.3} & \sol{1} \\ \hline
+
+
+$C(T)$& \sol{0.6} & \sol{1.4} & \sol{1.8} & \sol{6.8} & \sol{11.4} & \sol{15.4} & \sol{19.4} & \sol{22.8} & \sol{26.4} & \sol{29.6} & \sol{32.2} & \sol{34.2} \\  \hline
+
+%
+
+\end{tabular}
+
+}
+\vspace{.5in}
+
+\item On the axes below, sketch the graphs of $G(T)$ and $C(T)$.
+
+\begin{center}
+
+\hskip-.6in\includegraphics[scale=1.2]{\gsol{energy_axes.pdf}{energy_sol.pdf}}
+
+\end{center}	
+\vfill\eject
+
+\item  Do your above graphs of $G(T)$ and $C(T)$ intersect? If so, where?  Which graph ends up higher than the other, and what's the significance of this?
+
+\sol{Yes, they intersect at about $T=10$; that is, at about 10 AM.  After that point, the curve $G(T)$ dominates.  
+\\ \\
+The school operates at a deficit, as far as energy is concerned,  during the nighttime and early morning hours, when sunlight is absent or minimal.  Then the energy provided during the daylight hours eventually more than makes up for this.}
+
+\vfill
+
+\item If you were to sketch the {\it derivative} of the function $G(T)$ you sketched in exercise 5 above,
+what would this derivative look like (very roughly)? Please explain. (You don't actually
+have to sketch this derivative to answer; in fact, you've already seen the graph of this
+derivative, very recently!) Answer the same question for your graph of $C(T)$.
+
+\sol{In theory, the derivative of $G(T)$ should look like the power-generation curve $g(t)$.  This is because, by the Fundamental Theorem of Calculus (Part II), the derivative of the integral of a function is the original function being integrated.  In other words:  in general, to say that a function {\it $G$ is an accumulation function} for a function $g$ is to say that $g$ is the {\it derivative} of $G$!   
+\\ \\
+Similarly, the derivative of $C(T)$ should, in theory, look like the graph of  $c(t)$.
+\\ \\
+We say ``in theory'' here because our graphs of $G(T)$ and $C(T)$ are only approximate, corresponding to the fact that our Riemann sums are only approximations to the actual areas (that is, the actual energy functions) in question.}
+
+\vfill\item  Fill in the blanks:  The function $G(T)$ above, representing energy generated,  has something of an elongated ``S'' shape. On the other hand, the graph $g(t)$ of generated {\it power} (see, again, the graph on the last page), which is the \ans{derivative} of generated energy, has something of a \ans{bell} shape.
+
+ (That the derivative of an ``S'' curve is a bell curve is a general phenomenon, which you will perhaps encounter elsewhere in this course, and beyond.)
+
+
+\end{enumerate} 
+ 
+\vfill\eject
+
+
+
+\ifsolutions
+\else
+\begin{center}
+\includegraphics[scale=.71,angle = -90]{generated.png}
+\end{center}
+
+\begin{center}
+\includegraphics[scale=.82,angle = -90]{consumption.png}
+\end{center}
+\fi
+
+\begin{center}
+\null \vskip-.6in
+\ifsolutions
+\includegraphics[scale=.77]{\gsol{EnergyGraph}{EnergyRiemannGraph.pdf}}
+\else
+\includegraphics[scale=.77]{\gsol{EnergyGraph}{EnergyGraph.pdf}}
+\fi
+
+\end{center}
+ 
+\end{document}
+
+
+
+

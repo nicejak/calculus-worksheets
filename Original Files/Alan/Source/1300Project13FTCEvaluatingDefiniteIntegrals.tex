@@ -1,0 +1,269 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, comment, multicol, hyperref, tabu}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\pagestyle{fancy}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newcommand*\Eval[1]{\left.#1\right\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+%\pgfplotsset{compat=1.9}%Removes pgfplots backward compatibility error--not crucial%
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcommand{\hop}[3]{\lim_{x\rightarrow #1}\frac{#2}{#3}\stackrel{\text{H}}{=}\lim_{x\rightarrow 0}\frac{\frac{d}{dx} #2}{\frac{d}{dx} #3}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; to hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\rhead{\bf Definite Integrals and the FTC} 
+
+\begin{enumerate}
+\item  Review and Warm-up: The graph of $f$ is shown below.  Calculate exactly each of the definite integrals that follow.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=0, xmax=8,
+	ymin=-6, ymax=6,
+	xtick={0,...,8},  
+	ytick={-6,-3,0,3,6},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, grid=major,
+	]
+    \addplot [smooth, ultra thick, samples=9, domain=0:2] {6};
+    \addplot [smooth, ultra thick, samples=9, domain=2:4] {18-6*x};
+    \addplot [smooth, ultra thick, samples=9, domain=4:5] {-6};
+    \addplot [smooth, ultra thick, samples=9, domain=5:8] {2*x-16};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{multicols}{2}
+\begin{enumerate}
+\item $\int_0^2 f(x)\,dx=$ \sol{0in}{12}
+\item $\int_0^3 f(x)\,dx=$ \sol{0in}{15}
+\item $\int_4^5 f(x)\,dx=$ \sol{0in}{-6}
+\item $\int_5^8 f(x)\,dx=$ \sol{0in}{-9}
+\item $\int_2^4 f(x)\,dx=$ \sol{0in}{0}
+\item $\int_0^8 f(x)\,dx=$ \sol{0in}{-3}
+\end{enumerate}
+\end{multicols}
+
+\item  Let $s(t)$ be the position, in feet, of a car along a straight east/west highway at time $t$ seconds.  Positive values of $s$ indicate eastward displacement of the car from home, and negative values indicate westward displacement. At $t=0$ the car is at home.  Let $v(t)$ represent the velocity of this same car, in feet per second, at time $t$ seconds (see graph below).
+\begin{multicols}{2}
+\begin{tikzpicture}
+\begin{axis}[
+   	axis lines=center,
+   	x label style={at={(axis description cs:1.2,0.6)},anchor=north},
+    y label style={at={(axis description cs:-.17,.5)},rotate=90,anchor=south},
+    xlabel={\small time (sec)},
+ 	ylabel={\small velocity (ft/sec)},
+   	xmin=0, xmax=40,
+	ymin=-60, ymax=60,
+	xtick={0,10,...,40},  
+	ytick={-60,-30,0,30,60},
+	major tick length={0},
+	line width=1pt,
+ 	height=2 in, grid=major,
+	]
+    \addplot [smooth, ultra thick, samples=1000, domain=0:10] {60};
+    \addplot [smooth, ultra thick, samples=1000, domain=10:30] {120-6*x};
+    \addplot [smooth, ultra thick, samples=1000, domain=30:40] {-60};
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[
+   	axis lines=center,
+   	x label style={at={(axis description cs:1.22,0.12)},anchor=north},
+    y label style={at={(axis description cs:-.17,.5)},rotate=90,anchor=south},
+    xlabel={\small time (sec)},
+ 	ylabel={\small position (ft)},
+   	xmin=0, xmax=40,
+	ymin=0, ymax=1000,
+	major tick length={0},
+	line width=1pt,
+ 	height=2 in, grid=major,
+	]
+    \addplot [opacity=\opsol{1}, blue, smooth, ultra thick, samples=9, domain=0:10] {60*x};
+    \addplot [opacity=\opsol{1}, blue, ultra thick, samples=9, domain=10:30] {-3*x^2+120*x-300};
+    \addplot [opacity=\opsol{1}, blue, ultra thick, samples=9, domain=30:40] {-60*x+2400};
+\end{axis}
+\end{tikzpicture}
+\end{multicols}
+
+\begin{enumerate}
+\item Write a definite integral representing each of the following:\\\\
+$s(10) =$ \sol{.3 in}{$\int_0^{10} v(t)\,dt$} \\
+$s(30) =$ \sol{.3 in}{$\int_0^{30} v(t)\,dt$} \\
+$s(t) = $ \sol{.3 in}{$\int_0^t v(u)\,du$} \\
+Now use these integrals and the velocity graph to help you fill in the chart below:\\\\
+\begin{tabular}{|c||c|c|c|c|c|}
+\hline
+$t$&0&10&20&30&40\\
+\hline
+$s(t)$&0&\tblsol{600}&\tblsol{900}&\tblsol{600}&\tblsol{0}\\
+\hline
+\end{tabular} \\
+
+\item Use these values to help you plot the position function.
+
+\newpage
+\item  Fill in the chart below:\\
+{\tabulinesep=1.2mm
+\begin{tabu}{| l | l |}
+\hline
+Definite integral of velocity \text{\hspace{1in}}&Change in position\text{\hspace{1in}}\\ \hline
+$\displaystyle\int_0^{10} v(t)dt=\tblsol{600}$\text{\hspace{.7in}} & $s(10)-s(0)=\tblsol{600-0}$\text{\hspace{.7in}}\\ \hline
+$\displaystyle\int_{10}^{20} v(t)dt=\tblsol{300}$\text{\hspace{.7in}} & $s(20)-s(10)=\tblsol{900-600}$\text{\hspace{.7in}}\\ \hline
+$\displaystyle\int_0^{40} v(t)dt=\tblsol{0}$\text{\hspace{.7in}} & $s(40)-s(0)=\tblsol{0-0}$\text{\hspace{.7in}}\\ \hline
+\end{tabu}}
+
+\item Why do these two columns give the same answers?
+
+\sol{.25 in}{The definite integral of a velocity function with respect to time represents a change in position over the same interval of time.}
+
+\end{enumerate}
+
+\item  The following data is from the U.S. Bureau of Economic Analysis.  It shows the rate of change $r(t)$ (in dollars per month) of per capita personal income, where $t$ is the number of months after January 1, 2012.\\\\
+\begin{tabular}{|c||c|c|c|c|c|c|c|}
+\hline
+$t$ (months) & 0&2&4&6&8&10&12\\ \hline
+$r(t)$ (dollars per month) & 154 & 17& 10 & 79 & 278 & -432 & 290 \\ \hline
+\end{tabular}
+\\\\
+Use left-hand Riemann sums to estimate the total change in personal income during 2012.
+
+\sol{1.8 in}{
+\[\ds \sum_{i=1}^n r(a+i\Delta t)\cdot \Delta t \quad \text{where, in this case, $a=0$ and $\Delta t=2$}\]
+\vspace{-.2in}
+\begin{align*}
+&=r(0)\cdot 2 + r(2)\cdot 2 + r(4)\cdot 2 + r(6)\cdot 2 + r(8)\cdot 2 + r(10)\cdot 2\\
+&=2\left(r(0)+r(2)+r(4)+r(6)+r(8)+r(10)\right)\\
+&=2\left(154+17+10+79+278-432\right)\\
+&=212
+\end{align*}
+}
+\vspace{-.3 in}
+\item A can of soda is put into a refrigerator to cool.  The temperature of the soda is given by $F(t)$. The {\bf rate} at which the temperature of the soda is changing is given by
+\[F'(t) = f(t) = -25e^{-2t} \text{ (in degrees Fahrenheit per hour)}\]
+\begin{enumerate}
+\item  Find the rate at which the soda is cooling after 0, 1, and 2 hours.  Then use this information to estimate the temperature of the soda after 3 hours if the soda was $60^\circ F$ when it was placed in the refrigerator.
+
+\sol{1.75 in}{We can use another left-hand Riemann sum with $\Delta t=1$ hr to find the \emph{change} in temperature:
+\begin{align*}
+\Delta F&=f(0) \cdot 1 + f(1) \cdot 1+f(2) \cdot 1\\
+\Delta F&=-25e^{-2\cdot 0}+-25e^{-2\cdot 1}+-25e^{-2\cdot 2}\\
+\Delta F&\approx -28.84
+\end{align*} 
+If the temperature changed by $\approx -28.84^\circ F$ over three hours, and started at $60^\circ F$, then the final temperature is $\approx 31.16^\circ F$. 
+}
+\newpage
+\item  Now we will find the exact temperature of the soda after three hours have passed. 
+\begin{enumerate}
+\item Find an antiderivative of $f(t)$, that is, find a function $G(t)$ such that $F'(t)=f(t)=-25e^{-2t}$. \\(Hint: take a couple of derivatives of $f(t)$ and try to find a pattern.)
+
+\sol{2 in}{
+\[f'(t)=50e^{-2t} \text{ and } f''(t)=-100e^{-2t}\]
+It looks like we gain a factor of $-2$ for every derivative we take, so our anti-derivative should divide by $-2$. Then any function of the form $\ds G(t)=\frac{-25}{-2}e^{-2t}+C=12.5e^{-2t}+C$ will be an antiderivative of $f(x)$. Since the question only asked for one such function, we'll use $G(t)=12.5e^{-2t}$.}
+
+\item The Fundamental Theorem of Calculus (the Evaluation Theorem) tells us that $\ds \int_a^b f(t)\, dt=F(b)-F(a)$. Use this theorem and the function you found in the last step to find the temperature of the soda after 3 hours have passed. 
+
+\sol{3 in}{
+Evaluating the integral gives us:
+\[\int_0^3 f(t)\,dt=12.5e^{-6}-12.5=F(3)-F(0)\]
+Substituting the evaluated integral and the given initial temperature $F(0)=60$, we have:
+\[12.5e^{-6}-12.5=F(3)-60\]
+Solving for F(3)
+\[F(3)\approx 47.531^\circ F\]
+}
+\end{enumerate}
+
+\item Why do you think your estimate in part (a) is so far off?
+
+\sol{.5in}{$f(t)$ changes very quickly between 0 and 3. We should have used a smaller $\Delta t$  }
+
+\end{enumerate}
+
+
+\newpage
+\item 
+\begin{enumerate}
+\item Write an integral which represents the area between $f(x) = x^4$ and the $x$-axis, between $x=0$ and $x=2$.
+
+\sol{.7 in}{\[\int_0^2 x^4\,dx\]}
+
+\item Evaluate this integral using the Fundamental Theorem of Calculus (the Evaluation Theorem).
+
+\sol{1.3 in}{Any function of the form $\ds \frac{x^5}{5}+C$ is an antiderivative of $f(x)=x^4$, thus $\ds F(x)=\frac{x^5}{5}$ is an example of an antiderivative of $f(x)=x^4$, and so
+\[\int_0^2 x^4\,dx=F(2)-F(0)=\frac{2^5}{5}-\frac{0^5}{5}=6.4\]
+}
+
+\end{enumerate}
+\item  
+\begin{enumerate}
+\item Using the Fundamental Theorem of Calculus (as in the last problem), evaluate $\ds \int_0^\pi \cos(x)\,dx$.
+
+\sol{1.2 in}{$F(x)=\sin(x)$ is an antiderivative of $f(x)=\cos(x)$, and so
+\[\int_0^\pi \cos(x)\,dx=F(\pi)-F(0)=\sin(\pi)-\sin(0)=0\]
+}
+
+\item Show the area represented by the integral in part (a) on the graph.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=0, xmax=3.2,
+	ymin=-1.05, ymax=1.05,
+	xtick={1.5708,3.14159}, 
+	xticklabels={$\frac{\pi}{2}$,$\pi$}, 
+	ytick={-1,-0.5,0.5,1},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, grid=major
+	]
+	\addplot [opacity=\opsol{0.5}, fill=gray, draw=none, domain=0:1.5708] {cos(deg(x))} \closedcycle;
+	\addplot [opacity=\opsol{0.5}, fill=red, draw=none, domain=1.5708:3.14159] {cos(deg(x))} \closedcycle;
+    \addplot [opacity=\opsol{1}, blue, smooth, very thick, samples=1000, domain=0:3.2] {cos(deg(x))};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{enumerate}
+
+\item  Evaluate $\ds \int_0^1\frac{1}{1+x^2}\,dx$ without using technology.
+
+\sol{1.55 in}{$F(x)=\arctan(x)$ is an antiderivative of $\ds f(x)=\frac{1}{1+x^2}$, and so
+\[\int_0^\pi \frac{1}{1+x^2}\,dx=F(1)-F(0)=\arctan(1)-\arctan(0)=\frac{\pi}{4}\]
+}
+
+\end{enumerate}
+\end{document}

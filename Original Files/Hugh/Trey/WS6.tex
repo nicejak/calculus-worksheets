@@ -1,0 +1,52 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{gensymb}
+\usepackage{mathtools}
+\usepackage{graphicx}
+% SET UP HEADER AND FOOTER
+
+
+\title{MATH 242 - WS6}
+\date{02/22/2024}
+
+
+\begin{document}
+\maketitle
+
+
+\begin{enumerate}
+
+\item Evaluate the definite integral:
+$$\int_0^1(1+x^2)dx$$
+\vfill
+\item Find the Trapezoid rule approximation $T_5$ using $n=5$ rectangles.
+\vfill
+\newpage
+\item Using the last two problems, what is the magnitude of the absolute error $|E_{T_5}|=|\int_0^1(1+x^2)dx-T_5|$?
+\vfill
+\item What is the upper bound of of the error $|E_{T_5}|$ applied to this particular $n=5$, $a=0$, $b=1$, and $f(x)=1+x^2$? Comment on how this compares to what you found in the last question.
+\vfill
+\newpage
+\item Suppose you wish to estimate $\int_0^15x^4dx$ to an accuracy having an Error  of $|E|<10^{-3}$. How large would you need to choose $n$ for...
+\begin{enumerate}
+    \item Simpson's Rule?
+    \item the Trapezoid Rule?
+    \item Mid-point Rule?
+\end{enumerate}
+
+\end{enumerate}
+\end{document}

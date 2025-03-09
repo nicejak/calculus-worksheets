@@ -1,0 +1,136 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\usepackage{comment}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{comment}
+\usepackage{multicol}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage{tabularx}
+
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{theorem}{Theorem}
+\setlength{\headheight}{15pt}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To repress solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\rhead{\bf Worksheet 20: FTC} 
+\begin{enumerate}
+    \item Use the graph of $f(x)$ below to answer the following:
+    \begin{center}
+    \begin{tikzpicture}
+    \begin{axis}[
+        xmin=0, xmax=11,
+        ymin=-3, ymax=3,
+        xtick={0,...,11},  
+        % xticklabels= {,,},
+        ytick={-3,...,3},
+        % yticklabels= {,,},
+        major tick length={0},
+        line width=1pt,
+        axis lines=center, height=2.74in, width = 5in, grid=major
+        ]
+        \addplot [samples=100, domain=0:2] {2};
+        \addplot [samples=100, domain=2:4] {4-x};
+        \addplot [samples=100, domain=4:5] {x-4};
+        \addplot [samples=100, domain=5:7] {1};
+        \addplot [samples=100, domain=7:11] {8-x};
+    \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    \begin{enumerate}
+        \item Find $\int_0^3 f(x) \ dx$. Include an illustration of this quantity on the graph.
+        \vfill
+        \item Complete the following table
+        \begin{center}
+        \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+            \hline
+            $b$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 & 10 \\
+            \hline 
+            $\displaystyle \int_0^b f(x) \ dx$ & & & & & & & & & & & \\
+            \hline
+        \end{tabular}
+        \end{center}
+        \vfill
+        \newpage
+        \item If $F(x)$ is a function such that $F(0) = 0$ and $F'(x) = f(x)$, find the intervals where $F(x)$ is:
+        
+        \begin{tabularx}{\textwidth}{p{3in} p{3in}}
+            increasing & concave up \\
+            & \\
+            decreasing & concave down \\
+            & \\
+            & linear \\
+            & \\
+        \end{tabularx}
+
+        \item Use the information above to sketch a graph of $F(x)$.
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{axis}[
+            xmin=0, xmax=11,
+            ymin=-9, ymax=9,
+            xtick={0,...,11},  
+            % xticklabels= {,,},
+            ytick={-9,-6,-3,0,3,6,9},
+            yticklabels= {-9,-6,-3,0,3,6,9},
+            major tick length={0},
+            line width=1pt,
+            axis lines=center, height=2.74in, width = 5in, grid=major
+            ]
+        \end{axis}
+        \end{tikzpicture}
+        \end{center}
+        \item How would your graph of $F(x)$ change if $F(0) =2$ instead?
+    \end{enumerate}
+    \newpage
+    \item Find the derivative of the function
+    \[g(x) = \int_1^x \cos(t^2) \ dt.\]
+    \vfill 
+    \item Find the derivative of the function
+    \[h(x) = \int_2^{1/x} \sin^4{t} \ dt.\]
+    \vfill
+    \newpage
+    \item Evaluate the definite integral
+    \[\int_0^1 (u+2)(u-3) \ du.\]
+    \vfill
+    \item Evaluate the definite integral
+    \[\int_1^2 \frac{v^5 + 3v^6}{v^4} \ dv.\]
+    \vfill
+\end{enumerate}
+\end{document}

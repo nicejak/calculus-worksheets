@@ -1,0 +1,192 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, comment, multicol, hyperref}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\pagestyle{fancy}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{epsfig}
+\usepackage{amscd}
+
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+\newcommand*\Eval[1]{\left.#1\right\rvert}
+
+\setlength{\headheight}{15pt}%needed to remove fancyhdr error--not crucial%
+%\pgfplotsset{compat=1.9}%Removes pgfplots backward compatibility error--not crucial%
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+\newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
+	\noindent #1 
+	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
+
+\newcounter{saveenum}
+
+\def\ds{\displaystyle}
+
+%To print solutions, use \solutionstrue; to hide solutions, use \solutionsfalse.
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tblsol}[1]{\textcolor{blue}{#1}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tblsol}[1]{\textcolor{white}{#1}}
+\fi
+
+\begin{document}
+\lhead{Math 1300: Calculus I}
+\rhead{Modeling with linear, quadratic, and exponential functions} 
+
+\begin{enumerate}
+
+\item 
+\begin{enumerate}
+\item A computer is purchased for \$2816 and depreciates at a constant rate to \$0 in 8 years.  Find a formula for the value, $V$,
+of the computer after $t$ years have passed.  Then use this formula to give the value of the computer after 5 years.  (This is known as ``straight-line depreciation'' and is a depreciation model often used on tax forms).
+
+\sol{1.5 in}{The slope is $\frac{0-2816}{8-0}=-352.$ Using point-slope form, our equation is $V-0=-352(t-8)$, which can be rewritten $V=-352t+2816$.  After $5$ years the book value of the computer is $-352\cdot 5 + 2816 = \$1056$.}
+
+\item  Under this model, what is the value of the computer after 9 years?  What does this mean?
+
+\sol{1 in}{$V=-352\cdot 9 + 2816 = -\$352$. This doesn't make sense.  The model is not valid after 8 years.  The domain should be restricted to $0\leq t \leq 8$.}
+
+\item What percent of the initial value does the computer lose per year?
+
+\sol{.7in}{The computer loses $\frac{1}{8}$ or 12.5\% of its original value each year.}
+
+\item  A different model for depreciation called ``double-declining balance depreciation'' is used for purchases which depreciate more quickly early in their life.  Here, we double the depreciation rate (from the previous part), and each year the object loses that percentage of its current value. Find a formula that fits this model, and use it to determine the value of the computer after 5 years.
+
+\sol{1.8in}{The object loses $25\%$ of its current value each year, leaving it with $75\% $ of its value.  So each year we multiply the value by $.75$.  This is an exponential model.  $V(t) = 2816(.75)^t$.  After 5 years the book value of the computer is $2816(.75)^5=668.25$.}
+
+\item  What are some examples of purchases which will be better modeled by the second depreciation model?
+
+%\sol{.5in}{Exponential functions decay faster early on, then slower later.  Computers and cars are examples of objects that lose more value in their first years.}
+
+%\item Under the double-declining balance depreciation, what is the ``salvage value'' of the computer at the end of the 8-year depreciation period?
+
+%\sol{1in}{After the end of the 8-year depreciation period, the computer is worth $2816(.75)^8=\$281.92$.  This is the salvage value.}
+\newpage
+
+\end{enumerate}
+\item  A light-rail system carries 80000 passengers per day at a fare of \$2.25 per ride.  For each 5-cent increase in fare, surveys predict ridership will drop by 250 passengers.  Call $x$ the number of 5-cent increases.
+\begin{enumerate}
+\item  Write a formula for the number of riders as a function of $x$.
+
+\sol{.3 in}{$q(x)=80000-250x$}
+\item  Write a formula for the cost per ride as a function of $x$.
+
+\sol{.3 in}{$p(x)=2.25+0.05x$}
+\item Write a function that gives revenue as a function of $x$.
+
+\sol{.3 in}{$R(x)=q(x)p(x)=(80000-250x)(2.25+0.05x)$}
+\item Graph this function using technology.
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{axis}[
+  yticklabel style={
+        /pgf/number format/fixed,
+        /pgf/number format/precision=5}, scaled y ticks=false,
+    xmin=0, xmax=350,
+    ymin=0, ymax=500000,
+    axis lines=center, xtick={0,100,...,300}, ytick={200000,400000}, height=2 in, width=2.5 in, grid=major
+  ]
+  \addplot [opacity=\opsol{1}, blue, smooth, ultra thick, samples=100, domain=0:350] {(80000-250*x)*(2.25+0.05*x)};
+    \addplot [opacity=\opsol{1}, dashed, red, smooth, ultra thick, samples=100, domain=0:350] coordinates{(137.5,0) (137.5,416328)};
+    \node[opacity=\opsol{1}] at (axis cs:137.5,460000) {(137.5, 416328.125)};
+    \fill[black, opacity=\opsol{1}] (axis cs:137.5,416328.125) circle (2 pt);
+  \end{axis}
+\end{tikzpicture}
+\end{center}
+
+\item From this graph, estimate the maximum revenue and the fare that will produce this maximum revenue.
+
+\sol{.5 in}{Maximum revenue occurs at $x=137.5$. Maximum revenue is then $R(137.5)=416,328.125$. The fare charged when $x=137.5$ is $p(137.5)=9.125.$}
+\end{enumerate}
+
+
+\item Develop a formula for converting degrees Celsius to degrees Fahrenheit.
+\begin{enumerate}
+\item The boiling point of water at sea level, $212^{\circ}F$, corresponds to $100^{\circ}C$.  The freezing point of water, $32^{\circ}F$, corresponds to $0^{\circ}C$.  Use these two facts to create a linear model relating temperature in Celsius to temperature in Fahrenheit.
+
+\sol{2in}{Let $C$ represent the temperature in degrees Celsius and $F$ represent the temperature in degrees Fahrenheit.  We'll create a line with $C$ as the independent variable (the role usually played by $x$) and $F$ as the dependent variable (the role usually played by $y$).  The points $(0, 32)$ and $(100, 212)$ must lie on the line.  The slope is $\frac{212-32}{100-0}=\frac{9}{5}$.  Using point slope form, we have $F-32 = \frac{9}{5}(C-0)$.  Solving for $F$ gives $F=\frac{9}{5}C+32$.  Solving for $C$ gives $C=\frac{5}{9}(F-32)$.}
+
+\item  If it is $35^{\circ}C$ outside, what clothes should you wear?
+
+\sol{.8in}{$F=\frac{9}{5}\cdot 35 + 32 = 95^{\circ}F$, it is hot out, wear summer clothes, a hat, and bring some water!} 
+
+\item  Is there a temperature at which the Celsius and Fahrenheit values are the same?
+
+\sol{1.5in}{$F=C$, so $F=\frac{9}{5}F+32$, solving gives $0 = \frac{4}{5}F + 32$.  $\frac{4}{5}F= -32$, so $F=-40$.  So $-40^{\circ}F$ is the same temperature as $-40^{\circ}C$.}
+
+\end{enumerate}
+
+\item  In 2000 there were about 213 million vehicles (cars and trucks) and about 281 million people in the US.  The number of vehicles has been growing at 4\% per year and the population has been growing at 1\% per year.  If the growth rates remain constant, when will there be, on average, one vehicle per person?
+
+\sol{4 in}{If there is one car per person, then the number of cars is equal to the number people. We need to come up with expressions for both of these values and determine the time in which they are equal. Let $c(t)$ be the number of cars and $p(t)$ be the number of people (in millions) in the US, and let $t=0$ be the year 2000.\\ 
+Using the formula $Q(t)=Q_0(1+r)^t$, the formulas for the number of cars and the number of people are: 
+$$c(t)=213(1.04)^t \hspace{2em} \text{and}\hspace{2em}p(t)=281(1.01)^t$$ 
+Setting them equal and solving for $t$, we find:
+\[213(1.04)^t=281(1.01)^t\implies\dfrac{(1.04)^t}{(1.01)^t}=\dfrac{281}{213}\implies \left(\dfrac{1.04}{1.01}\right)^t=\dfrac{281}{213} \] \\
+\[t\ln\left(\dfrac{1.04}{1.01}\right)=\ln\left(\dfrac{281}{213}\right)\implies t=\frac{\ln\left(\dfrac{281}{213}\right)}{\ln\left(\dfrac{1.04}{1.01}\right)}\implies t\approx9.47 \text{ years}\]
+So there will be one car per person half way through the year 2009.}
+
+
+\newpage
+\item In 1969, the world record time for the mile was 4:36.8, held by Maria Gommers.  In 1980, the world record was held by Mary Slaney, with a time of 4:21.7 (data from Wikipedia).
+\begin{enumerate}
+\item Find a linear model that fits this data, and use it to predict the world record time in 1996 and 2050.
+
+\sol{1.6 in}{Let $t=0$ denote 1969. Then $t=11$ denotes 1980. Note that 4:36.8 is 276.8 seconds and 4:21.7 is 261.7 seconds. \\ \\
+The slope is then $\frac{261.7-276.8}{11-0}=\frac{-15.1}{11}.$ Using point-slope form, our equation is $f(t)-276.8=-\frac{15.1}{11}(t-0)$, which can be rewritten $f(t)=-\frac{15.1}{11} t+276.8$. \\ \\
+For 1996, $t=27$. The prediction for 1996 is then $f(27)\approx 239.7\approx$ 3:59.7 \\
+For 2050, $t=81$. The prediction for 2050 is then $f(81)\approx 165.6\approx$ 2:45.6}
+
+\item  What is the slope of your linear model?  What does it represent (include units)?
+
+\sol{.5 in}{$\frac{-15.1}{11}\approx -1.37$ seconds per year. This represents the predicted change in world record time per year.}
+
+\item  If $t$ represents the year, what is the $t$-intercept of your linear model?  Including units, what does it represent?  (A graph might help.)  Comment on the validity of the model.
+
+\sol{.8 in}{We want to solve $0=-\frac{15.1}{11} t+276.8$ for t. This gives us a $t$-intercept of $t=\frac{30448}{151}\approx201.6$. This tells us that 201.6 years after 1969, in 2170.6, our model predicts that the world record mile time will be 0 seconds.  After that, the times will be negative!  This shows that a linear model is a poor choice for this application.}
+
+\item Using the same data, now construct an exponential model and use it to predict the world record time in 1996 and 2050.
+
+\sol{1.3 in}{We want a function of the form $f(t)=a\cdot b^t$.\\
+We know $f(0)=276.8$, so $276.8=a \cdot b^0$, and therefore $a=276.8$\\
+We also know $f(11)=261.7$, so $261.7=276.8 \cdot b^{11}$, and therefore $b=(\frac{261.7}{276.8})^{1/11}\approx0.9949$ \\ \\
+The prediction for 1996 is then $f(27)\approx 241.1\approx$ 4:01.1 \\
+The prediction for 2050 is then $f(81)\approx 182.9\approx$ 3:02.9}
+
+\item What is the $t$-intercept of your exponential model?  What is the end behavior, and what does it represent?  (Drawing a graph might help.)
+
+\sol{.8 in}{We want to solve $0=276.8\cdot(0.9949)^t$ for $t$, but this is impossible. There is no $t$-intercept.  The function has a horizontal asymptote of $y = 0$, meaning that we predict the mile times to approach 0.  Again, although the model is better than the linear model (we are no longer predicting negative times), it is still not a good choice.} 
+
+\item  In 1996, the world record  was set by Svetlana Masterkova, in a time of 4:12.56.  How well did each model predict this?  What do you think will happen in 2050?
+
+\sol{.35 in}{Both of our predictions for 1996 were too low. We expect our 2050 predictions to also be too low, and probably much too low.}
+
+\item  Challenge:  Using all the data given, find a shifted exponential model and use it to predict the  record in 2050.  What is the end-behavior of this model, and what does it represent?
+\end{enumerate}
+
+
+\end{enumerate}
+
+\end{document}
+
+
+
+
+
+#64 page 24 of HH

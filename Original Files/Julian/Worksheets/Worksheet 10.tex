@@ -1,0 +1,73 @@
+% DOCUMENT FORMATING
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+% PACKAGES
+\usepackage{amsmath} % For extended formatting
+\usepackage{amssymb} % For math symbols
+\usepackage{amsthm} % For proof environment
+\usepackage{array} % For tables
+\usepackage{enumerate} % For lists
+\usepackage{extramarks} % For headers and footers
+\usepackage{fancyhdr} % For custom headers
+\usepackage{graphicx} % For inserting images
+\usepackage{multicol} % For multiple columns
+\usepackage{verbatim} % For displaying code
+\usepackage{tkz-euclide}
+\usepackage{pgfplots}
+\usepackage{mathtools}
+
+
+% SET UP HEADER AND FOOTER
+\pagestyle{fancy}
+\lhead{\MyCourse} % Top left header
+%\chead{\MyTopicTitle} % Top center header
+\rhead{\MyAssignment} % Top right header
+%\lfoot{\MyCampus} % Bottom left footer
+\cfoot{} % Bottom center footer
+%\rfoot{\MySemester} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+
+
+
+% ----------
+% TITLES AND NAMES 
+% ----------
+
+\newcommand{\MyCourse}{Math 241}
+\newcommand{\MyAssignment}{Worksheet 10}
+%\newcommand{\MySemester}{Spring 2020}
+%\newcommand{\MyCampus}{University of Hawaii at Manoa}
+
+% ----------
+% BEGIN DOCUMENT
+% ----------
+
+\begin{document}
+\begin{enumerate}
+    \item Compute the following. 
+    \begin{enumerate}
+        \item $\displaystyle\int_1^2 \dfrac{x+3-\frac{1}{x}}{x^3} \, dx$
+        \vfill
+
+        \item $\displaystyle\int -\dfrac{\cos(x)}{\sin^2(x)} - (x+1)(x-2)\, dx$ \emph{Hint: Break it up into two integrals.}
+        \vfill
+    \pagebreak
+    
+    \item $\displaystyle\int_0^{\sqrt{\pi}} x\sin(x^2)\, dx$
+    \vfill
+    
+    \item $\displaystyle\int \dfrac{x^3}{(x^4-5)^2}\, dx$
+    \vfill
+    \pagebreak
+    
+    \item $\displaystyle\int x^3\sqrt{x^2+3}\, dx$
+    \vfill
+    \item $\displaystyle\int \sec^2(x)\tan(x)\, dx$.
+    \vfill
+    \pagebreak
+    \end{enumerate}
+    \end{enumerate}
+\end{document}

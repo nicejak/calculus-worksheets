@@ -1,0 +1,278 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage{amsmath, mathtools, comment, graphicx, fancyhdr, color, setspace, comment, multicol, hyperref, tabu}
+\usepackage[letterpaper,margin=1in,includehead=true]{geometry}
+\pagestyle{fancy}
+\usepackage{tikz,tikz-3dplot,pgfplots}
+\usepackage{cancel}
+
+\newcounter{mycounter}  
+\newenvironment{noindlist}
+ {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
+ {\end{list}}
+
+%To print solutions, use \solutionstrue
+%To hide solutions, use \solutionsfalse
+%\sol takes two arguments. #1 is the vertical length. #2 is the text.
+
+\newif\ifsolutions
+\solutionsfalse
+\ifsolutions
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\textcolor{blue}{\textbf{Solution:}}\quad \textcolor{blue}{#2}}\end{minipage}}
+    \newcommand{\opsol}[1]{#1}
+    \newcommand{\tsol}[2]{\textcolor{blue}{\textbf{Solution:}}\quad\vspace{-.25 in}#2}
+            \newcommand{\blankans}[1]{\underbar{\enskip \textcolor{blue}{#1}\enskip}}
+\else
+    \newcommand{\sol}[2]{\begin{minipage}[c][#1]{\linewidth}{\vfill}\end{minipage}}
+    \newcommand{\opsol}[1]{0}
+    \newcommand{\tsol}[2]{#1}
+         \newcommand{\blankans}[1]{\underbar{\enskip \textcolor{white}{#1}\enskip }}
+\fi
+
+\def\ds{\displaystyle}
+
+\begin{document}
+\lhead{Math 241: Calculus I}
+\chead{}
+\rhead{\bf Worksheet 17: Riemann Sums} 
+
+\begin{enumerate}
+
+\item A girl is running at a velocity of 12 feet per second for 10 seconds, as shown in the velocity graph below.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=12,
+	ymin=-1, ymax=16,
+	xtick={4, 7, 10},  
+	ytick={6, 10, 12},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, grid=major, ylabel=$v(t)$, xlabel=$t$
+	]
+    \addplot [opacity=\opsol{.25}, domain=0:10,fill,blue] {12}  \closedcycle;
+    \addplot [ultra thick, samples=9, domain=0:12.5] {12};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+How far does she travel during this time?
+
+\sol{1 in}{120 feet}
+
+This distance can be depicted graphically as a rectangle. Shade such a rectangle and explain why it gives the distance.
+
+\sol{1 in}{The area is found by multiplying an $x$-axis value by a $y$-axis value. In this case, we multiply 10 ft/sec by 12 sec, which gives $\ds \frac{10 \text{ ft}}{1 \cancel{\text{ sec}}} \cdot 12 \cancel{\text{ sec}}=120 \text{ ft}$}
+
+\item Now the girl changes her velocity as she runs. Her velocity graph is approximately as shown:
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=12,
+	ymin=-1, ymax=16,
+	xtick={4, 7, 10},  
+	ytick={6, 10, 12},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, grid=major, ylabel=$v(t)$, xlabel=$t$
+	]
+    \addplot [mark=*, smooth, black, very thick] coordinates {(0,12) (4,12)};
+    \addplot [mark=*, smooth, black, very thick] coordinates {(4,10) (7,10)};
+    \addplot [mark=*, smooth, black, very thick] coordinates {(7,6) (10,6)};
+    \addplot [black, only marks, very thick, mark=*, mark options={scale=1, fill=white}]
+    coordinates{(4,12) (7,10)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+How far does she travel this time?
+
+\sol{1 in}{$12 \text{ ft/sec} \cdot 4 \text{ sec}+10 \text{ ft/sec} \cdot 3 \text{ sec} +6 \text{ ft/sec} \cdot 3 \text{ ft/sec}$=$96$ ft.}
+
+\newpage
+
+\item This time she starts off slowly and speeds up. 
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=12,
+	ymin=-1, ymax=16,
+	xtick={12},  
+	ytick={12},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, grid=major, ylabel=$v(t)$, xlabel=$t$
+	]
+    \addplot [ultra thick, samples=9, domain=0:12.5] {1/12*x^2};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+The velocity is given by $v(t)=\frac{t^2}{12}$ (time in seconds, velocity in ft/sec). 
+We can no longer exactly find the distance travelled using areas of rectangles. But we can estimate it using areas of rectangles. 
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=12,
+	ymin=-1, ymax=16,
+	xtick={3, 6, 9, 12},  
+	ytick={12},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=2 in, grid=major, ylabel=$v(t)$, xlabel=$t$
+	]
+    \addplot [ultra thick, samples=9, domain=0:12.5] {1/12*x^2};
+    \draw [draw, thick] (axis cs:0,0) rectangle (axis cs:3,.75);
+    \draw [draw, thick] (axis cs:3,0) rectangle (axis cs:6,3);
+    \draw [draw, thick] (axis cs:6,0) rectangle (axis cs:9,6.75);
+    \draw [draw, thick] (axis cs:9,0) rectangle (axis cs:12,12);
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+Find her velocity at time $t=3, 6, 9, 12$ and use it to estimate her distance travelled in the first 12 seconds. 
+In your answer to this problem {\bf use fractions, not decimals.}
+
+\sol{2 in}{Using $v(t)=\frac{t^2}{12}$, $v(3)=3/4$, $v(6)=3$, $v(9)=27/4$, and $v(12)=12$. Though her velocity is always changing, we can use each of these velocities as an estimate of the velocities on the entire interval. We'll estimate her velocity as $3/4$ ft/sec for $t=0$ to $t=3$, $3$ ft/sec for $t=3$ to $t=6$, $27/4$ ft/sec for $t=6$ to $t=9$, and $12$ ft/sec for $t=9$ to $t=12$. This gives us a distance of 
+\[\frac{3}{4} \text{ ft/sec} \cdot 3 \text{ sec}+3 \text{ ft/sec} \cdot 3 \text{ sec}+\frac{27}{4} \text{ ft/sec} \cdot 3 \text{ sec}+12 \text{ ft/sec} \cdot 3 \text{ sec}=\frac{135}{2}=67.5 \text{ ft.}\]}
+
+\newpage
+
+\item Now, for the same velocity function $v(t)=\frac{t^2}{12}$, get a better estimate of how far she travelled using $n=6$ rectangles. Draw a graph showing the areas, and use their areas to estimate her distance travelled in the first 12 seconds.
+Again {\bf use fractions, not decimals.}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+   	xmin=-1, xmax=12,
+	ymin=-1, ymax=16,
+	xtick={2,4,...,12},  
+	ytick={12},
+	major tick length={0},
+	line width=1pt,
+ 	axis lines=center, height=3 in, grid=major, ylabel=$v(t)$, xlabel=$t$
+	]
+    \addplot [ultra thick, samples=9, domain=0:12.5] {1/12*x^2};
+    \addplot [opacity=\opsol{.25}, domain=0:2,fill,blue] {4/12}  \closedcycle;
+    \addplot [opacity=\opsol{.25}, domain=2:4,fill,blue] {16/12}  \closedcycle;
+    \addplot [opacity=\opsol{.25}, domain=4:6,fill,blue] {36/12}  \closedcycle;
+    \addplot [opacity=\opsol{.25}, domain=6:8,fill,blue] {64/12}  \closedcycle;
+    \addplot [opacity=\opsol{.25}, domain=8:10,fill,blue] {100/12}  \closedcycle;
+    \addplot [opacity=\opsol{.25}, domain=10:12,fill,blue] {144/12}  \closedcycle;
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\sol{1 in}{
+\begin{align*}
+\text{Area} &\approx \frac{12}{6} \left( \frac{(1 \cdot 2)^2}{12}+\frac{(2 \cdot 2)^2}{12}+\frac{(3 \cdot 2)^2}{12}+\frac{(4 \cdot 2)^2}{12}+\frac{(5 \cdot 2)^2}{12}+\frac{(6 \cdot 2)^2}{12} \right) \\
+&\approx \frac{182}{3} \;=\; 60\frac{2}{3} \text{ ft.}
+\end{align*}
+}
+
+\item  Now we will estimate the area when there are $n=37$ rectangles. 
+{\bf Use fractions, not decimals.}
+
+\begin{enumerate}
+\item Width of each rectangle: 
+
+\sol{.4 in}{$\dfrac{12}{37}$}
+
+\item List of right-hand endpoint of each rectangle:\\ 
+
+\blankans{$12/37$}, \blankans{$2\cdot12/37$}, \blankans{$3\cdot12/37$},...,\blankans{$36\cdot12/37$}, \blankans{$37\cdot12/37$} 
+
+
+\item List of heights of each rectangle: \\\\
+
+\blankans{$\frac{(1\cdot12/37)^2}{12}$},
+\blankans{$\frac{(2\cdot12/37)^2}{12}$},
+\blankans{$\frac{(3\cdot12/37)^2}{12}$},...,
+\blankans{$\frac{(36\cdot12/37)^2}{12}$},
+\blankans{$\frac{(37\cdot12/37)^2}{12}$}
+
+\item List of areas of rectangles: \\\\
+
+\blankans{$\frac{12}{37}\cdot\frac{(1\cdot12/37)^2}{12}$},
+\blankans{$\frac{12}{37}\cdot\frac{(2\cdot12/37)^2}{12}$},
+\blankans{$\frac{12}{37}\cdot\frac{(3\cdot12/37)^2}{12}$},...,
+\blankans{$\frac{12}{37}\cdot\frac{(36\cdot12/37)^2}{12}$},
+\blankans{$\frac{12}{37}\cdot\frac{(37\cdot12/37)^2}{12}$}
+
+\item Sum of all areas:\\\\
+ 
+\blankans{$\frac{12}{37}\cdot\frac{(1\cdot12/37)^2}{12}$}+
+\blankans{$\frac{12}{37}\cdot\frac{(2\cdot12/37)^2}{12}$}+
+\blankans{$\frac{12}{37}\cdot\frac{(3\cdot12/37)^2}{12}$}+...+
+\blankans{$\frac{12}{37}\cdot\frac{(36\cdot12/37)^2}{12}$}+
+\blankans{$\frac{12}{37}\cdot\frac{(37\cdot12/37)^2}{12}$}
+
+\end{enumerate}
+
+
+\item Now we will figure out the estimate when there are an arbitrary number of rectangles, or $n$ rectangles.
+
+\begin{enumerate}
+\item Width of each rectangle: 
+
+\sol{.4 in}{$\dfrac{12}{n}$}
+
+\item List of right-hand endpoint of each rectangle:\\ 
+
+\blankans{$1 \cdot 12/n$}, \blankans{$2\cdot12/n$}, \blankans{$3\cdot12/n$},...,\blankans{$(n-1)\cdot12/n$}, \blankans{$n\cdot12/n$} 
+
+
+\item List of heights of each rectangle: \\\\
+
+\blankans{$\frac{(1\cdot12/n)^2}{12}$},
+\blankans{$\frac{(2\cdot12/n)^2}{12}$},
+\blankans{$\frac{(3\cdot12/n)^2}{12}$},...,
+\blankans{$\frac{((n-1)\cdot12/n)^2}{12}$},
+\blankans{$\frac{(n\cdot12/n)^2}{12}$}
+
+
+\item List of areas of rectangles: \\\\
+
+\blankans{$\frac{12}{n}\cdot\frac{(1\cdot12/n)^2}{12}$},
+\blankans{$\frac{12}{n}\cdot\frac{(2\cdot12/n)^2}{12}$},
+\blankans{$\frac{12}{n}\cdot\frac{(3\cdot12/n)^2}{12}$},...,
+\blankans{$\frac{12}{n}\cdot\frac{((n-1)\cdot12/n)^2}{12}$},
+\blankans{$\frac{12}{n}\cdot\frac{(n\cdot12/n)^2}{12}$}
+
+\item Sum of all areas:\\\\
+ 
+\blankans{$\frac{12}{n}\cdot\frac{(1\cdot12/n)^2}{12}$}+
+\blankans{$\frac{12}{n}\cdot\frac{(2\cdot12/n)^2}{12}$}+
+\blankans{$\frac{12}{n}\cdot\frac{(3\cdot12/n)^2}{12}$}+...+
+\blankans{$\frac{12}{n}\cdot\frac{((n-1)\cdot12/n)^2}{12}$}+
+\blankans{$\frac{12}{n}\cdot\frac{(n\cdot12/n)^2}{12}$}
+
+\end{enumerate}
+
+
+\newpage
+
+\item Manipulate the sum algebraically until it is of the form: $$\textit{stuff} \cdot (1+4+9+...+n^2).$$
+
+\sol{2.2 in}{
+\begin{align*}
+\text{Sum} &= \frac{12}{n} \cdot \frac{(1 \cdot 12/n)^2}{12}+\frac{12}{n} \cdot \frac{(2 \cdot 12/n)^2}{12}+\frac{12}{n} \cdot \frac{(3 \cdot 12/n)^2}{12}+ ... + \frac{12}{n} \cdot \frac{(n \cdot 12/n)^2}{12} \\
+&= \frac{12}{n} \cdot \frac{(12/n)^2}{12} \cdot (1^2+2^2+3^2+...+n^2) \\
+&= \frac{12^2}{n^3} \cdot (1^2+2^2+3^2+...+n^2)
+\end{align*}
+}
+\item Simplify further by substituting $\ds 1+4+9+...+n^2=\frac{n(n+1)(2n+1)}{6}$ into your answer above. Check that it gives the same answer for $n=6$ that you got in problem 4.
+
+\sol{2.3 in}{\[\frac{12^2}{n^3} \cdot (1^2+2^2+3^2+...+n^2)= \frac{12^2}{n^3} \cdot \frac{n(n+1)(2n+1)}{6}=\frac{24}{n^2} \cdot (n+1)(2n+1)\]
+For $n=6$ this gives $\ds \frac{24}{36} \cdot (6+1)(2 \cdot 6+1)\approx 60.667$ which is the same answer we got above.}
+
+\item As $n$ approaches infinity we find her exact distance travelled (the exact area under the curve). Take the limit as $n$ goes to infinity for your answer to the previous problem.
+
+\sol{2in}{\[ \lim_{n\rightarrow \infty} \frac{24(n+1)(2n+1)}{n^2}=\lim_{n\rightarrow \infty} \frac{48 n^2+72 n+24}{n^2}=48\]}
+
+Notice that you just found the area inside a region with a curved edge!
+\end{enumerate}
+\end{document}
