@@ -14,7 +14,7 @@
 \usepackage{wrapfig}
 \usepackage{enumitem}
 
-\newcounter{mycounter}  
+\newcounter{mycounter}
 \newenvironment{noindlist}
  {\begin{list}{\arabic{mycounter}.~~}{\usecounter{mycounter} \labelsep=0em \labelwidth=0em \leftmargin=0em \itemindent=0em}}
  {\end{list}}
@@ -34,13 +34,13 @@
 \fi
 
 \newcommand{\unenumerate}[1]{\setcounter{saveenum}{\value{enumi}}\end{enumerate}
-	\noindent #1 
+	\noindent #1
 	\begin{enumerate} \setcounter{enumi}{\value{saveenum}}}
 
 \newcounter{saveenum}
 
 \def\changemargin#1#2{\list{}{\rightmargin#2\leftmargin#1}\item[]}
-\let\endchangemargin=\endlist 
+\let\endchangemargin=\endlist
 
 \begin{document}
 
@@ -50,33 +50,33 @@
 
 \begin{enumerate}
 \item  Convert between degrees and radians:
- 
- 
+
+
 \begin{changemargin}{0cm}{6.3cm}
 \begin{multicols}{3}
 \begin{enumerate}
 
-\item[(a)] $180^{\circ}=$ 
+\item[(a)] $180^{\circ}=$
 \ifsolutions \textcolor{blue}{$\pi$} \fi
 \vspace{.25in}
 
-\item[(d)] $30^{\circ}=$ 
+\item[(d)] $30^{\circ}=$
 \ifsolutions \textcolor{blue}{$\displaystyle \frac{\pi}{6}$} \fi
 \vspace{.25in}
- 
-\item[(b)] $135^{\circ}=$ 
+
+\item[(b)] $135^{\circ}=$
 \ifsolutions \textcolor{blue}{$\displaystyle \frac{3\pi}{4}$} \fi
 \vspace{.25in}
 
-\item[(e)] $\displaystyle \frac{\pi}{4}=$ 
+\item[(e)] $\displaystyle \frac{\pi}{4}=$
 \ifsolutions \textcolor{blue}{$45^{\circ}$} \fi
 \vspace{.25in}
 
-\item[(c)] $\displaystyle \frac{3\pi}{2}=$ 
+\item[(c)] $\displaystyle \frac{3\pi}{2}=$
 \ifsolutions \textcolor{blue}{$270^{\circ}$} \fi
 \vspace{.25in}
 
-\item[(f)] $\displaystyle \frac{11\pi}{6}=$ 
+\item[(f)] $\displaystyle \frac{11\pi}{6}=$
 \ifsolutions \textcolor{blue}{$330^{\circ}$} \fi
 \vspace{.25in}
 
@@ -91,19 +91,19 @@
 
 \begin{enumerate}
 
-\item[(a)] $\displaystyle \sin{(3\pi)}=$ 
+\item[(a)] $\displaystyle \sin{(3\pi)}=$
 \ifsolutions \textcolor{blue}{$0$} \fi
 \vspace{.25in}
 
-\item[(d)] $\displaystyle \sin{\left(-\frac{\pi}{6} \right)}=$ 
+\item[(d)] $\displaystyle \sin{\left(-\frac{\pi}{6} \right)}=$
 \ifsolutions \textcolor{blue}{$\displaystyle-\frac{1}{2}$} \fi
 \vspace{.25in}
 
-\item[(b)] $\displaystyle \cos{\left( \frac{5\pi}{4} \right)}=$ 
+\item[(b)] $\displaystyle \cos{\left( \frac{5\pi}{4} \right)}=$
 \ifsolutions \textcolor{blue}{$\displaystyle -\frac{\sqrt{2}}{2}$} \fi
 \vspace{.25in}
 
-\item[(e)] $\displaystyle \sec{\left( \frac{5\pi}{3} \right)}=$ 
+\item[(e)] $\displaystyle \sec{\left( \frac{5\pi}{3} \right)}=$
 \ifsolutions \textcolor{blue}{$2$} \fi
 \vspace{.25in}
 
@@ -124,19 +124,19 @@
 \begin{multicols}{3}
 \begin{enumerate}
 
-\item[(a)] $\displaystyle \arcsin{\left(-\frac{\sqrt{3}}{2}\right)}=$ 
+\item[(a)] $\displaystyle \arcsin{\left(-\frac{\sqrt{3}}{2}\right)}=$
 \ifsolutions \textcolor{blue}{$-\frac{\pi}{3}$} \fi
 \vspace{.25in}
 
-\item[(d)] $\displaystyle \arctan{(-1)}=$ 
+\item[(d)] $\displaystyle \arctan{(-1)}=$
 \ifsolutions \textcolor{blue}{$-\frac{\pi}{4}$} \fi
 \vspace{.25in}
 
-\item[(b)] $\displaystyle \arccos{(-1)}=$ 
+\item[(b)] $\displaystyle \arccos{(-1)}=$
 \ifsolutions \textcolor{blue}{$\pi$} \fi
 \vspace{.25in}
 
-\item[(e)] $\displaystyle \sec^{-1}{(2)}=$ 
+\item[(e)] $\displaystyle \sec^{-1}{(2)}=$
 \ifsolutions \textcolor{blue}{$\frac{\pi}{3}$} \fi
 \vspace{.25in}
 
@@ -185,7 +185,7 @@
 \end{tikzpicture}
 \newpage
 
-\noindent Now we will apply our knowledge of basic trigonometric functions (and inverse trigonometric functions) to some real-world problems.  
+\noindent Now we will apply our knowledge of basic trigonometric functions (and inverse trigonometric functions) to some real-world problems.
 You will need these skills later in the semester.
 \item A 15-foot long ladder is leaning against a wall
 with its base 2 feet from the wall.  Find the angle the ladder makes with the floor.  Use a calculator to compute the answer in radians and in degrees.
@@ -217,7 +217,7 @@ Looking at a picture of the situation, we see that the ladder forms the hypotenu
 
 
 \item The bottom of the ladder in the previous problem starts to slide away
-from the wall at the constant rate of 1 foot per second. 
+from the wall at the constant rate of 1 foot per second.
 
 When will the ladder make a $60^{\circ}$ angle with
 the ground?
@@ -266,12 +266,12 @@ to the motel, how far is the motel from the rock?\\
     arc (\Angle:180:\Arad); %(starting angle, ending angle, radius)
 \draw [ultra thick] (0,0) -- (2,0);% Horizontal
 \draw [ultra thick] (0,0) -- (0,4);% Vert
-\draw [ultra thick, dotted] (2,0) -- (0,1.5); 
-\draw [ultra thick] (2,0) -- (0,4); 
+\draw [ultra thick, dotted] (2,0) -- (0,1.5);
+\draw [ultra thick] (2,0) -- (0,4);
 \draw [thick,->] (.1,1.7)--(0.1,3.4);
 \draw[thick,fill] (0,0) circle(0.1);
 \draw [decorate,decoration={brace,amplitude=12pt},xshift=-4pt,yshift=0pt]
-(0,0) -- (0,4) node [midway,xshift=-0.25in] 
+(0,0) -- (0,4) node [midway,xshift=-0.25in]
 {$y$};
 \node at (1,-0.5) {$100$ yd};
 \node at (1.2,.3){$\omega$};
@@ -285,11 +285,11 @@ Using trig ratios to solve, we have:
 
 
 \newpage
-\item While staring out the window, you notice 
+\item While staring out the window, you notice
 	\begin{enumerate}
-		\item[a)] that it is a warm and sunny day, 
+		\item[a)] that it is a warm and sunny day,
 		\item[b)] that your line of sight to the top of a nearby tree makes an angle of 45 degrees above the horizontal, and
-		\item[c)] that your line of sight to the base of the tree makes an angle of 30 degrees below the horizontal. 
+		\item[c)] that your line of sight to the base of the tree makes an angle of 30 degrees below the horizontal.
 	\end{enumerate}
 			Taking advantage of a), you go outside and measure that it is 40 feet from the building to the base of the tree. How tall is the tree?
 
@@ -344,7 +344,7 @@ The total height of the tree is the sum of these two heights, which is about 63 
 \draw [decorate,decoration={brace,amplitude=12pt}] (2.9,5) -- (2.9,0) node [midway, xshift=25] {50 ft};
 \end{tikzpicture}
 \end{wrapfigure}
-The trick is to imagine the barber pole as a rectangle that is rolled up into a cylinder. The stripe makes one complete revolution which means that it goes from the bottom left corner of the rectangle to the top right of the rectangle directly. Now the width of the rectangle is the circumference of the pole: $2\pi r = \frac{50}{\sqrt{3}}$ inches. The height of the rectangle is the height of the pole: $50$ inches. So the right triangle formed has opposite side $50$ and adjacent side $\frac{50}{\sqrt{3}}$, which means the tangent of the angle we're looking for satisfies 
+The trick is to imagine the barber pole as a rectangle that is rolled up into a cylinder. The stripe makes one complete revolution which means that it goes from the bottom left corner of the rectangle to the top right of the rectangle directly. Now the width of the rectangle is the circumference of the pole: $2\pi r = \frac{50}{\sqrt{3}}$ inches. The height of the rectangle is the height of the pole: $50$ inches. So the right triangle formed has opposite side $50$ and adjacent side $\frac{50}{\sqrt{3}}$, which means the tangent of the angle we're looking for satisfies
 $$ \tan{\theta} = \frac{50}{\frac{50}{\sqrt{3}}} = \sqrt{3}.$$ $$\theta = \arctan{\sqrt{3}} = \frac{\pi}{3} = 60^{\circ}$$ The length of the stripe can be found with the Pythagorean Theorem as $\ell^2=50^2+\left(\frac{50}{\sqrt{3}}\right)^2$, so $\ell=\frac{100}{\sqrt{3}}$, making the length of the strip $\frac{100}{\sqrt{3}}$ inches.}
 
 
